@@ -271,7 +271,7 @@ class M_admin extends CI_Model
     {
         $data = array(
             'status_' . $as => '1',
-            'verif_date_' . $as . 'by' => NOW()
+            'verif_date_' . $as . 'by' => 'now()'
         );
         $this->db->where('id_verifikasi', $id);
         $this->db->update('gatepass_tbverifikasi', $data);
