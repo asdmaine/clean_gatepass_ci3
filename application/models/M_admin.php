@@ -208,9 +208,7 @@ class M_admin extends CI_Model
         $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
         $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
         $this->db->where('c.requestedby_pst_pnr', $pst_pnr);
-        $this->db->where('status_recommended =', 0);
-        $this->db->where('status_approved =', 0);
-        $this->db->where('status_acknowledged =', 0);
+        $this->db->where("(status_recommended = 0 OR status_approved = 0 OR status_acknowledged = 0)");
 
         $query = $this->db->get();
         return $query->result();
