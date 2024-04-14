@@ -11,7 +11,7 @@
 
 </head>
 <style>
-  body {
+  /* body {
     animation: transitionIn 0.5s;
   }
 
@@ -23,7 +23,7 @@
     to {
       transform: translatex(0);
     }
-  }
+  } */
 </style>
 
 <body>
