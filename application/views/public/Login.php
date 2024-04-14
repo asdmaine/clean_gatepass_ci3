@@ -79,23 +79,50 @@
 
 <body>
 
+    <div class="container">
+        <div class="row">
+            <form class="form-signin p-5" method="post">
+                <h1 class="h3 mb-3 font-weight-normal w-100 text-center">Please Log in</h1>
 
+                <label for="username" class="sr-only">NIK</label>
+                <input type="" name="username" id="username" class="form-control" placeholder="NIK" required autofocus>
 
-    <form class="form-signin p-5" method="post">
-        <h1 class="h3 mb-3 font-weight-normal w-100 text-center">Please Log in</h1>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                <?php
+                if (!empty($output)) {
+                    echo "<p class='text-danger w-100 text-center mt-3'>" . $output . "</p>";
+                }
+                ?>
+            </form>
+        </div>
+        <div class="row">
+            <div class="mx-auto w-50">
+                <div class="shadow-lg p-3 bg-secondary text-light mt-4">Normal</div>
+                <div class="akun shadow-none p-3 bg-light" data-pst="523124075">Firman Barus - 523124075</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4698073">Agus Widodo - 4698073</div>
 
-        <label for="username" class="sr-only">NIK</label>
-        <input type="" name="username" id="username" class="form-control" placeholder="NIK" required autofocus>
+                <div class="shadow-lg p-3 bg-secondary text-light mt-4">Supervisor</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="46211035">Haryanto - 46211035</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4608937">Kusbiantoro Effendi - 4608937</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4600381">Jonathan S M L Tobing - 4600381</div>
 
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-        <?php
-        if (!empty($output)) {
-            echo "<p class='text-danger w-100 text-center mt-3'>" . $output . "</p>";
-        }
-        ?>
-    </form>
+                <div class="shadow-lg p-3 bg-secondary text-light mt-4">Manager</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4600318">M. Sunarto - 4600318</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="46221041">Teddy Ariswandi - 46221041</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="46191032">Melinda - 46191032</div>
+
+                <div class="shadow-lg p-3 bg-secondary text-light mt-4">HRD/HOD</div>
+                <div class="akun shadow-none p-3 bg-light" data-pst="46171029">Aris SH - 46171029</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="521073730">Marden S - 521073730</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4607947">Suryanti - 4607947</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="523023913">Akbar PJ - 523023913</div>
+            </div>
+        </div>
+
+    </div>
+
 
 
     <!-- <section class="bg-gray-50 dark:bg-gray-900">
@@ -135,6 +162,26 @@
         </div>
     </section> -->
 
+    <script>
+    // Ambil semua elemen div dengan kelas "shadow-none"
+    var divs = document.querySelectorAll('.akun');
+
+    // Iterasi melalui setiap elemen div
+    divs.forEach(function(div) {
+        // Tambahkan event listener untuk setiap div
+        div.addEventListener('click', function() {
+            // Ambil nilai dari atribut data-pst
+            var usernameValue = div.getAttribute('data-pst');
+
+            // Masukkan nilai dari atribut data-pst ke dalam input dengan ID "username"
+            document.getElementById('username').value = usernameValue;
+            document.getElementById('password').value = '123';
+
+            // Submit form secara otomatis
+            document.querySelector('form').submit();
+        });
+    });
+</script>
 
 </body>
 
