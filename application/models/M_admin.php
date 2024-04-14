@@ -169,7 +169,7 @@ class M_admin extends CI_Model
             $data_gatepass = array(
                 'requestedby_pst_name' => $post['requested_name'],
                 'tanggal_gatepass' => $post['tanggal'],
-                'tanggal_gatepass_dibuat' => 'now()',
+                'tanggal_gatepass_dibuat' => date('Y-m-d H:i:s'),
                 'keperluan' => $post['keperluan'],
                 'penjelasan_keperluan' => $post['penjelasan'],
                 'id_time' => $id_time,
@@ -279,7 +279,7 @@ class M_admin extends CI_Model
     {
         $data = array(
             'status_' . $as => '-1',
-            'verif_date_' . $as . 'by' => 'now()'
+            'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
         );
         $this->db->where('id_verifikasi', $id);
         $this->db->update('gatepass_tbverifikasi', $data);
@@ -289,7 +289,7 @@ class M_admin extends CI_Model
     {
         $data = array(
             'status_' . $as => '0',
-            'verif_date_' . $as . 'by' => 'now()'
+            'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
         );
         $this->db->where('id_verifikasi', $id);
         $this->db->update('gatepass_tbverifikasi', $data);
