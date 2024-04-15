@@ -18,69 +18,276 @@
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
-        <h4>Dashboard</h4>
+        <!-- <h4>Dashboard</h4> -->
       </div>
-      <!-- <div class="" style="height:1000px;">
-        <div class="row">
-          <div class="col-md-3 border p-2">
-            <p class="text-center">card gatepass anda bulan ini</p>
-          </div>
-          <div class="col-md-3 border">
-            
-          </div>
-          <div class="col-md-3 border">
-            
-          </div>
-          <div class="col-md-3 border">
-            
+      <div class="row mb-5 text-white">
+        <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+          <div class="bg-danger d-flex flex-column p-4 shadow">
+            <h3 class="mb-3">Gatepass Bulan ini</h3>
+            <h2 class="font-weight-bold mb-0 text-right">30</h2>
           </div>
         </div>
-      </div> -->
-      <a class="btn btn-primary text-white mb-3" id="show-signature">
-        E-Signature
-      </a>
-      
-      <div id="sigField" style="display:none;">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+          <div class="bg-success d-flex flex-column p-4 shadow">
+            <h3 class="mb-3">Gatepass Bulan lalu</h3>
+            <h2 class="font-weight-bold mb-0 text-right">30</h2>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+          <div class="bg-secondary d-flex flex-column p-4 shadow">
+            <h3 class="mb-3">Gatepass Tahun ini</h3>
+            <h2 class="font-weight-bold mb-0 text-right">90</h2>
+          </div>
+        </div>
+      </div>
+      <hr>
 
 
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <canvas id="sig-canvas" width="420" height="160">
+      <!-- table-progress -->
+      <div id="table-progress" class="row">
+        <!-- konversi data progress -->
+        <div class="table-responsive">
+          <h6 class="text-center text-uppercase mb-3">Gatepass Progress</h6>
+          <table class="table table-striped table-bordered">
+            <thead class="text-center">
+              <tr>
+                <td scope="col">#</td>
+                <td scope="col">Date</td>
+                <td scope="col">Reason</td>
+                <td scope="col">Recommended by</td>
+                <td scope="col">Approved by</td>
+                <td scope="col">Acknowledged by</td>
+                <td scope="col">Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- SHOW -->
+              <tr class="text">
+                <?php foreach ($Progress as $pg) {
+                }
+                if (empty($pg->id_gatepass)) { ?>
+                <tr class="text">
+                  <th class="text-center align-middle text-uppercase" colspan="7">no data to be shown</th>
+                </tr>
+              <?php } else {
+                  $recommended_name = $pg->recommended_name;
+                  $approved_name = $pg->approved_name;
+                  $acknowledged_name = $pg->acknowledged_name;
+                  $verif_date_recommendedby = $pg->verif_date_recommendedby;
+                  $verif_date_approvedby = $pg->verif_date_approvedby;
+                  $verif_date_acknowledgedby = $pg->verif_date_acknowledgedby;
+                  $status_recommended = $pg->status_recommended;
+                  $status_approved = $pg->status_approved;
+                  $status_acknowledged = $pg->status_acknowledged;
+                  ?>
+                <th class="text-center align-middle">1</th>
+                <td class="text-center align-middle">
+                  <?= $pg->tanggal_gatepass ?>
+                </td>
+                <td class="align-middle text-uppercase">
+                  <?= $pg->keperluan ?>
+                </td>
+                <!-- RECOMMENDED -->
+                <td class="text-center">
+                  <?php if ($status_recommended == 1) { ?>
+                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                      echo $content_recommended; ?>">
+                      Accepted</div>
+                  <?php } elseif ($status_recommended == 0) {
+                    $status_approved = 0;
+                    $approved_name = $recommended_name;
+                    $verif_date_approvedby = $verif_date_recommendedby;
+                    $status_acknowledged = 0;
+                    $acknowledged_name = $recommended_name;
+                    $verif_date_acknowledgedby = $verif_date_recommendedby;
+                    ?>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
+                      echo $content_recommended;
+                      $content_approved = $content_recommended;
+                      $content_acknowledged = $content_recommended; ?>">Waiting</div>
+                  <?php } elseif ($status_recommended == -1) {
+                    $status_approved = -1;
+                    $approved_name = $recommended_name;
+                    $verif_date_approvedby = $verif_date_recommendedby;
+                    $status_acknowledged = -1;
+                    $acknowledged_name = $recommended_name;
+                    $verif_date_acknowledgedby = $verif_date_recommendedby;
+                    ?>
+                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                      echo $content_recommended;
+                      $content_approved = $content_recommended;
+                      $content_acknowledged = $content_recommended; ?>">
+                      Rejected</div>
+                  <?php } ?>
+                </td>
+                <!-- END RECOMMENDED -->
 
-            </canvas>
-          </div>
+                <!-- APROVED -->
+                <td class="text-center">
+                  <?php if ($status_approved == 1) { ?>
+                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                      echo $content_approved; ?>">
+                      Accepted</div>
+                  <?php } elseif ($status_approved == 0) {
+                    $status_acknowledged = 0;
+                    $acknowledged_name = $approved_name;
+                    $verif_date_acknowledgedby = $verif_date_approvedby;
+                    ?>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
+                      echo $content_approved;
+                      $content_acknowledged = $content_approved; ?>">
+                      Waiting</div>
+                  <?php } elseif ($status_approved == -1) {
+                    $status_acknowledged = -1;
+                    $acknowledged_name = $approved_name;
+                    $verif_date_acknowledgedby = $verif_date_approvedby;
+                    ?>
+                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                      echo $content_approved;
+                      $content_acknowledged = $content_approved; ?>">
+                      Rejected</div>
+                  <?php } ?>
+                </td>
+                <!-- END APPROVED -->
+
+                <!-- ACKNOWLEDGED -->
+                <td class="text-center">
+                  <?php if ($status_acknowledged == 0) { ?>
+                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
+                      echo $content_acknowledged; ?>">
+                      Waiting</div>
+                  <?php } elseif ($status_acknowledged == 1) { ?>
+                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                      echo $content_acknowledged; ?>">
+                      Accepted</div>
+                  <?php } elseif ($status_acknowledged == -1) { ?>
+                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                      echo $content_acknowledged; ?>">
+                      Rejected</div>
+                  <?php } ?>
+                </td>
+                <!-- END ACKNOWLEDGED -->
+                <td class="text-center spacing-2">
+                  <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail"><i
+                      class="fa-solid fa-circle-info"></i></div>
+                  <div class="btn btn-danger" data-toggle="modal" data-target="#ModalSure"><i
+                      class="fa-solid fa-trash"></i></div>
+                </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-            <button class="btn btn-secondary" id="sig-clearBtn">Clear Signature</button>
-          </div>
+      </div>
+      <hr>
+
+      <!-- table-history -->
+      <!-- <div id="table-history" class="table-responsive">
+      <h6 class="text-center text-uppercase mb-3">Gatepass History</h6>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+            <tr class="text-center">
+              <th>#</th>
+              <th>Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $i = 1;
+            foreach ($History as $hs) { ?>
+              <tr class="text">
+                <th class="text-center align-middle">
+                  <?= $i ?>
+                </th>
+                <td class="text-center align-middle">
+                  <?= $hs->tanggal_gatepass ?>
+                </td>
+                <td class="align-middle">
+                  <?= $hs->keperluan ?>
+                </td>
+                <?php
+                if ($hs->status_recommended == -1 || $hs->status_approved == -1 || $hs->status_acknowledged == -1) { ?>
+                  <td class="text-center">
+                    <div class="btn btn-danger">Rejected</div>
+                  </td>
+                <?php } else { ?>
+                  <td class="text-center">
+                    <div class="btn btn-success">Accepted</div>
+                  </td>
+                <?php } ?>
+                <td class="text-center">
+                  <div class="btn btn-secondary m-1"
+                    onclick="window.open('<?= base_url('pdf/print/' . $hs->id_gatepass) ?>','_blank');">
+                    <i class="fa-solid fa-print"></i>
+                  </div>
+                </td>
+              </tr>
+
+              <?php $i++;
+            } ?>
+          </tbody>
+        </table>
+      </div>
+      <hr> -->
+
+
+
+      <!-- esignature -->
+      <div class="row d-flex flex-column">
+        <div>
+          <a class="btn btn-info text-white mb-3" id="show-signature">
+            E-Signature
+          </a>
         </div>
-        <br />
-        <form action="upload_signature.php" method="post">
+
+        <div id="sigField" style="display:none;">
           <div class="row">
             <div class="col-md-12">
-              <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden required></textarea>
-              <textarea class="form-control" name="pst_pnr" rows="5"
-                hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
+              <canvas id="sig-canvas" width="420" height="160">
+
+              </canvas>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
-                alt="Anda belum membuat signature" />
+              <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
+              <button class="btn btn-secondary" id="sig-clearBtn">Clear Signature</button>
             </div>
           </div>
-          <p id="sig-alert" class="text-danger" style="display:none;">Tekan Submit Signature terlebih dahulu</p>
-          <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
-        </form>
+          <br />
+          <form action="upload_signature.php" method="post">
+            <div class="row">
+              <div class="col-md-12">
+                <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden required></textarea>
+                <textarea class="form-control" name="pst_pnr" rows="5"
+                  hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
+                  alt="Anda belum membuat signature" />
+              </div>
+            </div>
+            <p id="sig-alert" class="text-danger" style="display:none;">Tekan Submit Signature terlebih dahulu</p>
+            <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
+          </form>
+        </div>
       </div>
 
-      <div class="">
+      <!-- info login -->
+      <!-- <div class="">
         <p><strong>INFO LOGIN ANDA</strong></p>
         <p>sign :
           <?= $this->logindata['user']['signature'] ?>
@@ -143,9 +350,10 @@
           tidak itu BUKAN berdasarkan job_Level!!
           <br>melainkan berdasarkan tbmleave_setting apakh pst_pnr dia ada di verifikasi/approval
         </p>
-      </div>
+      </div> -->
     </div>
   </main>
+
 
 
 
@@ -156,6 +364,7 @@
   </div>
 </body>
 <script>
+  new DataTable('#example');
   (function () {
     window.requestAnimFrame = (function (callback) {
       return window.requestAnimationFrame ||
@@ -318,9 +527,9 @@
     }, false);
 
     showSig.addEventListener("click", function (e) {
-      if(document.getElementById("sigField").style.display === 'none'){
+      if (document.getElementById("sigField").style.display === 'none') {
         document.getElementById("sigField").style.display = 'block';
-      }else{
+      } else {
         document.getElementById("sigField").style.display = 'none';
       }
     }, false);
@@ -329,5 +538,75 @@
 
   })();
 </script>
+
+
+<!-- Modal sure-->
+<div class="modal fade" id="ModalSure" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="ModalSureLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalSureLabel">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This action will delete your gatepass progress.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="<?= base_url('submit/do_delete/' . $pg->id_gatepass . '/' . $pg->id_pengesahan) ?>"
+          class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal detail -->
+<div class="modal fade ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content px-4">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Detail Gatepass</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group mb-4">
+            <label for="tanggal" class="col-form-label font-weight-bold">Tanggal</label>
+            <input type="date" class="form-control w-50" id="tanggal" value="<?= $pg->tanggal_gatepass ?>" disabled>
+          </div>
+          <div class="form-group mb-4 ">
+            <label class="form-label font-weight-bold">Keperluan</label><br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="<?= $pg->keperluan ?>" value="<?= $pg->keperluan ?>"
+                disabled checked>
+              <label class="form-check-label text-uppercase" for="<?= $pg->keperluan ?>"><?= $pg->keperluan ?></label>
+            </div>
+          </div>
+          <div class="form-group mb-4">
+            <label for="penjelasan" class="form-label font-weight-bold">Penjelasan</label>
+            <textarea class="form-control" id="penjelasan" style="height: 100px"
+              disabled><?= $pg->penjelasan_keperluan ?></textarea>
+          </div>
+          <div class="form-group mb-4">
+            <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
+            <div class="input-group mb-1">
+              <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar" disabled>
+              <input class="form-control" type="time" id="est_time_out" value="<?= $pg->est_time_out ?>" disabled>
+            </div>
+            <div class="input-group mb-4">
+              <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Masuk" disabled>
+              <input class="form-control" type="time" id="est_time_in" value="<?= $pg->est_time_in ?>" disabled>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>
