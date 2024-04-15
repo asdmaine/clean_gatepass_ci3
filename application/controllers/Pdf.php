@@ -25,11 +25,18 @@ class Pdf extends CI_Controller
 		} else {
 			$string = $this->logindata['user']['pst_pnr'];
 			$this->data['Gatepass'] = $this->m_admin->GetGatepass($string, $int);
+
+			// getsignature
+			$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);
+			$this->data['Gatepass'][0]->approved_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->approvedby_pst_pnr);
+			$this->data['Gatepass'][0]->acknowledged_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->acknowledgedby_pst_pnr);
+
+
 			if (!isset($this->data['Gatepass'][0]->qrcode)) {
 				$this->data['Gatepass'][0]->qrcode_64 = 'tidak ada qrcode';
 			} else {
 				ob_start();
-				QRcode::png($this->data['Gatepass'][0]->qrcode, null,QR_ECLEVEL_H, 20);
+				QRcode::png($this->data['Gatepass'][0]->qrcode, null, QR_ECLEVEL_H, 20);
 				$imageData = ob_get_clean();
 				$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
 			}

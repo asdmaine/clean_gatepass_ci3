@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') or exit ('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Model Register
@@ -9,7 +9,7 @@ class M_admin extends CI_Model
     public function is_login()
     {
         $is_login = $this->session->userdata('auth');
-        if (!empty ($is_login)) {
+        if (!empty($is_login)) {
             return true;
         } else {
             return false;
@@ -19,7 +19,7 @@ class M_admin extends CI_Model
     public function do_login()
     {
         $post = $this->input->post();
-        if (!empty ($post)) {
+        if (!empty($post)) {
             $username = $post['username'];
             $password = md5($post['password']);
             $user = $this->db->query('select * from pst where pst_pnr = ?', $username)->row_array();
@@ -68,7 +68,7 @@ class M_admin extends CI_Model
             where a.pst_pnr = ? and a.pst_status >= 0",
                 $username
             )->row_array();
-            if (!empty ($user)) {
+            if (!empty($user)) {
                 if ($user['pst_password'] == $password) {
                     // masih salah ini session expiration
                     $this->session->sess_expiration = 2000;
@@ -127,7 +127,7 @@ class M_admin extends CI_Model
     {
         $post = $this->input->post(NULL, TRUE);
 
-        if (!empty ($post)) {
+        if (!empty($post)) {
             $data_tbverifikasi = array(
                 'verif_date_recommendedby' => null
             );
@@ -149,7 +149,7 @@ class M_admin extends CI_Model
                 'acknowledgedby_pst_pnr' => $post['acknowledged'],
                 'id_verifikasi' => $id_verifikasi,
                 'id_remarks' => $id_remarks
-                
+
             );
             try {
                 $this->db->insert('gatepass_tbpengesahan', $data_tbpengesahan);
@@ -336,7 +336,7 @@ class M_admin extends CI_Model
     f.pst_name AS recommended_name,
     f2.pst_name AS approved_name,
     f3.pst_name AS acknowledged_name,
-    f4.signature AS requested_signature');
+        f4.signature AS requested_signature');
         $this->db->from('gatepass_tb a');
         $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
         $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
@@ -356,6 +356,21 @@ class M_admin extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function GetSignature($pst_pnr)
+    {
+        $this->db->select('a.signature');
+        $this->db->from('pst a');
+        $this->db->where('pst_pnr', $pst_pnr);
+
+        $query = $this->db->get();
+
+        $result = $query->row();
+
+        // Jika ada hasil, kembalikan signature sebagai string tunggal, jika tidak, kembalikan null
+        return ($result) ? $result->signature : null;
+
+    }
+
 
 
 }
