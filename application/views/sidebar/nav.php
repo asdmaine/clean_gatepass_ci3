@@ -32,7 +32,7 @@
     background: #e0e0e0 url("<?= base_url('src/assets/img/buffer2.gif')?>") no-repeat center;
     z-index:999;
     opacity: 1;
-    background-size: 50%;
+    background-size: 35%;
   }
 </style>
 
@@ -127,7 +127,7 @@
 
       <script>
         $(document).ready(function() {
-          $("#loading").fadeOut(2000);
+          $("#loading").fadeOut(500);
           
         })
         // sidebar tekan muncul tekan hilang
