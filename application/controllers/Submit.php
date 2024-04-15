@@ -9,30 +9,43 @@ class Submit extends CI_Controller
 		$this->load->model('m_admin');
 		if (!$this->m_admin->is_login()) {
 			redirect('AuthAdmin/Login');
-		}else{
+		} else {
 			require_once 'set_menu.php';
 		}
 	}
 	public function index()
 	{
-		$string = $this->logindata['user']['pst_pnr'];	
+		$string = $this->logindata['user']['pst_pnr'];
 		$this->data['Progress'] = $this->m_admin->GetProgress($string);
 		$this->data['Recommended'] = $this->m_admin->GetRecommended();
 		$this->data['Approved'] = $this->m_admin->GetApproved();
 		// acknowledged(belum ada fungsinya)
 		// $this->data['Acknowledged'] = $this->m_admin->GetAcknowledged();
-		$this->sidebar->view('public/submit/Submit',array_merge($this->logindata,$this->data));
+		$this->sidebar->view('public/submit/Submit', array_merge($this->logindata, $this->data));
 	}
-	public function do_submit(){
+	public function do_submit()
+	{
 		$post = $this->input->post();
 		if (empty($post)) {
 			redirect('submit');
 		} else {
-			$this->m_admin->SubmitGatepass();
+			function generateRandomString($length = 10)
+			{
+				$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$charactersLength = strlen($characters);
+				$randomString = '';
+				for ($i = 0; $i < $length; $i++) {
+					$randomString .= $characters[rand(0, $charactersLength - 1)];
+				}
+				return $randomString;
+			}
+			$randomString = generateRandomString(10);
+			$this->m_admin->SubmitGatepass($randomString);
 		}
 	}
-	public function do_delete($id_gatepass,$id_pengesahan){
-		$this->m_admin->DeleteGatepass($id_gatepass,$id_pengesahan);
+	public function do_delete($id_gatepass, $id_pengesahan)
+	{
+		$this->m_admin->DeleteGatepass($id_gatepass, $id_pengesahan);
 	}
-	
+
 }

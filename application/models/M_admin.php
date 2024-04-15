@@ -123,7 +123,7 @@ class M_admin extends CI_Model
         $query = $this->db->query($sql);
         return $query->result();
     }
-    public function SubmitGatepass()
+    public function SubmitGatepass($qrcode)
     {
         $post = $this->input->post(NULL, TRUE);
 
@@ -149,6 +149,7 @@ class M_admin extends CI_Model
                 'acknowledgedby_pst_pnr' => $post['acknowledged'],
                 'id_verifikasi' => $id_verifikasi,
                 'id_remarks' => $id_remarks
+                
             );
             try {
                 $this->db->insert('gatepass_tbpengesahan', $data_tbpengesahan);
@@ -173,7 +174,8 @@ class M_admin extends CI_Model
                 'keperluan' => $post['keperluan'],
                 'penjelasan_keperluan' => $post['penjelasan'],
                 'id_time' => $id_time,
-                'id_pengesahan' => $id_pengesahan
+                'id_pengesahan' => $id_pengesahan,
+                'qrcode' => $qrcode
             );
             try {
                 $this->db->insert('gatepass_tb', $data_gatepass);

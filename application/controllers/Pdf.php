@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit ('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 class Pdf extends CI_Controller
 {
 	public function __construct()
@@ -11,6 +11,7 @@ class Pdf extends CI_Controller
 			redirect('AuthAdmin/Login');
 		} else {
 			require_once 'set_menu.php';
+			include APPPATH . 'third_party/qrlib/src/qrlib.php';
 		}
 	}
 	public function index()
@@ -24,10 +25,18 @@ class Pdf extends CI_Controller
 		} else {
 			$string = $this->logindata['user']['pst_pnr'];
 			$this->data['Gatepass'] = $this->m_admin->GetGatepass($string, $int);
-			if (!isset ($this->data['Gatepass'][0]->rl_time_out) || $this->data['Gatepass'][0]->rl_time_out === null) {
+			if (!isset($this->data['Gatepass'][0]->qrcode)) {
+				$this->data['Gatepass'][0]->qrcode_64 = 'tidak ada qrcode';
+			} else {
+				ob_start();
+				QRcode::png($this->data['Gatepass'][0]->qrcode, null,QR_ECLEVEL_H, 15);
+				$imageData = ob_get_clean();
+				$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
+			}
+			if (!isset($this->data['Gatepass'][0]->rl_time_out) || $this->data['Gatepass'][0]->rl_time_out === null) {
 				$this->data['Gatepass'][0]->rl_time_out = 'belum keluar';
 			}
-			if (!isset ($this->data['Gatepass'][0]->rl_time_in) || $this->data['Gatepass'][0]->rl_time_in === null) {
+			if (!isset($this->data['Gatepass'][0]->rl_time_in) || $this->data['Gatepass'][0]->rl_time_in === null) {
 				$this->data['Gatepass'][0]->rl_time_in = 'belum masuk';
 			}
 			$this->load->view('public/pdf/Pdf', array_merge($this->logindata, $this->data));

@@ -13,7 +13,7 @@
 <body>
   <main class="content px-4 py-4">
     <div class="container">
-      <div class="row border border mb-4">
+      <div class="row border border mb-4" style="">
         <div class="border border-secondary col-3 d-flex flex-column p-2">
           <img src="<?= base_url('src/assets/img/logo.png') ?>" class="m-auto" alt="" width=100 height=90>
           <h5 class="font-weight-bolder m-auto ">PT. DSAW</h5>
@@ -29,6 +29,7 @@
       </div>
 
       <div class="row">
+        
         <table class="table table-bordered border-secondary" style="width:100%">
 
           <tbody>
@@ -142,6 +143,11 @@
               <td colspan="4" class="align-middle">Noted :
                 <br>*)Satpam harus mencatat/menandatangani saat Pemohon/Karyawan KELUAR/MASUK dan diserahkan ke HRD
                 Security shall record/sign and verify when the Recipient/Employee OUT/IN and deliver to HRD
+                <br>
+                <div class="col-md-6 text-center">
+                  <img  src="data:image/png;base64,<?= $Gatepass[0]->qrcode_64 ?>" />
+                  <p class="font-weight-bolder"><?= $Gatepass[0]->qrcode ?></p>
+                </div>
               </td>
             </tr>
           </tbody>
