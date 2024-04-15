@@ -29,10 +29,10 @@
     height: 100%;
     position: fixed;
     text-indent: 100%;
-    background: #e0e0e0 url("<?= base_url('src/assets/img/buffer.gif')?>") no-repeat center;
+    background: #e0e0e0 url("<?= base_url('src/assets/img/buffer2.gif')?>") no-repeat center;
     z-index:999;
     opacity: 1;
-    background-size: 35%;
+    background-size: 50%;
   }
 </style>
 
