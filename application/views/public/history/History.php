@@ -97,17 +97,6 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <!-- experimental -->
-                    <br>
-                    <p class="text-center">
-                      id gatepass =
-                      <?= $hs->id_gatepass ?>
-                      <br>id pengesahan =
-                      <?= $hs->id_pengesahan ?>
-                      <br>id verif =
-                      <?= $hs->id_verifikasi ?>
-
-                    </p>
                     <div class="modal-body">
                       <form>
                         <div class="form-group mb-4">

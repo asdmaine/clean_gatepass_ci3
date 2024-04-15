@@ -334,14 +334,6 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-         <!-- experimental -->
-         <br>
-          <p class="text-center">
-            id gatepass = <?= $pg->id_gatepass ?>
-            <br>id pengesahan = <?= $pg->id_pengesahan ?>
-            <br>id verif = <?= $pg->id_verifikasi ?>
-            
-          </p>
         <div class="modal-body">
           <form>
             <div class="form-group mb-4">
