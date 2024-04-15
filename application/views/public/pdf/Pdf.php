@@ -146,7 +146,7 @@
                 <br>
                 <div class="col-md-6 text-center">
                   <img  src="data:image/png;base64,<?= $Gatepass[0]->qrcode_64 ?>" />
-                  <p class="font-weight-bolder"><?= $Gatepass[0]->qrcode ?></p>
+                  <h1 class="font-weight-bolder"><?= $Gatepass[0]->qrcode ?></h1>
                 </div>
               </td>
             </tr>

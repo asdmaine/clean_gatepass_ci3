@@ -29,7 +29,7 @@ class Pdf extends CI_Controller
 				$this->data['Gatepass'][0]->qrcode_64 = 'tidak ada qrcode';
 			} else {
 				ob_start();
-				QRcode::png($this->data['Gatepass'][0]->qrcode, null,QR_ECLEVEL_H, 15);
+				QRcode::png($this->data['Gatepass'][0]->qrcode, null,QR_ECLEVEL_H, 20);
 				$imageData = ob_get_clean();
 				$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
 			}
