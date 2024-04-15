@@ -43,6 +43,7 @@
       <hr>
 
 
+
       <!-- table-progress -->
       <div id="table-progress" class="row">
         <!-- konversi data progress -->
@@ -90,8 +91,7 @@
                 <!-- RECOMMENDED -->
                 <td class="text-center">
                   <?php if ($status_recommended == 1) { ?>
-                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
                       echo $content_recommended; ?>">
                       Accepted</div>
                   <?php } elseif ($status_recommended == 0) {
@@ -102,8 +102,7 @@
                     $acknowledged_name = $recommended_name;
                     $verif_date_acknowledgedby = $verif_date_recommendedby;
                     ?>
-                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
+                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
                       echo $content_recommended;
                       $content_approved = $content_recommended;
                       $content_acknowledged = $content_recommended; ?>">Waiting</div>
@@ -115,8 +114,7 @@
                     $acknowledged_name = $recommended_name;
                     $verif_date_acknowledgedby = $verif_date_recommendedby;
                     ?>
-                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
                       echo $content_recommended;
                       $content_approved = $content_recommended;
                       $content_acknowledged = $content_recommended; ?>">
@@ -128,8 +126,7 @@
                 <!-- APROVED -->
                 <td class="text-center">
                   <?php if ($status_approved == 1) { ?>
-                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
                       echo $content_approved; ?>">
                       Accepted</div>
                   <?php } elseif ($status_approved == 0) {
@@ -137,8 +134,7 @@
                     $acknowledged_name = $approved_name;
                     $verif_date_acknowledgedby = $verif_date_approvedby;
                     ?>
-                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
+                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
                       echo $content_approved;
                       $content_acknowledged = $content_approved; ?>">
                       Waiting</div>
@@ -147,8 +143,7 @@
                     $acknowledged_name = $approved_name;
                     $verif_date_acknowledgedby = $verif_date_approvedby;
                     ?>
-                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
                       echo $content_approved;
                       $content_acknowledged = $content_approved; ?>">
                       Rejected</div>
@@ -159,18 +154,15 @@
                 <!-- ACKNOWLEDGED -->
                 <td class="text-center">
                   <?php if ($status_acknowledged == 0) { ?>
-                    <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
+                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
                       echo $content_acknowledged; ?>">
                       Waiting</div>
                   <?php } elseif ($status_acknowledged == 1) { ?>
-                    <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
                       echo $content_acknowledged; ?>">
                       Accepted</div>
                   <?php } elseif ($status_acknowledged == -1) { ?>
-                    <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                      data-trigger="focus" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
                       echo $content_acknowledged; ?>">
                       Rejected</div>
                   <?php } ?>
@@ -364,6 +356,20 @@
   </div>
 </body>
 <script>
+  var modalButtons = document.querySelectorAll("#OpenModalInfo");
+  modalButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Ambil konten dari atribut data-content
+      var content = this.getAttribute("data-content");
+      // Tampilkan modal
+      $('#ModalInfo').modal('show');
+      // Masukkan konten ke dalam modal
+      document.querySelector('#isi-modal').innerText = content;
+    });
+  });
+  
+
+
   new DataTable('#example');
   (function () {
     window.requestAnimFrame = (function (callback) {
@@ -538,7 +544,16 @@
 
   })();
 </script>
+<!-- Modal Info -->
+<div class="modal fade" id="ModalInfo" tabindex="-1" role="dialog" aria-labelledby="ModalInfoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div id="isi-modal" class="modal-body text-center">
 
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal sure-->
 <div class="modal fade" id="ModalSure" data-backdrop="static" data-keyboard="false" tabindex="-1"
