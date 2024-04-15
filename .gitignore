@@ -32,3 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 # Ignore database files
 /application/config/database.php
 /application/config/database.php.bak
+/upload_signature.php
