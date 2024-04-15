@@ -20,7 +20,7 @@
       <div class="mb-5 text-center text-uppercase">
         <h4>Dashboard</h4>
       </div>
-      <div class="" style="height:1000px;">
+      <!-- <div class="" style="height:1000px;">
         <div class="row">
           <div class="col-md-3 border p-2">
             <p class="text-center">card gatepass anda bulan ini</p>
@@ -35,8 +35,12 @@
             
           </div>
         </div>
-      </div>
-      <div class="">
+      </div> -->
+      <a class="btn btn-primary text-white mb-3" id="show-signature">
+        E-Signature
+      </a>
+      
+      <div id="sigField" style="display:none;">
         <div class="row">
           <div class="col-md-12">
 
@@ -60,17 +64,19 @@
         <form action="upload_signature.php" method="post">
           <div class="row">
             <div class="col-md-12">
-              <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden></textarea>
-              <textarea id="sig-dataUrl" class="form-control" name="pst_pnr" rows="5" hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
+              <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden required></textarea>
+              <textarea class="form-control" name="pst_pnr" rows="5"
+                hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>" alt="Your signature will go here!"
-                hidden />
+              <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
+                alt="Anda belum membuat signature" />
             </div>
           </div>
-          <button type="submit" class="btn btn-primary px-5">Upload Signature</button>
+          <p id="sig-alert" class="text-danger" style="display:none;">Tekan Submit Signature terlebih dahulu</p>
+          <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
         </form>
       </div>
 
@@ -272,6 +278,9 @@
     var sigImage = document.getElementById("sig-image");
     var clearBtn = document.getElementById("sig-clearBtn");
     var submitBtn = document.getElementById("sig-submitBtn");
+    var uploadBtn = document.getElementById("sig-uploadBtn");
+    var sigAlert = document.getElementById("sig-alert");
+    var showSig = document.getElementById("show-signature");
     clearBtn.addEventListener("click", function (e) {
       clearCanvas();
       sigText.innerHTML = "Data URL for your signature will go here!";
@@ -286,7 +295,7 @@
       var dataUrl = canvas.toDataURL('image/png'); // Mengonversi ke format PNG
       sigText.innerHTML = dataUrl;
       sigImage.setAttribute("src", dataUrl);
-
+      sigAlert.style.display = "none";
 
 
       // // Membuat link unduh
@@ -296,6 +305,24 @@
 
       // Klik link unduh secara otomatis
       // downloadLink.click();
+    }, false);
+
+    uploadBtn.addEventListener("click", function (e) {
+
+      if (sigText.innerHTML === "") {
+        sigAlert.style.display = "block";
+        console.log('kosong');
+      } else {
+        sigAlert.style.display = "none";
+      }
+    }, false);
+
+    showSig.addEventListener("click", function (e) {
+      if(document.getElementById("sigField").style.display === 'none'){
+        document.getElementById("sigField").style.display = 'block';
+      }else{
+        document.getElementById("sigField").style.display = 'none';
+      }
     }, false);
 
 

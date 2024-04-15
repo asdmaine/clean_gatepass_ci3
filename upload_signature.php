@@ -9,7 +9,7 @@ try {
     $pst_pnr = $_POST['pst_pnr'];
     $sql = "UPDATE pst SET signature = '$new_signature' WHERE pst_pnr = '$pst_pnr'";
     $pdo->exec($sql);
-    echo '<script>window.location.href = "dashboard";</script>';
+    echo '<script>window.location.href = "AuthAdmin/logout";</script>';
 
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
