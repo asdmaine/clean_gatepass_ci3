@@ -24,9 +24,20 @@
       transform: translatex(0);
     }
   } */
+  #loading{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    text-indent: 100%;
+    background: #e0e0e0 url("<?= base_url('src/assets/img/buffer.gif')?>") no-repeat center;
+    z-index:999;
+    opacity: 1;
+    background-size: 35%;
+  }
 </style>
 
 <body>
+  <div id="loading"></div>
   <div class="wrapper">
     <aside id="sidebar" class="border-right shadow collapsed">
       <div class="h-100">
@@ -115,6 +126,10 @@
       <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 
       <script>
+        $(document).ready(function() {
+          $("#loading").fadeOut(2000);
+          
+        })
         // sidebar tekan muncul tekan hilang
         const sidebarToggle = document.querySelector("#sidebar-toggle");
         sidebarToggle.addEventListener("click", function () {
