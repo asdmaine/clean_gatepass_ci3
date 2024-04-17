@@ -17,7 +17,7 @@ class Dashboard extends CI_Controller
 	{
 		$string = $this->logindata['user']['pst_pnr'];
 		$this->data['Progress'] = $this->m_admin->GetProgress($string);
-		$this->data['History'] = $this->m_admin->GetHistory($string);
+		// $this->data['History'] = $this->m_admin->GetHistory($string);
 		$this->sidebar->view('public/dashboard/Dashboard', array_merge($this->logindata, $this->data));
 	}
 	
