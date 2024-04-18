@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?php echo base_url('src/assets/css/bootstrap.min.css'); ?>" />
-    <title>Admin-Login</title>
+    <title>Gatepass-Login</title>
 
 </head>
 <style>
