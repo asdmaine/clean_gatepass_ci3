@@ -92,7 +92,7 @@
                 <td class="text-center">
                   <?php if ($status_recommended == 1) { ?>
                     <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
-                      echo $content_recommended; ?>">
+                    echo $content_recommended; ?>">
                       Accepted</div>
                   <?php } elseif ($status_recommended == 0) {
                     $status_approved = 0;
@@ -103,9 +103,9 @@
                     $verif_date_acknowledgedby = $verif_date_recommendedby;
                     ?>
                     <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
-                      echo $content_recommended;
-                      $content_approved = $content_recommended;
-                      $content_acknowledged = $content_recommended; ?>">Waiting</div>
+                    echo $content_recommended;
+                    $content_approved = $content_recommended;
+                    $content_acknowledged = $content_recommended; ?>">Waiting</div>
                   <?php } elseif ($status_recommended == -1) {
                     $status_approved = -1;
                     $approved_name = $recommended_name;
@@ -115,9 +115,9 @@
                     $verif_date_acknowledgedby = $verif_date_recommendedby;
                     ?>
                     <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
-                      echo $content_recommended;
-                      $content_approved = $content_recommended;
-                      $content_acknowledged = $content_recommended; ?>">
+                    echo $content_recommended;
+                    $content_approved = $content_recommended;
+                    $content_acknowledged = $content_recommended; ?>">
                       Rejected</div>
                   <?php } ?>
                 </td>
@@ -127,7 +127,7 @@
                 <td class="text-center">
                   <?php if ($status_approved == 1) { ?>
                     <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
-                      echo $content_approved; ?>">
+                    echo $content_approved; ?>">
                       Accepted</div>
                   <?php } elseif ($status_approved == 0) {
                     $status_acknowledged = 0;
@@ -135,8 +135,8 @@
                     $verif_date_acknowledgedby = $verif_date_approvedby;
                     ?>
                     <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
-                      echo $content_approved;
-                      $content_acknowledged = $content_approved; ?>">
+                    echo $content_approved;
+                    $content_acknowledged = $content_approved; ?>">
                       Waiting</div>
                   <?php } elseif ($status_approved == -1) {
                     $status_acknowledged = -1;
@@ -144,8 +144,8 @@
                     $verif_date_acknowledgedby = $verif_date_approvedby;
                     ?>
                     <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
-                      echo $content_approved;
-                      $content_acknowledged = $content_approved; ?>">
+                    echo $content_approved;
+                    $content_acknowledged = $content_approved; ?>">
                       Rejected</div>
                   <?php } ?>
                 </td>
@@ -155,15 +155,15 @@
                 <td class="text-center">
                   <?php if ($status_acknowledged == 0) { ?>
                     <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
-                      echo $content_acknowledged; ?>">
+                    echo $content_acknowledged; ?>">
                       Waiting</div>
                   <?php } elseif ($status_acknowledged == 1) { ?>
                     <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
-                      echo $content_acknowledged; ?>">
+                    echo $content_acknowledged; ?>">
                       Accepted</div>
                   <?php } elseif ($status_acknowledged == -1) { ?>
                     <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
-                      echo $content_acknowledged; ?>">
+                    echo $content_acknowledged; ?>">
                       Rejected</div>
                   <?php } ?>
                 </td>
@@ -235,48 +235,67 @@
 
 
 
-      <!-- esignature -->
-      <div class="row d-flex flex-column">
-        <div>
-          <a class="btn btn-info text-white mb-3" id="show-signature">
-            E-Signature
-          </a>
-        </div>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalSignature">
+        E-Signature
+      </button>
 
-        <div id="sigField" style="display:none;">
-          <div class="row">
-            <div class="col-md-12">
-              <canvas id="sig-canvas" width="420" height="160">
+      <!-- Modal Signature -->
+      <div class="modal fade" id="ModalSignature" tabindex="-1" aria-labelledby="ModalSignatureLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="sigField">
+                <div class="row">
+                  <div class="col-md-12">
+                    <canvas id="sig-canvas" style="max-width: 100%;" width="420" height="160">
 
-              </canvas>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-              <button class="btn btn-secondary" id="sig-clearBtn">Clear Signature</button>
-            </div>
-          </div>
-          <br />
-          <form action="upload_signature.php" method="post">
-            <div class="row">
-              <div class="col-md-12">
-                <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden required></textarea>
-                <textarea class="form-control" name="pst_pnr" rows="5"
-                  hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
+                    </canvas>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="btn btn-success" id="sig-submitBtn">Done</button>
+                    <button class="btn btn-secondary" id="sig-clearBtn">Clear</button>
+                  </div>
+                </div>
+                <br />
+                <form action="upload_signature.php" method="post">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden
+                        required></textarea>
+                      <textarea class="form-control" name="pst_pnr" rows="5"
+                        hidden><?= $this->logindata['user']['pst_pnr'] ?></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
+                        alt="Anda belum membuat signature" style="max-width: 100%;" />
+                    </div>
+                  </div>
+                  <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span class="text-success">done</span> terlebih dahulu</p>
+
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
-                  alt="Anda belum membuat signature" />
-              </div>
+            <div class="modal-footer">
+              <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
+              </form>
             </div>
-            <p id="sig-alert" class="text-danger" style="display:none;">Tekan Submit Signature terlebih dahulu</p>
-            <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
-          </form>
+          </div>
         </div>
       </div>
+
+
+
 
       <!-- info login -->
       <!-- <div class="">
@@ -367,7 +386,7 @@
       document.querySelector('#isi-modal').innerText = content;
     });
   });
-  
+
 
 
   new DataTable('#example');
@@ -494,9 +513,7 @@
     var clearBtn = document.getElementById("sig-clearBtn");
     var submitBtn = document.getElementById("sig-submitBtn");
     var uploadBtn = document.getElementById("sig-uploadBtn");
-    var sigAlert = document.getElementById("sig-alert");
-    var showSig = document.getElementById("show-signature");
-    clearBtn.addEventListener("click", function (e) {
+    var sigAlert = document.getElementById("sig-alert");    clearBtn.addEventListener("click", function (e) {
       clearCanvas();
       sigText.innerHTML = "Data URL for your signature will go here!";
       sigImage.setAttribute("src", "");
@@ -532,13 +549,6 @@
       }
     }, false);
 
-    showSig.addEventListener("click", function (e) {
-      if (document.getElementById("sigField").style.display === 'none') {
-        document.getElementById("sigField").style.display = 'block';
-      } else {
-        document.getElementById("sigField").style.display = 'none';
-      }
-    }, false);
 
 
 
