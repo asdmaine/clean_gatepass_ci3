@@ -246,15 +246,18 @@
               <textarea class="form-control" placeholder="Tulis lebih detail keperluan anda." name="penjelasan"
                 id="penjelasan" style="height: 100px" required></textarea>
             </div>
-            <div class="form-group mb-4">
+            <div class="form-group">
               <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
               <div class="input-group mb-1">
                 <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar" disabled>
-                <input class="form-control" type="time" name="est_time_out" id="est_time_out" required>
+                <input class="form-control" onchange="checkTimeInterval()" type="time" name="est_time_out" id="form_est_time_out" required>
               </div>
               <div class="input-group mb-4">
                 <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Masuk" disabled>
-                <input class="form-control" type="time" name="est_time_in" id="est_time_in" required>
+                <input class="form-control" onchange="checkTimeInterval()" type="time" name="est_time_in" id="form_est_time_in" required>
+              </div>
+              <div class="input-group mb-4">
+                <p class="text-center w-100 text-danger" id="alert-time" style="display:none;">Tidak boleh keluar lebih dari 3 jam</p>
               </div>
             </div>
             <div class="form-group mb-4">
@@ -378,6 +381,35 @@
     function resetForm() {
       document.getElementById("myForm").reset();
     }
+    function checkTimeInterval() {
+            var timeIn = document.getElementById('form_est_time_in').value;
+            var timeOut = document.getElementById('form_est_time_out').value;
+
+            // Pisahkan jam dan menit dari waktu masuk dan keluar
+            var inTimeParts = timeIn.split(':');
+            var outTimeParts = timeOut.split(':');
+
+            // Hitung jumlah menit dari jam masuk dan keluar
+            var inMinutes = parseInt(inTimeParts[0]) * 60 + parseInt(inTimeParts[1]);
+            var outMinutes = parseInt(outTimeParts[0]) * 60 + parseInt(outTimeParts[1]);
+
+            // Hitung selisih waktu dalam menit
+            var timeDifference = Math.abs(outMinutes - inMinutes);
+
+            // Konversi selisih waktu menjadi jam
+            var timeDifferenceHours = timeDifference / 60;
+
+            // Periksa apakah selisih waktu lebih dari 3 jam
+            if (timeDifferenceHours > 3) {
+              // alert('Jarak antara waktu masuk dan keluar tidak boleh lebih dari 3 jam.');
+              document.getElementById('alert-time').style.display = 'block';
+                // Atur kembali nilai input
+                document.getElementById('form_est_time_in').value = '';
+                document.getElementById('form_est_time_out').value = '';
+            }else{
+              document.getElementById('alert-time').style.display = 'none';
+            }
+        }
   </script>
 </body>
 
