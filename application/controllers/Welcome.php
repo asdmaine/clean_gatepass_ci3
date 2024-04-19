@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -21,6 +22,14 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		// $this->load->view('public/test/test_time_limit.php');
+
+		include APPPATH . 'third_party/fpdf/fpdf.php';
+		include APPPATH . 'third_party/fpdf/src/autoload.php';
 		$this->load->view('public/test/test_fpdf.php');
+	}
+	public function show_pdf()
+	{
+		header("content-type: application/pdf");
+		readfile('src/assets/pdf/output.pdf');
 	}
 }
