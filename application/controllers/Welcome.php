@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('public/test');
+		// $this->load->view('public/test/test_time_limit.php');
+		$this->load->view('public/test/test_fpdf.php');
 	}
 }
