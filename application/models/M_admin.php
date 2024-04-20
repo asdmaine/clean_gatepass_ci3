@@ -257,6 +257,18 @@ class M_admin extends CI_Model
             echo "Error: " . $e->getMessage();
         }
     }
+    public function isSecurity($pst_pnr){
+        try {
+            $this->db->select('pst_idx');
+            $this->db->from('pst');
+            $this->db->where('pst_pnr', $pst_pnr);
+            $this->db->where('br_idx', 62);
+            $query = $this->db->get();
+            return $query->num_rows();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
     public function DeleteGatepass($id_gatepass, $id_pengesahan)
     {
         // id_pengesahan gak perlu sih cuman supaya aman dikit aja 

@@ -10,7 +10,6 @@ class Pdf extends CI_Controller
 		if (!$this->m_admin->is_login()) {
 			redirect('AuthAdmin/Login');
 		} else {
-			require_once 'set_menu.php';
 			include APPPATH . 'third_party/qrlib/src/qrlib.php';
 			include APPPATH . 'third_party/fpdf/fpdf.php';
 			include APPPATH . 'third_party/fpdf/src/autoload.php';

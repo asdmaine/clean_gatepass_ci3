@@ -9,6 +9,12 @@ if($count > 0){
 }else{
 	$this->logindata['level'] = 'biasa';
 }
+$count = $this->m_admin->isSecurity($this->logindata['user']['pst_pnr']);
+if($count > 0){
+	$this->logindata['level'] = 'security';
+}else{
+	$this->logindata['level'] = 'biasa';
+}
 
 
 

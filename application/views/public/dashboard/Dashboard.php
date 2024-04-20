@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <?= $this->logindata['level'] ?>
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
