@@ -26,7 +26,7 @@
               </form>
             </div>
 
-            <div class="container" id="QR-Code">
+            <div class="row" id="QR-Code">
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <!-- <div class="navbar-form navbar-left">
