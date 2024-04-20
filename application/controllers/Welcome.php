@@ -21,11 +21,8 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		// $this->load->view('public/test/test_time_limit.php');
 
-		include APPPATH . 'third_party/fpdf/fpdf.php';
-		include APPPATH . 'third_party/fpdf/src/autoload.php';
-		$this->load->view('public/test/test_fpdf.php');
+		$this->load->view('public/test/test_cam');
 	}
 	public function show_pdf()
 	{
