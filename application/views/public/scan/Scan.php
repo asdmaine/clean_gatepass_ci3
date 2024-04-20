@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scan - Gatepass</title>
   <!-- <link href="webcodecam/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="webcodecam/css/style.css" rel="stylesheet"> -->
+  <!-- <link href="webcodecam/css/style.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -26,29 +26,52 @@
               </form>
             </div>
 
-            <div class="row" id="QR-Code">
-              <div class="navbar-form navbar-right">
-                <select class="form-control" id="camera-select">
-
-                </select>
-                <div class="form-group mt-2">
-                  <button class="btn btn-success btn-sm" id="play" type="button">Start CAM</span></button>
-                  <button class="btn btn-danger btn-sm" id="stop" type="button">Stop CAM</span></button>
-                </div>
-              </div>
-              <div class="col-xl-12">
-                <div class="well bg-secondary" style="position: relative;display: inline-block;">
-                  <canvas style="max-width:100%;" width="320" height="240" id="webcodecam-canvas"></canvas>
-                </div>
-              </div>
-              <div class="col-xl-12">
-                <div class="thumbnail" id="result">
-                  <div class="well" style="overflow: hidden; display:none;">
-                    <img style="max-width:100%;" width="320" height="240" id="scanned-img" src="">
+            <div class="container" id="QR-Code">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <!-- <div class="navbar-form navbar-left">
+                    <h4>WebCodeCamJS.js Demonstration</h4>
+                  </div> -->
+                  <div class="navbar-form navbar-right">
+                    <select class="form-control" id="camera-select"></select>
+                    <div class="form-group mt-2">
+                      <input style="display:none;" id="image-url" type="text" class="form-control" placeholder="Image url">
+                      <button style="display:none;" title="Decode Image" class="btn btn-default btn-sm" id="decode-img"
+                        type="button" data-toggle="tooltip"><span
+                          class="glyphicon glyphicon-upload">upload</span></button>
+                      <button style="display:none;" title="Image shoot" class="btn btn-info btn-sm disabled"
+                        id="grab-img" type="button" data-toggle="tooltip"><span
+                          class="glyphicon glyphicon-picture">upload</span></button>
+                      <button title="Play" class="btn btn-success btn-sm" id="play" type="button"
+                        data-toggle="tooltip"><span class="glyphicon glyphicon-play">START CAM</span></button>
+                      <button style="display:none;" title="Pause" class="btn btn-warning btn-sm" id="pause"
+                        type="button" data-toggle="tooltip"><span
+                          class="glyphicon glyphicon-pause">pause</span></button>
+                      <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button"
+                        data-toggle="tooltip"><span class="glyphicon glyphicon-stop">STOP CAM</span></button>
+                    </div>
                   </div>
-                  <div class="caption">
-                    <h3>Scanned result</h3>
-                    
+                </div>
+                <div class="panel-body text-center">
+                  <div class="col-xl-12">
+                    <div class="well" style="position: relative;display: inline-block;">
+                      <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
+                      <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+                      <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+                      <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+                      <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="thumbnail" id="result">
+                      <div class="well" style="display:none;overflow: hidden;">
+                        <img width="320" height="240" id="scanned-img" src="">
+                      </div>
+                      <div class="caption">
+                        <h3>Scanned result</h3>
+                        <p id="scanned-QR"></p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -56,18 +79,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row mb-5 text-white" id="button-option" style="display:none;">
-        <div class="col-xl-6 col-sm-12 p-2" style="cursor:pointer;" onclick="window.open('keluar.com','_self')">
-          <div class="bg-secondary d-flex flex-column p-4 shadow">
-            <h3 class="m-auto mb-3">Keluar</h3>
-          </div>
-        </div>
-        <div class="col-xl-6 col-sm-12 p-2" style="cursor:pointer;" onclick="window.open('masuk.com','_self')">
-          <div class="bg-success d-flex flex-column p-4 shadow">
-            <h3 class="m-auto mb-3">Masuk</h3>
-          </div>
-        </div>
-      </div> -->
+
 
     </div>
   </main>
@@ -79,6 +91,7 @@
   <!-- punya header -->
   </div>
   </div>
+
 
   <script type="text/javascript" src="js/filereader.js"></script>
   <script type="text/javascript" src="js/qrcodelib.js"></script>

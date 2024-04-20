@@ -21,13 +21,13 @@
                     <select class="form-control" id="camera-select"></select>
                     <div class="form-group">
                         <input id="image-url" type="text" class="form-control" placeholder="Image url">
-                        <button title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button"
+                        <button style="display:none;" title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button"
                             data-toggle="tooltip"><span class="glyphicon glyphicon-upload">upload</span></button>
-                        <button title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button"
+                        <button style="display:none;" title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button"
                             data-toggle="tooltip"><span class="glyphicon glyphicon-picture">upload</span></button>
                         <button title="Play" class="btn btn-success btn-sm" id="play" type="button"
                             data-toggle="tooltip"><span class="glyphicon glyphicon-play">play</span></button>
-                        <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button"
+                        <button style="display:none;" title="Pause" class="btn btn-warning btn-sm" id="pause" type="button"
                             data-toggle="tooltip"><span class="glyphicon glyphicon-pause">pause</span></button>
                         <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button"
                             data-toggle="tooltip"><span class="glyphicon glyphicon-stop">stop</span></button>
