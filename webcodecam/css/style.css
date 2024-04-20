@@ -1,6 +1,4 @@
-body {
-    padding-top: 50px;
-}
+
 
 .thumbnail {
     border: 0;
@@ -124,7 +122,7 @@ button {
     right: 0;
     border-bottom: solid red 5px;
     border-right: solid red 5px;
-    JS
+    
 }
 
 #webcodecam-canvas {

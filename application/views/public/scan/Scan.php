@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scan - Gatepass</title>
-
+  <!-- <link href="webcodecam/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="webcodecam/css/style.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -18,11 +19,14 @@
       <div class="row mb-5">
         <div class="w-100 d-flex">
           <div class="mx-auto">
-            <form action="">
-              <input type="text" name="" id="" placeholder="Input Qrcode">
-              <button type="submit">search</button>
-            </form>
-            <div class="container" id="QR-Code">
+            <div class="row mb-5 border">
+              <form action="">
+                <input type="text" name="" id="" placeholder="Input Qrcode">
+                <button type="submit">search</button>
+              </form>
+            </div>
+
+            <div class="row" id="QR-Code">
               <div class="navbar-form navbar-right">
                 <select class="form-control" id="camera-select"></select>
                 <div class="form-group">
@@ -39,8 +43,8 @@
                     data-toggle="tooltip"><span class="glyphicon glyphicon-stop">stop</span></button>
                 </div>
               </div>
-              <div class="col-xl-12">
-                <div class="well" style="position: relative;display: inline-block;">
+              <div class="col-xl-12 border">
+                <div class="well bg-secondary" style="position: relative;display: inline-block;">
                   <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
                   <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
                   <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
@@ -51,7 +55,7 @@
               <div class="col-xl-12">
                 <div class="thumbnail" id="result">
                   <div class="well" style="overflow: hidden;">
-                    <img width="320" height="240" id="scanned-img" src="">
+                    <img style="max-width:100%;" width="320" height="240" id="scanned-img" src="">
                   </div>
                   <div class="caption">
                     <h3>Scanned result</h3>
