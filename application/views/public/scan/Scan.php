@@ -22,6 +22,44 @@
               <input type="text" name="" id="" placeholder="Input Qrcode">
               <button type="submit">search</button>
             </form>
+            <div class="container" id="QR-Code">
+              <div class="navbar-form navbar-right">
+                <select class="form-control" id="camera-select"></select>
+                <div class="form-group">
+                  <input id="image-url" type="text" class="form-control" placeholder="Image url">
+                  <button title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button"
+                    data-toggle="tooltip"><span class="glyphicon glyphicon-upload">upload</span></button>
+                  <button title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button"
+                    data-toggle="tooltip"><span class="glyphicon glyphicon-picture">upload</span></button>
+                  <button title="Play" class="btn btn-success btn-sm" id="play" type="button"
+                    data-toggle="tooltip"><span class="glyphicon glyphicon-play">play</span></button>
+                  <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button"
+                    data-toggle="tooltip"><span class="glyphicon glyphicon-pause">pause</span></button>
+                  <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button"
+                    data-toggle="tooltip"><span class="glyphicon glyphicon-stop">stop</span></button>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="well" style="position: relative;display: inline-block;">
+                  <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
+                  <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+                  <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+                  <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+                  <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+                </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="thumbnail" id="result">
+                  <div class="well" style="overflow: hidden;">
+                    <img width="320" height="240" id="scanned-img" src="">
+                  </div>
+                  <div class="caption">
+                    <h3>Scanned result</h3>
+                    <p id="scanned-QR"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -37,7 +75,7 @@
           </div>
         </div>
       </div> -->
-      
+
     </div>
   </main>
 
@@ -49,10 +87,10 @@
   </div>
   </div>
 
-  <script>
-    // untk datatables
-    new DataTable('#example');
-  </script>
+  <script type="text/javascript" src="webcodecam/js/filereader.js"></script>
+  <script type="text/javascript" src="webcodecam/js/qrcodelib.js"></script>
+  <script type="text/javascript" src="webcodecam/js/webcodecamjs.js"></script>
+  <script type="text/javascript" src="webcodecam/js/main.js"></script>
 </body>
 
 
