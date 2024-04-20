@@ -241,7 +241,7 @@ class M_admin extends CI_Model
 
         $query = $this->db->get();
         return $query->result();
-    }
+    } 
     public function GetLevel($pst_pnr)
     {
         try {
