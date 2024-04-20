@@ -83,9 +83,16 @@
                   Approve Gatepass
                 </a>
               <?php } ?>
+              <?php
+              if ($this->logindata['level'] == 'security') { ?>
+                <a href="<?= base_url("scan") ?>" class="subsidebar-link">
+                  <i class="fa-solid fa-barcode fa-fw mr-2"></i>
+                  Scan Gatepass
+                </a>
+              <?php } ?>
             </div>
           </li>
-          <?php
+          <!-- <?php
           if ($this->logindata['level'] == 'hrd') { ?>
             <li class="sidebar-item border-top">
               <a href="<?= base_url("all_history") ?>" class="sidebar-link">
@@ -93,7 +100,7 @@
                 All Gatepass History
               </a>
             </li>
-          <?php } ?>
+          <?php } ?> -->
           <li class="sidebar-item border-top">
             <a href="<?php echo base_url('AuthAdmin/logout') ?>" class="sidebar-link text-danger">
               <i class="fa-solid fa-power-off fa-fw mr-2"></i>
