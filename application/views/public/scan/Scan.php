@@ -54,7 +54,7 @@
                 </div>
                 <div class="panel-body text-center">
                   <div class="col-xl-12">
-                    <div class="well" style="position: relative;display: inline-block;">
+                    <div class="well" style="max-width:100%;position: relative;display: inline-block;">
                       <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
                       <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
                       <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
