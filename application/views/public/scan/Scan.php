@@ -19,7 +19,7 @@
       <div class="row mb-5">
         <div class="w-100 d-flex">
           <div class="mx-auto">
-            <div class="row mb-5 border">
+            <div class="row mb-5">
               <form action="">
                 <input type="text" name="" id="" placeholder="Input Qrcode">
                 <button type="submit">search</button>
@@ -28,34 +28,27 @@
 
             <div class="row" id="QR-Code">
               <div class="navbar-form navbar-right">
-                <select class="form-control" id="camera-select"></select>
-                <div class="form-group">
-                  <input id="image-url" type="text" class="form-control" placeholder="Image url">
-                  <button title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button"
-                    data-toggle="tooltip"><span class="glyphicon glyphicon-upload">upload</span></button>
-                  <button title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button"
-                    data-toggle="tooltip"><span class="glyphicon glyphicon-picture">upload</span></button>
-                  <button title="Play" class="btn btn-success btn-sm" id="play" type="button"
-                    data-toggle="tooltip"><span class="glyphicon glyphicon-play">play</span></button>
-                  <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button"
-                    data-toggle="tooltip"><span class="glyphicon glyphicon-pause">pause</span></button>
-                  <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button"
-                    data-toggle="tooltip"><span class="glyphicon glyphicon-stop">stop</span></button>
+                <select class="form-control" id="camera-select">
+
+                </select>
+                <div class="form-group mt-2">
+                  <button class="btn btn-success btn-sm" id="play" type="button">Start CAM</span></button>
+                  <button class="btn btn-danger btn-sm" id="stop" type="button">Stop CAM</span></button>
                 </div>
               </div>
-              <div class="col-xl-12 border">
+              <div class="col-xl-12">
                 <div class="well bg-secondary" style="position: relative;display: inline-block;">
                   <canvas style="max-width:100%;" width="320" height="240" id="webcodecam-canvas"></canvas>
                 </div>
               </div>
               <div class="col-xl-12">
                 <div class="thumbnail" id="result">
-                  <div class="well" style="overflow: hidden;">
+                  <div class="well" style="overflow: hidden; display:none;">
                     <img style="max-width:100%;" width="320" height="240" id="scanned-img" src="">
                   </div>
                   <div class="caption">
                     <h3>Scanned result</h3>
-                    <p id="scanned-QR"></p>
+                    
                   </div>
                 </div>
               </div>
