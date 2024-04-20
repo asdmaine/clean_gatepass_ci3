@@ -20,9 +20,12 @@
         <div class="w-100 d-flex">
           <div class="mx-auto">
             <div class="row mb-5">
-              <form action="">
-                <input type="text" name="" id="" placeholder="Input Qrcode">
-                <button type="submit">search</button>
+              <form action="" class="mx-auto">
+                <div class="d-flex">
+                  <input class="form-control" type="text" name="" id="output-QR">
+                  <button class="ml-1 btn btn-primary" type="submit">search</button>
+                </div>
+                <p id="scanned-QR"></p>
               </form>
             </div>
 
@@ -42,12 +45,12 @@
                       <button style="display:none;" title="Image shoot" class="btn btn-info btn-sm disabled"
                         id="grab-img" type="button" data-toggle="tooltip"><span
                           class="glyphicon glyphicon-picture">upload</span></button>
-                      <button title="Play" class="btn btn-success btn-sm" id="play" type="button"
+                      <button title="Play" class="btn btn-success btn-sm px-4" id="play" type="button"
                         data-toggle="tooltip"><span class="glyphicon glyphicon-play">START CAM</span></button>
                       <button style="display:none;" title="Pause" class="btn btn-warning btn-sm" id="pause"
                         type="button" data-toggle="tooltip"><span
                           class="glyphicon glyphicon-pause">pause</span></button>
-                      <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button"
+                      <button title="Stop streams" class="btn btn-danger btn-sm px-4" id="stop" type="button"
                         data-toggle="tooltip"><span class="glyphicon glyphicon-stop">STOP CAM</span></button>
                     </div>
                   </div>
@@ -69,7 +72,7 @@
                       </div>
                       <div class="caption">
                         <h3>Scanned result</h3>
-                        <p id="scanned-QR"></p>
+                        
                       </div>
                     </div>
                   </div>
