@@ -356,6 +356,37 @@ class M_admin extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function GetGatepassByQrcode($pst_pnr, $qrcode)
+    {
+        $this->db->select('
+    a.*,
+    b.*,
+    c.*,
+    d.*,
+    e.*,
+    f.pst_name AS recommended_name,
+    f2.pst_name AS approved_name,
+    f3.pst_name AS acknowledged_name,
+        f4.signature AS requested_signature');
+        $this->db->from('gatepass_tb a');
+        $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
+        $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
+        $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
+        $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
+        $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
+        $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
+        $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
+        $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+        $this->db->where('requestedby_pst_pnr', $pst_pnr);
+        $this->db->where('qrcode', $qrcode);
+        $this->db->where('status_recommended !=', 0);
+        $this->db->where('status_approved !=', 0);
+        $this->db->where('status_acknowledged !=', 0);
+        $this->db->order_by('a.tanggal_gatepass', 'DESC');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function GetSignature($pst_pnr)
     {
         $this->db->select('a.signature');

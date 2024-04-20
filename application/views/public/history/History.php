@@ -52,7 +52,7 @@
                 <?php } ?>
                 <td class="text-center">
                   <div class="btn btn-secondary m-1"
-                    onclick="window.open('<?= base_url('pdf/print/' . $hs->id_gatepass) ?>','_blank');">
+                    onclick="window.open('<?= base_url('pdf/detail/' . $hs->qrcode) ?>','_blank');">
                     <i class="fa-solid fa-print"></i>
                   </div>
                 </td>
