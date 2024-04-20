@@ -110,7 +110,7 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(72, 20);
 $pdf->Write(0, $Gatepass[0]->qrcode);
 
-$pdf->Output('I');
+$pdf->Output('DSAW_GATEPASS.pdf','I');
 
 
 
