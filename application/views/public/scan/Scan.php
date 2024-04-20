@@ -71,7 +71,7 @@
                         <img width="320" height="240" id="scanned-img" src="">
                       </div>
                       <div class="caption">
-                        <h3>Scanned result</h3>
+                        <!-- <h3>Scanned result</h3> -->
                         
                       </div>
                     </div>
