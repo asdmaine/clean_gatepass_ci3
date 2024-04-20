@@ -31,6 +31,7 @@
         flipVerticalValue = $("#flipVertical-value"),
         flipHorizontal = $("#flipHorizontal"),
         flipHorizontalValue = $("#flipHorizontal-value");
+        var output = document.getElementById('output-QR');
     var args = {
         autoBrightnessValue: 100,
         resultFunction: function(res) {
@@ -41,7 +42,7 @@
             });
             scannedImg.attr("src", res.imgData);
             scannedQR.text(res.format + ": " + res.code);
-            
+            output.value = res.code;
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";
