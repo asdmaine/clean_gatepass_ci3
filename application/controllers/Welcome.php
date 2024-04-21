@@ -21,7 +21,7 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		$this->load->view('public/test/test_cam');
+		$this->load->view('public/test/test_mail');
 	}
 	public function show_pdf()
 	{
