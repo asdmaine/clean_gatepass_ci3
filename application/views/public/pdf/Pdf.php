@@ -61,10 +61,10 @@ $pdf->Write(0, substr($Gatepass[0]->est_time_out, 0, 5));
 $pdf->SetXY(154, 153);
 $pdf->Write(0, substr($Gatepass[0]->est_time_in,0,5));
 
-$pdf->SetXY(148, 225);
+$pdf->SetXY(65, 225);
 $pdf->Write(0, substr($Gatepass[0]->real_time_out,0,5));
 
-$pdf->SetXY(65, 225);
+$pdf->SetXY(148, 225);
 $pdf->Write(0, substr($Gatepass[0]->real_time_in,0,5));
 
 
