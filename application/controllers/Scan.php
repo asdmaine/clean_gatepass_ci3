@@ -36,6 +36,8 @@ class Scan extends CI_Controller
 				$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);
 				$this->data['Gatepass'][0]->approved_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->approvedby_pst_pnr);
 				$this->data['Gatepass'][0]->acknowledged_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->acknowledgedby_pst_pnr);
+				$this->data['Gatepass'][0]->securityin_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityin_pst_pnr);
+				$this->data['Gatepass'][0]->securityout_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityout_pst_pnr);
 
 
 				if (!isset($this->data['Gatepass'][0]->qrcode)) {

@@ -134,14 +134,14 @@
           <tr>
             <td><strong>Jam keluar </strong> / <i>Time Out</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_out)) { ?>
-                  <button class="btn btn-warning" data-toggle="modal" data-target="#ModalOut" >Set jam
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#ModalOut">Set jam
                     keluar <?= $Gatepass[0]->real_time_out ?></button>
                 <?php } else {
               echo $Gatepass[0]->real_time_out;
             } ?></mark></td>
             <td><strong>Jam Masuk </strong> / <i>Time In</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_in)) { ?>
-                  <button class="btn btn-danger" data-toggle="modal" data-target="#ModalIn" >Set
+                  <button class="btn btn-danger" data-toggle="modal" data-target="#ModalIn">Set
                     jam
                     Masuk</button>
                 <?php } else {
@@ -150,12 +150,19 @@
           </tr>
           <tr>
             <td>Nama & Paraf Satpam<br>Security Initial</td>
-            <td><mark>security</mark></td>
+            <td><mark><?php if (!isset($Gatepass[0]->securityout_name)) {
+              echo '';
+            } else { ?>
+                  <?= $Gatepass[0]->securityout_name ?>
+                  <img width="150" height="70" src="<?= $Gatepass[0]->securityout_signature ?>" alt="">
+                <?php } ?></mark></td>
             <td>Nama & Paraf Satpam<br>Security Initial</td>
-            <td class="text-center">
-              <!-- experimental -->
-              <img width="150" height="70" src="<?= $Gatepass[0]->requested_signature ?>" alt="">
-            </td>
+            <td><mark><?php if (!isset($Gatepass[0]->securityin_name)) {
+              echo '';
+            } else { ?>
+                  <?= $Gatepass[0]->securityin_name ?>
+                  <img width="150" height="70" src="<?= $Gatepass[0]->securityin_signature ?>" alt="">
+                <?php } ?></mark></td>
           </tr>
           <tr>
             <td colspan="4"><strong>Distribusi</strong> / <i>Distribution</i></td>
