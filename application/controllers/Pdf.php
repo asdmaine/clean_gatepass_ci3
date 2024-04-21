@@ -10,6 +10,7 @@ class Pdf extends CI_Controller
 		if (!$this->m_admin->is_login()) {
 			redirect('AuthAdmin/Login');
 		} else {
+			require_once 'set_menu.php';
 			include APPPATH . 'third_party/qrlib/src/qrlib.php';
 			include APPPATH . 'third_party/fpdf/fpdf.php';
 			include APPPATH . 'third_party/fpdf/src/autoload.php';
@@ -27,7 +28,8 @@ class Pdf extends CI_Controller
 			$string = $this->logindata['user']['pst_pnr'];
 			$this->data['Gatepass'] = $this->m_admin->GetGatepassByQrcode($string, $qrcode);
 			if (empty($this->data['Gatepass'])) {
-				redirect('dashboard');
+				// redirect('dashboard');
+				echo 'kosong';
 			} else {
 				//getsignature
 				$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);
