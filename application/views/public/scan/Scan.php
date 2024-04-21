@@ -22,11 +22,12 @@
             <div class="row mb-5">
               <form action="" class="mx-auto">
                 <div class="d-flex">
-                  <input class="form-control" type="text" name="" id="output-QR">
+                  <input class="form-control" type="text" name="" id="out-QR">
                   <button class="ml-1 btn btn-primary" type="submit">search</button>
                 </div>
                 <p id="scanned-QR"></p>
               </form>
+              
             </div>
 
             <div class="row" id="QR-Code">
@@ -94,6 +95,7 @@
   <!-- punya header -->
   </div>
   </div>
+
 
 
   <script type="text/javascript" src="js/filereader.js"></script>

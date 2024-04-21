@@ -31,7 +31,7 @@
         flipVerticalValue = $("#flipVertical-value"),
         flipHorizontal = $("#flipHorizontal"),
         flipHorizontalValue = $("#flipHorizontal-value");
-        var output = document.getElementById('output-QR');
+        var output = $("#ishere");
     var args = {
         autoBrightnessValue: 100,
         resultFunction: function(res) {
@@ -42,7 +42,12 @@
             });
             scannedImg.attr("src", res.imgData);
             scannedQR.text(res.format + ": " + res.code);
-            output.value = res.code;
+            // output.val(res.code);
+            if(res.code.length === 10){
+                document.getElementById('out-QR').value = res.code;
+            }else{
+                document.getElementById('out-QR').value = 'error';
+            }
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";

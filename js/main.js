@@ -41,7 +41,6 @@
         flipVerticalValue = Q("#flipVertical-value"),
         flipHorizontal = Q("#flipHorizontal"),
         flipHorizontalValue = Q("#flipHorizontal-value");
-        var output = document.getElementById('output-QR');
     var args = {
         autoBrightnessValue: 100,
         resultFunction: function(res) {
@@ -53,7 +52,11 @@
             });
             scannedImg.src = res.imgData;
             scannedQR[txt] = res.format + ": " + res.code;
-            output.value = res.code;
+            if(res.code.length === 10){
+                document.getElementById('out-QR').value = res.code;
+            }else{
+                document.getElementById('out-QR').value = 'error';
+            }
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";
