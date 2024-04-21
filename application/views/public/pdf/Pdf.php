@@ -56,16 +56,16 @@ $pdf->MultiCell(173, 6, $Gatepass[0]->penjelasan_keperluan, 0, 'L');
 
 
 $pdf->SetXY(65, 153);
-$pdf->Write(0, $Gatepass[0]->est_time_out);
+$pdf->Write(0, substr($Gatepass[0]->est_time_out, 0, 5));
 
 $pdf->SetXY(154, 153);
-$pdf->Write(0, $Gatepass[0]->est_time_in);
+$pdf->Write(0, substr($Gatepass[0]->est_time_in,0,5));
 
 $pdf->SetXY(148, 225);
-$pdf->Write(0, $Gatepass[0]->rl_time_out);
+$pdf->Write(0, substr($Gatepass[0]->real_time_out,0,5));
 
 $pdf->SetXY(65, 225);
-$pdf->Write(0, $Gatepass[0]->rl_time_in);
+$pdf->Write(0, substr($Gatepass[0]->real_time_in,0,5));
 
 
 
@@ -79,8 +79,11 @@ $pdf->SetXY(53, 192);
 $pdf->MultiCell(52, 5, substr($Gatepass[0]->approved_name, 0, $char_limit), 0, 'L');
 $pdf->SetXY(53, 203);
 $pdf->MultiCell(52, 5, substr($Gatepass[0]->acknowledged_name, 0, $char_limit), 0, 'L');
-$pdf->SetXY(65, 230);
-$pdf->MultiCell(40, 5, substr('security name', 0, 25), 0, 'L');
+$pdf->SetXY(65, 229);
+$pdf->MultiCell(40, 5, substr($Gatepass[0]->securityout_name, 0, 12), 0, 'L');
+$pdf->SetXY(148, 229);
+$pdf->MultiCell(40, 5, substr($Gatepass[0]->securityin_name, 0, 12), 0, 'L');
+
 
 if (isset($Gatepass[0]->requested_signature)) {
   $pdf->Image($Gatepass[0]->requested_signature, 148, 174, 25, 0, 'PNG');
@@ -94,9 +97,11 @@ if (isset($Gatepass[0]->approved_signature)) {
 if (isset($Gatepass[0]->acknowledged_signature)) {
   $pdf->Image($Gatepass[0]->acknowledged_signature, 148, 205, 25, 0, 'PNG');
 }
-if (isset($Gatepass[0]->security_signature)) {
-  $pdf->Image($Gatepass[0]->security_signature, 148, 231, 25, 0, 'PNG');
-  
+if (isset($Gatepass[0]->securityout_signature)) {
+  $pdf->Image($Gatepass[0]->securityout_signature, 65, 232, 25, 0, 'PNG');
+}
+if (isset($Gatepass[0]->securityin_signature)) {
+  $pdf->Image($Gatepass[0]->securityin_signature, 148, 232, 25, 0, 'PNG');
 }
 
 $pdf->AddPage('P', array(210, 297));
