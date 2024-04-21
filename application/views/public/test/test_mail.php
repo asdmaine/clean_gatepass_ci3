@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 $mail = new PHPMailer(true);
+$string = 'isi string';
 
 try {
     $mail->isSMTP();
@@ -21,36 +22,61 @@ try {
     // Pengaturan email
     $mail->setFrom('shdsulthon11@gmail.com', 'Gatepass System'); // Ganti dengan alamat email dan nama Anda
     $mail->addAddress('sulthon.sdn@gmail.com', 'To '); // Ganti dengan alamat email penerima
-    $mail->Subject = '<mail subject>';
+    $mail->Subject = 'DSAW GATEPASS SYSTEM';
     $mail->isHTML(true);
     $mail->Body = '
     <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+
 <body>
     <div>
-        <h2>HTML Email</h2>
-        <p>This email contains HTML Tags!</p>
-        <table>
+        <h2>GATEPASS REQUEST</h2>
+        <table border="1">
             <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
+                    <td style="padding:10px 20px;">Nama Pemohon </td>
+                    <td style="padding:10px 20px;">'. $string .'</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 20px;">Tanggal Gatepass</td>
+                    <td style="padding:10px 20px;">"Tanggal Gatepass"</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 20px;">Keperluan</td>
+                    <td style="padding:10px 20px;">"Keperluan"</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 20px;">Penjelasan Keperluan</td>
+                    <td style="padding:10px 20px;">"Penjelasan Keperluan"</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 20px;">Perkiraan Jam Keluar</td>
+                    <td style="padding:10px 20px;">"Perkiraan Jam Keluar"</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px 20px;">Perkiraan Jam Masuk</td>
+                    <td style="padding:10px 20px;">"Perkiraan Jam Masuk"</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button>button</button>
+    <br>
+    <button>Accept</button>
+    <button>Reject</button>
 </body>
+
 </html>
     ';
 

@@ -21,14 +21,17 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		include APPPATH . 'third_party/phpmailer/src/Exception.php';
-		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
-		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
-		$this->load->view('public/test/test_mail');
+		$this->load->view('public/test/test_mail_echo');
 	}
 	public function show_pdf()
 	{
 		header("content-type: application/pdf");
 		readfile('src/assets/pdf/output.pdf');
+	}
+	public function mail(){
+		include APPPATH . 'third_party/phpmailer/src/Exception.php';
+		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
+		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
+		$this->load->view('public/test/test_mail');
 	}
 }
