@@ -45,6 +45,7 @@
             // output.val(res.code);
             if(res.code.length === 10){
                 document.getElementById('out-QR').value = res.code;
+                document.getElementById("search-qr").click();
             }else{
                 document.getElementById('out-QR').value = 'error';
             }

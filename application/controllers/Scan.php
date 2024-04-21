@@ -17,6 +17,10 @@ class Scan extends CI_Controller
 	{
 		$this->sidebar->view('public/scan/Scan',array_merge($this->logindata));
 	}
+	public function output(){
+		$post = $this->input->post();
+		echo $post['qr'];
+	}
 	
 	
 	

@@ -20,13 +20,14 @@
         <div class="w-100 d-flex">
           <div class="mx-auto">
             <div class="row mb-5">
-              <form action="" class="mx-auto">
+              <form action="scan/output" method='post' class="mx-auto">
                 <div class="d-flex">
-                  <input class="form-control" type="text" name="" id="out-QR">
-                  <button class="ml-1 btn btn-primary" type="submit">search</button>
+                  <input class="form-control" type="text" name="qr" id="out-QR" required>
+                  <button class="ml-1 btn btn-primary" id="search-qr" type="submit">search</button>
                 </div>
                 <p id="scanned-QR"></p>
               </form>
+              
               
             </div>
 
@@ -95,7 +96,6 @@
   <!-- punya header -->
   </div>
   </div>
-
 
 
   <script type="text/javascript" src="js/filereader.js"></script>
