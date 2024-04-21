@@ -9,28 +9,31 @@ class Approve extends CI_Controller
 		$this->load->model('m_admin');
 		if (!$this->m_admin->is_login()) {
 			redirect('AuthAdmin/Login');
-		}else{
+		} else {
 			require_once 'set_menu.php';
-			
+
 		}
 	}
 	public function index()
 	{
-		$string = $this->logindata['user']['pst_pnr'];	
+		$string = $this->logindata['user']['pst_pnr'];
 		$this->data['Progress'] = $this->m_admin->GetProgressApproval($string);
-		$this->sidebar->view('public/approve/Approve',array_merge($this->logindata,$this->data));
+		$this->sidebar->view('public/approve/Approve', array_merge($this->logindata, $this->data));
 	}
-	public function do_approve($int,$id,$as){
-		if($int == 1){
-			$this->m_admin->AcceptGatepass($id,$as);
-			// echo 'accept gatepass id_verifikasi =  '.$id.' sebagai = '.$as;
-		}else if($int == -1){
-			$this->m_admin->RejectGatepass($id,$as);
-			// echo 'reject gatepass id_verifikasi =  '.$id.' sebagai = '.$as;
-		}else if($int == 0){
-			$this->m_admin->PendingGatepass($id,$as);
+	public function do_approve()
+	{
+		$post = $this->input->post();
+		if (empty($post)) {
+			redirect('dashboard?alert=error');
+		} else {
+			if ($post['what'] == 1) {
+				$this->m_admin->AcceptGatepass();
+			} else if ($post['what'] == -1) {
+				$this->m_admin->RejectGatepass();
+			}
 		}
+
 	}
-	
-	
+
+
 }

@@ -36,135 +36,131 @@
 
               <!-- SHOW -->
               <?php $i = 1;
-                foreach ($Progress as $pg) {
-                  if (empty($pg->id_gatepass)) { ?>
+              foreach ($Progress as $pg) {
+                if (empty($pg->id_gatepass)) { ?>
                   <tr class="text">
                     <th class="text-center align-middle text-uppercase" colspan="7">no data to be shown</th>
                   </tr>
-                  <?php } else {
-                    if($pg->recommendedby_pst_pnr == $this->logindata['user']['pst_pnr']){
-                      $as = 'recommended';
-                    }elseif($pg->approvedby_pst_pnr == $this->logindata['user']['pst_pnr']){
-                      $as = 'approved';
-                    }elseif($pg->acknowledgedby_pst_pnr == $this->logindata['user']['pst_pnr']){
-                      $as = 'acknowledged';
-                    }
-                    
-                    $recommended_name = $pg->recommended_name;
-                    $approved_name = $pg->approved_name;
-                    $acknowledged_name = $pg->acknowledged_name;
-                    
-                    ?>
-                    <tr class="text">
-                  <th class="text-center align-middle">
-                    <?= $i?>
-                  </th>
-                  <td class="text-center align-middle">
-                    <?= $pg->tanggal_gatepass ?>
-                  </td>
-                  <td class="align-middle text-uppercase">
-                    <?= $pg->requestedby_pst_name ?>
-                  </td>
-                  <!-- RECOMMENDED -->
-                  <td class="text-center">
-                    <?php if ($pg->status_recommended == 1) { ?>
-                      <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0" data-trigger="focus"
-                      data-content="<?php $content_recommended = 'Accepted by ' . $pg->recommended_name . ' at ' . $pg->verif_date_recommendedby;
-                        echo $content_recommended; ?> ">
-                        Accepted</div>
-                    <?php } elseif ($pg->status_recommended == 0) {
-                      $pg->status_approved = 0;
-                      $pg->approved_name = $pg->recommended_name;
-                      $pg->verif_date_approvedby = $pg->verif_date_recommendedby;
-                      $pg->status_acknowledged = 0;
-                      $pg->acknowledged_name = $pg->recommended_name;
-                      $pg->verif_date_acknowledgedby = $pg->verif_date_recommendedby;
-                      ?>
-                      <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_recommended = 'Still waiting ' . $pg->recommended_name;
-                        echo $content_recommended;
-                        $content_approved = $content_recommended;
-                        $content_acknowledged = $content_recommended; ?>">Waiting</div>
-                    <?php } elseif ($pg->status_recommended == -1) {
-                      $pg->status_approved = -1;
-                      $pg->approved_name = $pg->recommended_name;
-                      $pg->verif_date_approvedby = $pg->verif_date_recommendedby;
-                      $pg->status_acknowledged = -1;
-                      $pg->acknowledged_name = $pg->recommended_name;
-                      $pg->verif_date_acknowledgedby = $pg->verif_date_recommendedby;
-                      ?>
-                      <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_recommended = 'Rejected by ' . $pg->recommended_name . ' at ' . $pg->verif_date_recommendedby;
-                        echo $content_recommended;
-                        $content_approved = $content_recommended;
-                        $content_acknowledged = $content_recommended; ?>">
-                        Rejected</div>
-                    <?php } ?>
-                  </td>
-                  <!-- END RECOMMENDED -->
+                <?php } else {
+                  if ($pg->recommendedby_pst_pnr == $this->logindata['user']['pst_pnr']) {
+                    $as = 'recommended';
+                  } elseif ($pg->approvedby_pst_pnr == $this->logindata['user']['pst_pnr']) {
+                    $as = 'approved';
+                  } elseif ($pg->acknowledgedby_pst_pnr == $this->logindata['user']['pst_pnr']) {
+                    $as = 'acknowledged';
+                  }
 
-                  <!-- APROVED -->
-                  <td class="text-center">
-                    <?php if ($pg->status_approved == 1) { ?>
-                      <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0" 
-                        data-trigger="focus" data-content="<?php $content_approved = 'Accepted by ' . $pg->approved_name . ' at ' . $pg->verif_date_approvedby;
-                        echo $content_approved; ?>">
-                        Accepted</div>
-                    <?php } elseif ($pg->status_approved == 0) {
-                      $pg->status_acknowledged = 0;
-                      $pg->acknowledged_name = $pg->approved_name;
-                      $pg->verif_date_acknowledgedby = $pg->verif_date_approvedby;
-                      ?>
-                      <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_approved = 'Still waiting ' . $pg->approved_name;
-                        echo $content_approved;
-                        $content_acknowledged = $content_approved; ?>">
-                        Waiting</div>
-                    <?php } elseif ($pg->status_approved == -1) {
-                      $pg->status_acknowledged = -1;
-                      $pg->acknowledged_name = $pg->approved_name;
-                      $pg->verif_date_acknowledgedby = $pg->verif_date_approvedby;
-                      ?>
-                      <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_approved = 'Rejected by ' . $pg->approved_name . ' at ' . $pg->verif_date_approvedby;
-                        echo $content_approved;
-                        $content_acknowledged = $content_approved; ?>">
-                        Rejected</div>
-                    <?php } ?>
-                  </td>
-                  <!-- END APPROVED -->
+                  $recommended_name = $pg->recommended_name;
+                  $approved_name = $pg->approved_name;
+                  $acknowledged_name = $pg->acknowledged_name;
 
-                  <!-- ACKNOWLEDGED -->
-                  <td class="text-center">
-                    <?php if ($pg->status_acknowledged == 0) { ?>
-                      <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_acknowledged = 'Still waiting ' . $pg->acknowledged_name;
-                        echo $content_acknowledged; ?>">
-                        Waiting</div>
-                    <?php } elseif ($pg->status_acknowledged == 1) { ?>
-                      <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_acknowledged = 'Accepted by ' . $pg->acknowledged_name . ' at ' . $pg->verif_date_acknowledgedby;
-                        echo $content_acknowledged; ?>">
-                        Accepted</div>
-                    <?php } elseif ($pg->status_acknowledged == -1) { ?>
-                      <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
-                        data-trigger="focus" data-content="<?php $content_acknowledged = 'Rejected by ' . $pg->acknowledged_name . ' at ' . $pg->verif_date_acknowledgedby;
-                        echo $content_acknowledged; ?>">
-                        Rejected</div>
-                    <?php } ?>
-                  </td>
-                  <!-- END ACKNOWLEDGED -->
-                  <td class="text-center spacing-2">
-                    <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail<?= $i ?>"><i
-                        class="fa-solid fa-circle-info"></i></div>
-                        <a class="btn btn-success m-1 text-light" href="<?= base_url("approve/do_approve/1/".$pg->id_verifikasi)."/".$as ?>"><i
-                        class="fa-solid fa-check fa-lg"></i></a>
-                        <a class="btn btn-danger m-1 text-light" href="<?= base_url("approve/do_approve/-1/".$pg->id_verifikasi)."/".$as ?>"><i
-                        class="fa-solid fa-x fa-lg"></i></a>
-                        <a class="btn btn-secondary m-1 text-light" href="<?= base_url("approve/do_approve/0/".$pg->id_verifikasi)."/".$as ?>"><i
-                        class="fa-regular fa-clock fa-lg"></i></a>
-                  </td>
-                </tr>
+                  ?>
+                  <tr class="text">
+                    <th class="text-center align-middle">
+                      <?= $i ?>
+                    </th>
+                    <td class="text-center align-middle">
+                      <?= $pg->tanggal_gatepass ?>
+                    </td>
+                    <td class="align-middle text-uppercase">
+                      <?= $pg->requestedby_pst_name ?>
+                    </td>
+                    <!-- RECOMMENDED -->
+                    <td class="text-center">
+                      <?php if ($pg->status_recommended == 1) { ?>
+                        <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_recommended = 'Accepted by ' . $pg->recommended_name . ' at ' . $pg->verif_date_recommendedby;
+                          echo $content_recommended; ?> ">
+                          Accepted</div>
+                      <?php } elseif ($pg->status_recommended == 0) {
+                        $pg->status_approved = 0;
+                        $pg->approved_name = $pg->recommended_name;
+                        $pg->verif_date_approvedby = $pg->verif_date_recommendedby;
+                        $pg->status_acknowledged = 0;
+                        $pg->acknowledged_name = $pg->recommended_name;
+                        $pg->verif_date_acknowledgedby = $pg->verif_date_recommendedby;
+                        ?>
+                        <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_recommended = 'Still waiting ' . $pg->recommended_name;
+                          echo $content_recommended;
+                          $content_approved = $content_recommended;
+                          $content_acknowledged = $content_recommended; ?>">Waiting</div>
+                      <?php } elseif ($pg->status_recommended == -1) {
+                        $pg->status_approved = -1;
+                        $pg->approved_name = $pg->recommended_name;
+                        $pg->verif_date_approvedby = $pg->verif_date_recommendedby;
+                        $pg->status_acknowledged = -1;
+                        $pg->acknowledged_name = $pg->recommended_name;
+                        $pg->verif_date_acknowledgedby = $pg->verif_date_recommendedby;
+                        ?>
+                        <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_recommended = 'Rejected by ' . $pg->recommended_name . ' at ' . $pg->verif_date_recommendedby;
+                          echo $content_recommended;
+                          $content_approved = $content_recommended;
+                          $content_acknowledged = $content_recommended; ?>">
+                          Rejected</div>
+                      <?php } ?>
+                    </td>
+                    <!-- END RECOMMENDED -->
+
+                    <!-- APROVED -->
+                    <td class="text-center">
+                      <?php if ($pg->status_approved == 1) { ?>
+                        <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_approved = 'Accepted by ' . $pg->approved_name . ' at ' . $pg->verif_date_approvedby;
+                          echo $content_approved; ?>">
+                          Accepted</div>
+                      <?php } elseif ($pg->status_approved == 0) {
+                        $pg->status_acknowledged = 0;
+                        $pg->acknowledged_name = $pg->approved_name;
+                        $pg->verif_date_acknowledgedby = $pg->verif_date_approvedby;
+                        ?>
+                        <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_approved = 'Still waiting ' . $pg->approved_name;
+                          echo $content_approved;
+                          $content_acknowledged = $content_approved; ?>">
+                          Waiting</div>
+                      <?php } elseif ($pg->status_approved == -1) {
+                        $pg->status_acknowledged = -1;
+                        $pg->acknowledged_name = $pg->approved_name;
+                        $pg->verif_date_acknowledgedby = $pg->verif_date_approvedby;
+                        ?>
+                        <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_approved = 'Rejected by ' . $pg->approved_name . ' at ' . $pg->verif_date_approvedby;
+                          echo $content_approved;
+                          $content_acknowledged = $content_approved; ?>">
+                          Rejected</div>
+                      <?php } ?>
+                    </td>
+                    <!-- END APPROVED -->
+
+                    <!-- ACKNOWLEDGED -->
+                    <td class="text-center">
+                      <?php if ($pg->status_acknowledged == 0) { ?>
+                        <div class="btn btn-secondary" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_acknowledged = 'Still waiting ' . $pg->acknowledged_name;
+                          echo $content_acknowledged; ?>">
+                          Waiting</div>
+                      <?php } elseif ($pg->status_acknowledged == 1) { ?>
+                        <div class="btn btn-success" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_acknowledged = 'Accepted by ' . $pg->acknowledged_name . ' at ' . $pg->verif_date_acknowledgedby;
+                          echo $content_acknowledged; ?>">
+                          Accepted</div>
+                      <?php } elseif ($pg->status_acknowledged == -1) { ?>
+                        <div class="btn btn-danger" data-toggle="popover" data-placement="bottom" tabindex="0"
+                          data-trigger="focus" data-content="<?php $content_acknowledged = 'Rejected by ' . $pg->acknowledged_name . ' at ' . $pg->verif_date_acknowledgedby;
+                          echo $content_acknowledged; ?>">
+                          Rejected</div>
+                      <?php } ?>
+                    </td>
+                    <!-- END ACKNOWLEDGED -->
+                    <td class="text-center spacing-2">
+                      <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail<?= $i ?>"><i
+                          class="fa-solid fa-circle-info"></i></div>
+                      <div class="btn btn-primary m-1" id="btn-edit" data-id_verifikasi="<?= $pg->id_verifikasi ?>" data-id_remarks="<?= $pg->id_remarks ?>"><i
+                          class="fa-solid fa-pen"></i></div>
+                    </td>
+                  </tr>
                   <!-- modal detail -->
                   <div class="modal fade ModalDetail<?= $i ?>" tabindex="-1" role="dialog"
                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -267,8 +263,8 @@
                     </div>
                   </div>
                 <?php }
-                  $i++;
-                } ?>
+                $i++;
+              } ?>
             </tbody>
 
           </table>
@@ -280,7 +276,41 @@
 
 
 
-
+  <!-- modalEdit -->
+  <div class="modal fade" id="ModalEdit" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="ModalEditLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center w-100" id="ModalEditLabel">Aksi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="<?= base_url('approve/do_approve') ?>" method="post">
+            <div class="form-group">
+              <select class="form-control" name="what" id="" required>
+                <option value="1">Accept</option>
+                <option value="-1">Reject</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="as"  value="<?= $as ?>"hidden>
+              <input type="text" class="form-control" id="edit_id_verifikasi"name="id_verifikasi" hidden>
+              <input type="text" class="form-control" id="edit_id_remarks"name="id_remarks" hidden>
+              <label for="remarks">Remarks</label>
+              <input type="text" class="form-control" name="remarks" id="remarks" value="-">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Konfirmasi</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- punya header -->
   </div>
   </div>
@@ -288,6 +318,15 @@
   <script>
     // untk datatables
     new DataTable('#example');
+
+    var btnEdit = document.getElementById("btn-edit");
+    btnEdit.addEventListener("click", function () {
+      var idverifikasi = this.getAttribute("data-id_verifikasi");
+      var idremarks = this.getAttribute("data-id_remarks");
+      document.getElementById('edit_id_verifikasi').value = idverifikasi;
+      document.getElementById('edit_id_remarks').value = idremarks;
+      $('#ModalEdit').modal('show');
+    });
   </script>
 </body>
 

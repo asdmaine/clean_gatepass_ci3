@@ -280,36 +280,50 @@ class M_admin extends CI_Model
         redirect('dashboard');
     }
 
-    public function AcceptGatepass($id, $as)
+    public function AcceptGatepass()
     {
-        $data = array(
-            'status_' . $as => '1',
-            'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
-        );
-        $this->db->where('id_verifikasi', $id);
-        $this->db->update('gatepass_tbverifikasi', $data);
-        redirect('approve');
+        $post = $this->input->post();
+        try {
+            $data = array(
+                'status_' . $post['as'] => '1',
+                'verif_date_' . $post['as'] . 'by' => date('Y-m-d H:i:s')
+            );
+            $this->db->where('id_verifikasi', $post['id_verifikasi']);
+            $this->db->update('gatepass_tbverifikasi', $data);
+
+            $data1 = array(
+                'remarks_' . $post['as'] . 'by' => $post['remarks']
+            );
+            $this->db->where('id_remarks', $post['id_remarks']);
+            $this->db->update('gatepass_tbremarks', $data1);
+            redirect('approve');
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
     }
-    public function RejectGatepass($id, $as)
+    public function RejectGatepass()
     {
-        $data = array(
-            'status_' . $as => '-1',
-            'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
-        );
-        $this->db->where('id_verifikasi', $id);
-        $this->db->update('gatepass_tbverifikasi', $data);
-        redirect('approve');
+        $post = $this->input->post();
+        try {
+            $data = array(
+                'status_' . $post['as'] => '-1',
+                'verif_date_' . $post['as'] . 'by' => date('Y-m-d H:i:s')
+            );
+            $this->db->where('id_verifikasi', $post['id_verifikasi']);
+            $this->db->update('gatepass_tbverifikasi', $data);
+
+            $data1 = array(
+                'remarks_' . $post['as'] . 'by' => $post['remarks']
+            );
+            $this->db->where('id_remarks', $post['id_remarks']);
+            $this->db->update('gatepass_tbremarks', $data1);
+            redirect('approve');
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
-    public function PendingGatepass($id, $as)
-    {
-        $data = array(
-            'status_' . $as => '0',
-            'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
-        );
-        $this->db->where('id_verifikasi', $id);
-        $this->db->update('gatepass_tbverifikasi', $data);
-        redirect('approve');
-    }
+
     public function GetHistory($pst_pnr)
     {
         $this->db->select('
@@ -529,7 +543,7 @@ class M_admin extends CI_Model
         }
     }
 
-    
+
 }
 
 ?>
