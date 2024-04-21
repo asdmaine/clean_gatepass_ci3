@@ -21,6 +21,9 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
+		include APPPATH . 'third_party/phpmailer/src/Exception.php';
+		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
+		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
 		$this->load->view('public/test/test_mail');
 	}
 	public function show_pdf()
