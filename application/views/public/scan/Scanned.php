@@ -80,9 +80,9 @@
           </tr>
           <tr>
             <td class="col-3"><strong>Perkiraan Jam Keluar</strong><br><i>Estimated Time Out</i></td>
-            <td class="col-3 align-middle"><mark><?= $Gatepass[0]->est_time_out ?></mark></td>
+            <td class="col-3 align-middle"><mark><?= substr($Gatepass[0]->est_time_out,0,5) ?></mark></td>
             <td class="col-3"><strong>Perkiraan Jam Masuk</strong><br><i>Estimated Time In</i></td>
-            <td class="col-3 align-middle"><mark><?= $Gatepass[0]->est_time_in ?></mark></td>
+            <td class="col-3 align-middle"><mark><?= substr($Gatepass[0]->est_time_in,0,5) ?></mark></td>
           </tr>
           <tr>
             <td colspan="4"><strong>Pengesahan</strong> / <i>Authorization</i></td>
@@ -135,9 +135,9 @@
             <td><strong>Jam keluar </strong> / <i>Time Out</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_out)) { ?>
                   <button class="btn btn-warning" data-toggle="modal" data-target="#ModalOut">Set jam
-                    keluar <?= $Gatepass[0]->real_time_out ?></button>
+                    keluar</button>
                 <?php } else {
-              echo $Gatepass[0]->real_time_out;
+              echo substr($Gatepass[0]->real_time_out,0,5);
             } ?></mark></td>
             <td><strong>Jam Masuk </strong> / <i>Time In</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_in)) { ?>
@@ -145,7 +145,7 @@
                     jam
                     Masuk</button>
                 <?php } else {
-              echo $Gatepass[0]->real_time_in;
+              echo substr($Gatepass[0]->real_time_in,0,5);
             } ?></mark></td>
           </tr>
           <tr>
