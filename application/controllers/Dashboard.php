@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller
 			require_once 'set_menu.php';
 		}
 	}
+	
 	public function index()
 	{
 		$string = $this->logindata['user']['pst_pnr'];
