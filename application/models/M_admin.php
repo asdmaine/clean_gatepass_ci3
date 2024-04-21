@@ -241,7 +241,7 @@ class M_admin extends CI_Model
 
         $query = $this->db->get();
         return $query->result();
-    } 
+    }
     public function GetLevel($pst_pnr)
     {
         try {
@@ -257,7 +257,8 @@ class M_admin extends CI_Model
             echo "Error: " . $e->getMessage();
         }
     }
-    public function isSecurity($pst_pnr){
+    public function isSecurity($pst_pnr)
+    {
         try {
             $this->db->select('pst_idx');
             $this->db->from('pst');
@@ -370,34 +371,65 @@ class M_admin extends CI_Model
     }
     public function GetGatepassByQrcode($pst_pnr, $qrcode)
     {
-        $this->db->select('
-    a.*,
-    b.*,
-    c.*,
-    d.*,
-    e.*,
-    f.pst_name AS recommended_name,
-    f2.pst_name AS approved_name,
-    f3.pst_name AS acknowledged_name,
-        f4.signature AS requested_signature');
-        $this->db->from('gatepass_tb a');
-        $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
-        $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
-        $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
-        $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
-        $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
-        $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
-        $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-        $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
-        $this->db->where('requestedby_pst_pnr', $pst_pnr);
-        $this->db->where('qrcode', $qrcode);
-        $this->db->where('status_recommended !=', 0);
-        $this->db->where('status_approved !=', 0);
-        $this->db->where('status_acknowledged !=', 0);
-        $this->db->order_by('a.tanggal_gatepass', 'DESC');
+        if ($pst_pnr == 'security') {
+            $this->db->select('
+            a.*,
+            b.*,
+            c.*,
+            d.*,
+            e.*,
+            f.pst_name AS recommended_name,
+            f2.pst_name AS approved_name,
+            f3.pst_name AS acknowledged_name,
+                f4.signature AS requested_signature');
+            $this->db->from('gatepass_tb a');
+            $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
+            $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
+            $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
+            $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
+            $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
+            $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
+            $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
+            $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+            $this->db->where('qrcode', $qrcode);
+            $this->db->where('status_recommended !=', 0);
+            $this->db->where('status_approved !=', 0);
+            $this->db->where('status_acknowledged !=', 0);
+            $this->db->order_by('a.tanggal_gatepass', 'DESC');
 
-        $query = $this->db->get();
-        return $query->result();
+            $query = $this->db->get();
+            return $query->result();
+        } else {
+            $this->db->select('
+            a.*,
+            b.*,
+            c.*,
+            d.*,
+            e.*,
+            f.pst_name AS recommended_name,
+            f2.pst_name AS approved_name,
+            f3.pst_name AS acknowledged_name,
+                f4.signature AS requested_signature');
+            $this->db->from('gatepass_tb a');
+            $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
+            $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
+            $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
+            $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
+            $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
+            $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
+            $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
+            $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+            $this->db->where('requestedby_pst_pnr', $pst_pnr);
+            $this->db->where('qrcode', $qrcode);
+            $this->db->where('status_recommended !=', 0);
+            $this->db->where('status_approved !=', 0);
+            $this->db->where('status_acknowledged !=', 0);
+            $this->db->order_by('a.tanggal_gatepass', 'DESC');
+
+            $query = $this->db->get();
+            return $query->result();
+        }
+
     }
     public function GetSignature($pst_pnr)
     {
@@ -413,7 +445,80 @@ class M_admin extends CI_Model
         return ($result) ? $result->signature : null;
 
     }
+    public function SetRealTimeOut($pst_pnr)
+    {
+        $post = $this->input->post();
+        if (empty($post)) {
+            redirect('dashboard?alert=ditolak');
+        } else {
+            try {
+                $data = array(
+                    'securityout_pst_pnr' => $pst_pnr
+                );
+                $this->db->where('id_pengesahan', $post['id_pengesahan']);
+                $this->db->update('gatepass_tbpengesahan', $data);
 
+                $data1 = array(
+                    'real_time_out' => date('H:i:s')
+                );
+                $this->db->where('id_time', $post['id_time']);
+                $this->db->update('gatepass_tbtime', $data1);
+
+                $data2 = array(
+                    'verif_date_securityout' => date('Y-m-d H:i:s')
+                );
+                $this->db->where('id_verifikasi', $post['id_verifikasi']);
+                $this->db->update('gatepass_tbverifikasi', $data2);
+
+                $data3 = array(
+                    'remarks_securityout' => $post['remarks']
+                );
+                $this->db->where('id_remarks', $post['id_remarks']);
+                $this->db->update('gatepass_tbremarks', $data3);
+                redirect('scan?alert=strltin1');
+            } catch (Exception $e) {
+                redirect('scan?alert=strltin0');
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
+    public function SetRealTimeIn($pst_pnr)
+    {
+        $post = $this->input->post();
+        if (empty($post)) {
+            redirect('dashboard?alert=ditolak');
+        } else {
+            try {
+                $data = array(
+                    'securityin_pst_pnr' => $pst_pnr
+                );
+                $this->db->where('id_pengesahan', $post['id_pengesahan']);
+                $this->db->update('gatepass_tbpengesahan', $data);
+
+                $data1 = array(
+                    'real_time_in' => date('H:i:s')
+                );
+                $this->db->where('id_time', $post['id_time']);
+                $this->db->update('gatepass_tbtime', $data1);
+
+                $data2 = array(
+                    'verif_date_securityin' => date('Y-m-d H:i:s')
+                );
+                $this->db->where('id_verifikasi', $post['id_verifikasi']);
+                $this->db->update('gatepass_tbverifikasi', $data2);
+
+                $data3 = array(
+                    'remarks_securityin' => $post['remarks']
+                );
+                $this->db->where('id_remarks', $post['id_remarks']);
+                $this->db->update('gatepass_tbremarks', $data3);
+                redirect('scan?alert=strltin1');
+            } catch (Exception $e) {
+                redirect('scan?alert=strltin0');
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
 
 
 }

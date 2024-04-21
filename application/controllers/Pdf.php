@@ -28,8 +28,8 @@ class Pdf extends CI_Controller
 			$string = $this->logindata['user']['pst_pnr'];
 			$this->data['Gatepass'] = $this->m_admin->GetGatepassByQrcode($string, $qrcode);
 			if (empty($this->data['Gatepass'])) {
-				// redirect('dashboard');
-				echo 'kosong';
+				redirect('dashboard');
+				// echo 'kosong';
 			} else {
 				//getsignature
 				$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);

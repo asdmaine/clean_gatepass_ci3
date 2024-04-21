@@ -11,6 +11,26 @@
 </head>
 
 <body>
+  <?php
+  if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == 'strltin1') {
+      echo '<script>console.log("Berhasil!")</script>';
+      echo '<script>alert("Berhasil!")</script>';
+    }
+    if ($_GET['alert'] == 'strltin0') {
+      echo '<script>console.log("Gagal!")</script>';
+      echo '<script>alert("Gagal!")</script>';
+    }
+
+    echo '<script>
+    setTimeout(function() {
+        var newUrl = window.location.href.split("?")[0];
+        window.history.replaceState({}, document.title, newUrl);
+    }, 5000); // Menghapus parameter setelah 2 detik
+</script>';
+  }
+
+  ?>
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
@@ -20,15 +40,15 @@
         <div class="w-100 d-flex">
           <div class="mx-auto">
             <div class="row mb-5">
-              <form action="scan/output" method='post' class="mx-auto">
+              <form action="<?= base_url('scan/output') ?>" method='post' class="mx-auto">
                 <div class="d-flex">
                   <input class="form-control" type="text" name="qr" id="out-QR" required>
                   <button class="ml-1 btn btn-primary" id="search-qr" type="submit">search</button>
                 </div>
                 <p id="scanned-QR"></p>
               </form>
-              
-              
+
+
             </div>
 
             <div class="row" id="QR-Code">
@@ -40,7 +60,8 @@
                   <div class="navbar-form navbar-right">
                     <select class="form-control" id="camera-select"></select>
                     <div class="form-group mt-2">
-                      <input style="display:none;" id="image-url" type="text" class="form-control" placeholder="Image url">
+                      <input style="display:none;" id="image-url" type="text" class="form-control"
+                        placeholder="Image url">
                       <button style="display:none;" title="Decode Image" class="btn btn-default btn-sm" id="decode-img"
                         type="button" data-toggle="tooltip"><span
                           class="glyphicon glyphicon-upload">upload</span></button>
@@ -74,7 +95,7 @@
                       </div>
                       <div class="caption">
                         <!-- <h3>Scanned result</h3> -->
-                        
+
                       </div>
                     </div>
                   </div>

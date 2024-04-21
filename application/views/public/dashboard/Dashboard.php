@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +16,21 @@
 </head>
 
 <body>
+<?php
+if (isset($_GET['alert'])) {
+  if ($_GET['alert'] == 'ditolak') {
+    echo '<script>console.log("Akses ditolak!")</script>';
+    echo '<script>alert("Akses ditolak!")</script>';
+    echo '<script>
+    setTimeout(function() {
+        var newUrl = window.location.href.split("?")[0];
+        window.history.replaceState({}, document.title, newUrl);
+    }, 5000); // Menghapus parameter setelah 2 detik
+</script>';
+  }
+}
+
+?>
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
