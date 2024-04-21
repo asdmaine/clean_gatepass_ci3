@@ -283,7 +283,7 @@ if (isset($_GET['alert'])) {
                   </div>
                 </div>
                 <br />
-                <form action="upload_signature.php" method="post">
+                <form action="<?= base_url('dashboard/upSignature') ?>" method="post">
                   <div class="row">
                     <div class="col-md-12">
                       <textarea id="sig-dataUrl" class="form-control" name="signature" rows="5" hidden
