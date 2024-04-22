@@ -6,9 +6,7 @@ use PHPMailer\PHPMailer\SMTP;
 
 $mail = new PHPMailer(true);
 $string = 'isi string';
-if($Gatepass[0]->status_recommended == 1){$status_recommended= 'accepted';}else if($Gatepass[0]->status_recommended == 0){$status_recommended= 'waiting you';}else{$status_recommended= 'rejected';} 
-if($Gatepass[0]->status_approved == 1){$status_approved ='accepted';}else if($Gatepass[0]->status_approved == 0){$status_approved ='waiting you';}else{$status_approved ='rejected';}
-if($Gatepass[0]->status_acknowledged == 1){$status_acknowledged ='accepted';}else if($Gatepass[0]->status_acknowledged == 0){$status_acknowledged ='waiting you';}else{$status_acknowledged ='rejected';}
+
 try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // Ganti dengan alamat SMTP server Anda
@@ -24,7 +22,7 @@ try {
     // Pengaturan email
     $mail->setFrom('shdsulthon11@gmail.com', 'Gatepass System'); // Ganti dengan alamat email dan nama Anda
     $mail->addAddress('sulthon.sdn@gmail.com', 'To '); // Ganti dengan alamat email penerima
-    $mail->Subject = 'NOTIFICATION FROM DSAW GATEPASS SYSTEM';
+    $mail->Subject = 'DSAW GATEPASS SYSTEM';
     $mail->isHTML(true);
     $mail->Body = '
     <!DOCTYPE html>
@@ -35,70 +33,48 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+
 <body>
     <div>
         <h2>GATEPASS REQUEST</h2>
-        <h2>Pesan ini dikirim ke '. $as.'@ptdsaw.co.id' .'</h2>
-        <!-- <h2>Pesan ini dikirim ke '. $Gatepass[0]->{$as . "_mail"}.'</h2> -->
         <table border="1">
             <thead>
                 <tr>
                     <th></th>
                     <th></th>
-                    <th></th>
-                   
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td style="padding:10px 20px;" colspan="2">Tanggal Gatepass</td>
-                    <td style="padding:10px 20px;" colspan="2">'. $Gatepass[0]->tanggal_gatepass .'</td>
+                    <td style="padding:10px 20px;">Nama Pemohon </td>
+                    <td style="padding:10px 20px;">'. $string .'</td>
                 </tr>
                 <tr>
-                    <td style="padding:10px 20px;" colspan="2">Keperluan</td>
-                    <td style="padding:10px 20px;" colspan="2">'. $Gatepass[0]->keperluan .'</td>
+                    <td style="padding:10px 20px;">Tanggal Gatepass</td>
+                    <td style="padding:10px 20px;">"Tanggal Gatepass"</td>
                 </tr>
                 <tr>
-                    <td style="padding:10px 20px;" colspan="2">Penjelasan Keperluan</td>
-                    <td style="padding:10px 20px;" colspan="2">'. $Gatepass[0]->penjelasan_keperluan .'</td>
+                    <td style="padding:10px 20px;">Keperluan</td>
+                    <td style="padding:10px 20px;">"Keperluan"</td>
                 </tr>
                 <tr>
-                    <td style="padding:10px 20px;" colspan="2">Perkiraan Jam Keluar</td>
-                    <td style="padding:10px 20px;" colspan="2">'. substr($Gatepass[0]->est_time_out,0,5) .'</td>
+                    <td style="padding:10px 20px;">Penjelasan Keperluan</td>
+                    <td style="padding:10px 20px;">"Penjelasan Keperluan"</td>
                 </tr>
                 <tr>
-                    <td style="padding:10px 20px;" colspan="2">Perkiraan Jam Masuk</td>
-                    <td style="padding:10px 20px;" colspan="2">'. substr($Gatepass[0]->est_time_in,0,5) .'</td>
+                    <td style="padding:10px 20px;">Perkiraan Jam Keluar</td>
+                    <td style="padding:10px 20px;">"Perkiraan Jam Keluar"</td>
                 </tr>
                 <tr>
-                    <td style="padding:10px 20px;">requestedby</td>
-                    <td style="padding:10px 20px;">'. $Gatepass[0]->requested_name  .'</td>
-                    <td style="padding:10px 20px;">'. $Gatepass[0]->tanggal_gatepass_dibuat .'</td>
-                </tr>
-                <tr>
-                    <td style="padding:10px 20px;">recommendedby</td>
-                    <td style="padding:10px 20px;">'. $Gatepass[0]->recommended_name  .'</td>
-                    <td style="padding:10px 20px;">'. $status_recommended .'</td>
-                </tr>
-                <tr>
-                    <td style="padding:10px 20px;">approvedby</td>
-                    <td style="padding:10px 20px;">'. $Gatepass[0]->approved_name  .'</td>
-                    <td style="padding:10px 20px;">'. $status_approved .'</td>
-                </tr>
-                <tr>
-                    <td style="padding:10px 20px;">acknowledgedby</td>
-                    <td style="padding:10px 20px;">'. $Gatepass[0]->acknowledged_name  .'</td>
-                    <td style="padding:10px 20px;">'. $status_acknowledged .'</td>
+                    <td style="padding:10px 20px;">Perkiraan Jam Masuk</td>
+                    <td style="padding:10px 20px;">"Perkiraan Jam Masuk"</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <br>
-    <a style="display: inline-block; background-color: green; color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem;"
-        href="#terima">Terima</a>
-    <a style="display: inline-block; background-color: red; color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem;"
-        href="#tolak">Tolak</a>
-
+    <a>Accept</a>
+    <button>Reject</button>
 </body>
 
 </html>
