@@ -18,8 +18,8 @@
   <?php
   if (isset($_GET['alert'])) {
     if ($_GET['alert'] == 'ditolak') {
-      echo '<script>console.log("Akses ditolak!")</script>';
-      echo '<script>alert("Akses ditolak!")</script>';
+      echo '<script>console.log("'.$this->lang->line('Akses ditolak').'!")</script>';
+      echo '<script>alert("'.$this->lang->line('Akses ditolak').'!")</script>';
       echo '<script>
     setTimeout(function() {
         var newUrl = window.location.href.split("?")[0];
@@ -28,8 +28,8 @@
 </script>';
     }
     if ($_GET['alert'] == 'limit') {
-      echo '<script>console.log("Anda sudah gatepass hari ini!")</script>';
-      echo '<script>alert("Anda sudah gatepass hari ini!")</script>';
+      echo '<script>console.log("'.$this->lang->line('Anda sudah gatepass hari ini').'!")</script>';
+      echo '<script>alert("'.$this->lang->line('Anda sudah gatepass hari ini').'!")</script>';
       echo '<script>
       setTimeout(function() {
           var newUrl = window.location.href.split("?")[0];
@@ -62,7 +62,7 @@
           background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
           " class=" d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass anda Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
+            <h3 class="mb-3"><?= $this->lang->line('Gatepass anda Bulan lalu') ?> (<?php $date = date('M', strtotime('-1 month'));
             echo $date; ?>)
             </h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $last_month ?></h2>
@@ -73,7 +73,7 @@
           background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
           " class="d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass anda Tahun ini (<?= date('Y') ?>)</h3>
+            <h3 class="mb-3"><?= $this->lang->line('Gatepass anda Tahun ini') ?> (<?= date('Y') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_year ?></h2>
           </div>
         </div>
@@ -86,7 +86,7 @@
             background: -webkit-linear-gradient(to right, #FF8235, #30E8BF);  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to right, #FF8235, #30E8BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             " class="d-flex flex-column p-4 shadow">
-              <h3 class="mb-3">Total Gatepass Karyawan Bulan ini (<?= date('M') ?>)</h3>
+              <h3 class="mb-3"><?= $this->lang->line('Total Gatepass Karyawan Bulan ini') ?> (<?= date('M') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_month ?></h2>
             </div>
           </div>
@@ -95,7 +95,7 @@
             background: -webkit-linear-gradient(to right, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */
             background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             " class="d-flex flex-column p-4 shadow">
-              <h3 class="mb-3">Total Gatepass Karyawan Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
+              <h3 class="mb-3"><?= $this->lang->line('Total Gatepass Karyawan Bulan lalu') ?> (<?php $date = date('M', strtotime('-1 month'));
               echo $date; ?>)
               </h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_last_month ?></h2>
@@ -107,7 +107,7 @@
               background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
               background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */"
               class="d-flex flex-column p-4 shadow">
-              <h3 class="mb-3">Total Gatepass Karyawan Tahun ini (<?= date('Y') ?>)</h3>
+              <h3 class="mb-3"><?= $this->lang->line('Total Gatepass Karyawan Tahun ini') ?> (<?= date('Y') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_year ?></h2>
             </div>
           </div>
@@ -125,17 +125,17 @@
       <div id="table-progress" class="row">
         <!-- konversi data progress -->
         <div class="table-responsive">
-          <h6 class="text-center text-uppercase mb-3">Your Gatepass Progress</h6>
+          <h6 class="text-center text-uppercase mb-3"><?= $this->lang->line('Progres Gatepass anda') ?></h6>
           <table class="table table-striped table-bordered">
             <thead class="text-center">
               <tr>
                 <td scope="col">#</td>
-                <td scope="col">Date</td>
-                <td scope="col">Reason</td>
+                <td scope="col"><?= $this->lang->line('Tanggal') ?></td>
+                <td scope="col"><?= $this->lang->line('Keperluan') ?></td>
                 <td scope="col">Recommended by</td>
                 <td scope="col">Approved by</td>
                 <td scope="col">Acknowledged by</td>
-                <td scope="col">Action</td>
+                <td scope="col"><?= $this->lang->line('Aksi') ?></td>
               </tr>
             </thead>
             <tbody>
@@ -260,15 +260,15 @@
       <hr class="mb-5">
       <div id="table-today" class="row">
         <div class="table-responsive">
-          <h6 class="text-center text-uppercase mb-3">Today Gatepass</h6>
+          <h6 class="text-center text-uppercase mb-3"><?= $this->lang->line('Gatepass anda hari ini') ?></h6>
           <table class="table table-bordered" style="width:100%">
             <thead>
               <tr class="text-center">
                 <th>#</th>
-                <th>Date</th>
-                <th>Reason</th>
+                <th><?= $this->lang->line('Tanggal') ?></th>
+                <th><?= $this->lang->line('Alasan') ?></th>
                 <th>Status</th>
-                <th>Action</th>
+                <th><?= $this->lang->line('Aksi') ?></th>
               </tr>
             </thead>
             <tbody>
@@ -321,7 +321,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Set Signature</h5>
+              <h5 class="modal-title w-100 text-center" id="exampleModalLabel"><?= $this->lang->line('Set Signature') ?></h5>
               <button id="x-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -337,8 +337,8 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-success" id="sig-submitBtn">Done</button>
-                    <button class="btn btn-secondary" id="sig-clearBtn">Clear</button>
+                    <button class="btn btn-success" id="sig-submitBtn"><?= $this->lang->line('Selesai') ?></button>
+                    <button class="btn btn-secondary" id="sig-clearBtn"><?= $this->lang->line('Bersihkan') ?></button>
                   </div>
                 </div>
                 <br />
@@ -358,8 +358,7 @@
                         style="max-width: 100%;" />
                     </div>
                   </div>
-                  <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span
-                      class="text-success">done</span> terlebih dahulu</p>
+                  <p id="sig-alert" class="text-danger" style="display:none;"><?= $this->lang->line('ekan Tombol Selesai terlebih dahulu') ?></p>
 
               </div>
             </div>
@@ -370,75 +369,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-      <!-- info login -->
-      <!-- <div class="">
-        <p><strong>INFO LOGIN ANDA</strong></p>
-        <p>sign :
-          <?= $this->logindata['user']['signature'] ?>
-        </p>
-        <p>pst_name :
-          <?= $this->logindata['user']['pst_name'] ?>
-        </p>
-        <p>job_level :
-          <?= $this->logindata['user']['job_level'] ?>
-        </p>
-        <p>jobtl_name :
-          <?= $this->logindata['user']['jobtl_name'] ?>
-        </p>
-        <p>verifikasi1 :
-          <?= $this->logindata['user']['verifikasi1'] ?> (
-          <?= $this->logindata['user']['verifikasi1_name'] ?>)
-        </p>
-        <p>verifikasi2 :
-          <?= $this->logindata['user']['verifikasi2'] ?> (
-          <?= $this->logindata['user']['verifikasi2_name'] ?>)
-        </p>
-        <p>approval1 :
-          <?= $this->logindata['user']['approval1'] ?> (
-          <?= $this->logindata['user']['approval1_name'] ?>)
-        </p>
-        <p>approval2 :
-          <?= $this->logindata['user']['approval2'] ?> (
-          <?= $this->logindata['user']['approval2_name'] ?>)
-        </p>
-
-
-
-
-
-        <br><br><br><br><br>
-        <p>Requested by :
-          <?= $this->logindata['user']['pst_pnr'] ?> (
-          <?= $this->logindata['user']['pst_name'] ?>)
-        </p>
-        <p>Recommended by :
-          <?= $this->logindata['user']['verifikasi1'] ?> (
-          <?= $this->logindata['user']['verifikasi1_name'] ?>)
-        </p>
-        <p class="text-secondary">Recommended by (alternate) :
-          <?= $this->logindata['user']['verifikasi2'] ?> (
-          <?= $this->logindata['user']['verifikasi2_name'] ?>)
-        </p>
-        <p>Approved by :
-          <?= $this->logindata['user']['approval1'] ?> (
-          <?= $this->logindata['user']['approval1_name'] ?>)
-        </p>
-        <p class="text-secondary">Approved by (alternate) :
-          <?= $this->logindata['user']['approval2'] ?> (
-          <?= $this->logindata['user']['approval2_name'] ?>)
-        </p>
-        <p>Acknowledged by : Pak Aris ?? (HRD)</p>
-        <p class="text-secondary">Acknowledged by (alternate): Buk Yanti</p>
-        <p class="text-secondary">Acknowledged by (alternate): Pak Akbar</p>
-        <p class="text-center text-secondary text-uppercase">note : mengetahui dia bisa approve gatepass orang atau
-          tidak itu BUKAN berdasarkan job_Level!!
-          <br>melainkan berdasarkan tbmleave_setting apakh pst_pnr dia ada di verifikasi/approval
-        </p>
-      </div> -->
     </div>
   </main>
 
@@ -646,18 +576,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalSureLabel">Are you sure?</h5>
+        <h5 class="modal-title" id="ModalSureLabel"><?= $this->lang->line('Apakah anda yakin?') ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        This action will delete your gatepass progress.
+      <?= $this->lang->line('Anda akan kehilangan progres dari gatepass anda') ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $this->lang->line('Kembali') ?></button>
         <a href="<?= base_url('submit/do_delete/' . $pg->id_gatepass) ?>"
-          class="btn btn-danger">Delete</a>
+          class="btn btn-danger"><?= $this->lang->line('Hapus') ?></a>
       </div>
     </div>
   </div>
@@ -676,11 +606,11 @@
       <div class="modal-body">
         <form>
           <div class="form-group mb-4">
-            <label for="tanggal" class="col-form-label font-weight-bold">Tanggal</label>
+            <label for="tanggal" class="col-form-label font-weight-bold"><?= $this->lang->line('Tanggal') ?></label>
             <input type="date" class="form-control w-50" id="tanggal" value="<?= $pg->tanggal_gatepass ?>" disabled>
           </div>
           <div class="form-group mb-4 ">
-            <label class="form-label font-weight-bold">Keperluan</label><br>
+            <label class="form-label font-weight-bold"><?= $this->lang->line('Keperluan') ?></label><br>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" id="<?= $pg->keperluan ?>" value="<?= $pg->keperluan ?>"
                 disabled checked>
@@ -688,18 +618,18 @@
             </div>
           </div>
           <div class="form-group mb-4">
-            <label for="penjelasan" class="form-label font-weight-bold">Penjelasan</label>
+            <label for="penjelasan" class="form-label font-weight-bold"><?= $this->lang->line('Penjelasan') ?></label>
             <textarea class="form-control" id="penjelasan" style="height: 100px"
               disabled><?= $pg->penjelasan_keperluan ?></textarea>
           </div>
           <div class="form-group mb-4">
             <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
             <div class="input-group mb-1">
-              <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar" disabled>
+              <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam keluar') ?>" disabled>
               <input class="form-control" type="time" id="est_time_out" value="<?= $pg->est_time_out ?>" disabled>
             </div>
             <div class="input-group mb-4">
-              <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Masuk" disabled>
+              <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam masuk') ?>" disabled>
               <input class="form-control" type="time" id="est_time_in" value="<?= $pg->est_time_in ?>" disabled>
             </div>
           </div>

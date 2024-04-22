@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller
 		} else {
 			require_once 'set_menu.php';
 			$language = $this->session->userdata('language');
-		$this->lang->load('general', $language);
+			$this->lang->load('general', $language);
 		}
 	}
 
