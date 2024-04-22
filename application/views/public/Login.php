@@ -101,9 +101,9 @@
             <div class="mx-auto w-50">
                 <div class="shadow-lg p-3 bg-secondary text-light mt-4">Normal</div>
                 <div class="akun shadow-none p-3 bg-light" data-pst="523124075">Firman Barus - 523124075</div>
-                <div class="akun shadow-none p-3 bg-light"  data-pst="4698073">Agus Widodo - 4698073</div>
-
+                
                 <div class="shadow-lg p-3 bg-secondary text-light mt-4">Supervisor</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="4698073">Agus Widodo - 4698073</div>
                 <div class="akun shadow-none p-3 bg-light"  data-pst="46211035">Haryanto - 46211035</div>
                 <div class="akun shadow-none p-3 bg-light"  data-pst="4608937">Kusbiantoro Effendi - 4608937</div>
                 <div class="akun shadow-none p-3 bg-light"  data-pst="4600381">Jonathan S M L Tobing - 4600381</div>
@@ -113,10 +113,10 @@
                 <div class="akun shadow-none p-3 bg-light"  data-pst="46221041">Teddy Ariswandi - 46221041</div>
                 <div class="akun shadow-none p-3 bg-light"  data-pst="46191032">Melinda - 46191032</div>
 
-                <div class="shadow-lg p-3 bg-secondary text-light mt-4">HRD/HOD</div>
-                <div class="akun shadow-none p-3 bg-light" data-pst="46171029">Aris SH - 46171029</div>
+                <div class="shadow-lg p-3 bg-secondary text-light mt-4">HRD/HOD HRD</div>
                 <div class="akun shadow-none p-3 bg-light"  data-pst="521073730">Marden S - 521073730</div>
-                <div class="akun shadow-none p-3 bg-light"  data-pst="4607947">Suryanti - 4607947</div>
+                <div class="akun shadow-none p-3 bg-light" data-pst="46171029">Aris SH - 46171029</div>
+                <div class="akun shadow-none p-3 bg-light"  data-pst="523023913">Akbar PJ - 523023913</div>
 
                 <div class="shadow-lg p-3 bg-secondary text-light mt-4">Security</div>
                 <div class="akun shadow-none p-3 bg-light" data-pst="S9220001">Tambi Abdrahman MS - S9220001</div>

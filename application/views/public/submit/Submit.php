@@ -303,8 +303,7 @@
                 <select name="acknowledged" id="" class="form-control" required>
                   <option value="" selected disabled>-</option>
                   <option value="46171029">Aris Setyo Hartanto - 46171029</option>
-                  <option value="4607947">Suryanti - 4607947</option>
-                  <option value="523023913">Akbar Putra Jako - 523023913</option>
+                  <option value="521073730">Marden Saragih - 521073730</option>
                 </select>
               </div>
               <!-- <div class="mb-4">
