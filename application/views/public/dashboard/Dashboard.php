@@ -37,13 +37,20 @@
       </div>
       <div class="row mb-5 text-white">
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-          <div class="bg-danger d-flex flex-column p-4 shadow">
+          <div style="
+          background: #F0C27B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4B1248, #F0C27B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+" class="d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Bulan ini (<?= date('M') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-          <div class="bg-success d-flex flex-column p-4 shadow">
+          <div style="background: #2c3e50;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+" class=" d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
             echo $date; ?>)
             </h3>
@@ -51,7 +58,10 @@
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-          <div class="bg-secondary d-flex flex-column p-4 shadow">
+          <div style="background: #c0392b;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+"class="d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Tahun ini (<?= date('Y') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_year ?></h2>
           </div>
@@ -61,13 +71,19 @@
         <?php if (isset($this->logindata['hr'])) { ?>
 
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-            <div class="bg-primary d-flex flex-column p-4 shadow">
+            <div style="background: #30E8BF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FF8235, #30E8BF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FF8235, #30E8BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+"class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Bulan ini (<?= date('M') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_month ?></h2>
             </div>
           </div>
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-            <div class="bg-danger d-flex flex-column p-4 shadow">
+            <div style="background: #3a6186;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+" class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
               echo $date; ?>)
               </h3>
@@ -75,7 +91,9 @@
             </div>
           </div>
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-            <div class="bg-success d-flex flex-column p-4 shadow">
+            <div style="background: #c2e59c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */" class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Tahun ini (<?= date('Y') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_year ?></h2>
             </div>
@@ -94,7 +112,7 @@
       <div id="table-progress" class="row">
         <!-- konversi data progress -->
         <div class="table-responsive">
-          <h6 class="text-center text-uppercase mb-3">Gatepass Progress</h6>
+          <h6 class="text-center text-uppercase mb-3">Your Gatepass Progress</h6>
           <table class="table table-striped table-bordered">
             <thead class="text-center">
               <tr>
@@ -272,7 +290,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
-                        alt="Anda belum membuat signature, tolong buat signature terlebih dahulu" style="max-width: 100%;" />
+                        alt="Anda belum membuat signature, tolong buat signature terlebih dahulu"
+                        style="max-width: 100%;" />
                     </div>
                   </div>
                   <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span
