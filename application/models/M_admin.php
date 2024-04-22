@@ -484,63 +484,9 @@ class M_admin extends CI_Model
 
         $query = $this->db->get();
         return $query->result();
-        //     $this->db->select('
-        // a.*,
-        // b.*,
-        // c.*,
-        // d.*,
-        // e.*,
-        // f.pst_name AS recommended_name,
-        // f2.pst_name AS approved_name,
-        // f3.pst_name AS acknowledged_name');
-        //     $this->db->from('gatepass_tb a');
-        //     $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
-        //     $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
-        //     $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
-        //     $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
-        //     $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
-        //     $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
-        //     $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-        //     $this->db->where('requestedby_pst_pnr', $pst_pnr);
-        //    $this->db->where('status_recommended !=', 0);
-        //     $this->db->where('status_approved !=', 0);
-        //     $this->db->where('status_acknowledged !=', 0);
-        //     $this->db->order_by('a.tanggal_gatepass', 'DESC');
-
-        //     $query = $this->db->get();
-        //     return $query->result();
     }
-    // public function GetGatepass($pst_pnr, $id_gatepass)
-    // {
-    //     $this->db->select('
-    // a.*,
-    // b.*,
-    // c.*,
-    // d.*,
-    // e.*,
-    // f.pst_name AS recommended_name,
-    // f2.pst_name AS approved_name,
-    // f3.pst_name AS acknowledged_name,
-    //     f4.signature AS requested_signature');
-    //     $this->db->from('gatepass_tb a');
-    //     $this->db->join('gatepass_tbtime b', 'a.id_time = b.id_time', 'left');
-    //     $this->db->join('gatepass_tbpengesahan c', 'a.id_pengesahan = c.id_pengesahan', 'left');
-    //     $this->db->join('gatepass_tbverifikasi d', 'c.id_verifikasi = d.id_verifikasi', 'left');
-    //     $this->db->join('gatepass_tbremarks e', 'c.id_remarks = e.id_remarks', 'left');
-    //     $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
-    //     $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
-    //     $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-    //     $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
-    //     $this->db->where('requestedby_pst_pnr', $pst_pnr);
-    //     $this->db->where('id_gatepass', $id_gatepass);
-    //     $this->db->where('status_recommended !=', 0);
-    //     $this->db->where('status_approved !=', 0);
-    //     $this->db->where('status_acknowledged !=', 0);
-    //     $this->db->order_by('a.tanggal_gatepass', 'DESC');
 
-    //     $query = $this->db->get();
-    //     return $query->result();
-    // }
+
     public function GetGatepassByQrcode($pst_pnr, $qrcode)
     {
         if ($pst_pnr == 'security') {
@@ -881,6 +827,71 @@ class M_admin extends CI_Model
         );
         return $query->result();
 
+    }
+    public function GetHistoryToday($pst_pnr)
+    {
+        $date = date('Y-m-d');
+        $query = $this->db->query(
+            "
+            SELECT 
+            a.*, 
+            b.*, 
+            c.*, 
+            d.*, 
+            e.*, 
+            f.pst_name AS recommended_name, 
+            f2.pst_name AS approved_name, 
+            f3.pst_name AS acknowledged_name
+        FROM 
+            gatepass_tb a
+        LEFT JOIN 
+            gatepass_tbtime b ON a.id_time = b.id_time
+        LEFT JOIN 
+            gatepass_tbpengesahan c ON a.id_pengesahan = c.id_pengesahan
+        LEFT JOIN 
+            gatepass_tbverifikasi d ON c.id_verifikasi = d.id_verifikasi
+        LEFT JOIN 
+            gatepass_tbremarks e ON c.id_remarks = e.id_remarks
+        LEFT JOIN 
+            pst f ON c.recommendedby_pst_pnr = f.pst_pnr
+        LEFT JOIN 
+            pst f2 ON c.approvedby_pst_pnr = f2.pst_pnr
+        LEFT JOIN 
+            pst f3 ON c.acknowledgedby_pst_pnr = f3.pst_pnr
+        WHERE 
+            requestedby_pst_pnr = '$pst_pnr'
+        AND 
+            a.status != 0
+        AND 
+        DATE_FORMAT(a.tanggal_gatepass_dibuat, '%Y-%m-%d') = '$date'
+        ORDER BY 
+            a.tanggal_gatepass_dibuat DESC;
+        "
+        );
+        return $query->result();
+    }
+    public function NumHistoryToday($pst_pnr)
+    {
+        $date = date('Y-m-d');
+        $query = $this->db->query(
+            "
+            SELECT 
+            a.*
+        FROM 
+            gatepass_tb a
+        LEFT JOIN 
+            gatepass_tbtime b ON a.id_time = b.id_time
+        LEFT JOIN 
+            gatepass_tbpengesahan c ON a.id_pengesahan = c.id_pengesahan
+        WHERE 
+            requestedby_pst_pnr = '$pst_pnr'
+        AND 
+            a.status != 2
+        AND 
+        DATE_FORMAT(a.tanggal_gatepass_dibuat, '%Y-%m-%d') = '$date'
+        "
+        );
+        return $query->num_rows();
     }
 
 }

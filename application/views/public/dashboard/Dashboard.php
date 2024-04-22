@@ -27,9 +27,20 @@
     }, 5000); // Menghapus parameter setelah 2 detik
 </script>';
     }
+    if ($_GET['alert'] == 'limit') {
+      echo '<script>console.log("Anda sudah gatepass hari ini!")</script>';
+      echo '<script>alert("Anda sudah gatepass hari ini!")</script>';
+      echo '<script>
+      setTimeout(function() {
+          var newUrl = window.location.href.split("?")[0];
+          window.history.replaceState({}, document.title, newUrl);
+      }, 5000); // Menghapus parameter setelah 2 detik
+  </script>';
+    }
   }
 
   ?>
+
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
@@ -39,18 +50,18 @@
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div style="
           background: #F0C27B;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #4B1248, #F0C27B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-" class="d-flex flex-column p-4 shadow">
+          background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #4B1248, #F0C27B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          " class="d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Bulan ini (<?= date('M') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div style="background: #2c3e50;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-" class=" d-flex flex-column p-4 shadow">
+          background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          " class=" d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
             echo $date; ?>)
             </h3>
@@ -59,9 +70,9 @@ background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, F
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div style="background: #c0392b;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-"class="d-flex flex-column p-4 shadow">
+          background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          " class="d-flex flex-column p-4 shadow">
             <h3 class="mb-3">Gatepass anda Tahun ini (<?= date('Y') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_year ?></h2>
           </div>
@@ -72,18 +83,18 @@ background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, F
 
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
             <div style="background: #30E8BF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FF8235, #30E8BF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FF8235, #30E8BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-"class="d-flex flex-column p-4 shadow">
+            background: -webkit-linear-gradient(to right, #FF8235, #30E8BF);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #FF8235, #30E8BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            " class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Bulan ini (<?= date('M') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_month ?></h2>
             </div>
           </div>
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
             <div style="background: #3a6186;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-" class="d-flex flex-column p-4 shadow">
+            background: -webkit-linear-gradient(to right, #89253e, #3a6186);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            " class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
               echo $date; ?>)
               </h3>
@@ -91,9 +102,11 @@ background: linear-gradient(to right, #89253e, #3a6186); /* W3C, IE 10+/ Edge, F
             </div>
           </div>
           <div class="col-xl-4 col-md-6 col-sm-12 p-2">
-            <div style="background: #c2e59c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */" class="d-flex flex-column p-4 shadow">
+            <div
+              style="background: #c2e59c;  /* fallback for old browsers */
+              background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
+              background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */"
+              class="d-flex flex-column p-4 shadow">
               <h3 class="mb-3">Total Gatepass Karyawan Tahun ini (<?= date('Y') ?>)</h3>
               <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_year ?></h2>
             </div>
@@ -131,10 +144,10 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
                 <?php foreach ($Progress as $pg) {
                 }
                 if (empty($pg->id_gatepass)) { ?>
-                <tr class="text">
+                  <!-- <tr class="text">
                   <th class="text-center align-middle text-uppercase" colspan="7">no data to be shown</th>
-                </tr>
-              <?php } else {
+                </tr> -->
+                <?php } else {
                   $recommended_name = $pg->recommended_name;
                   $approved_name = $pg->approved_name;
                   $acknowledged_name = $pg->acknowledged_name;
@@ -145,106 +158,157 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
                   $status_approved = $pg->status_approved;
                   $status_acknowledged = $pg->status_acknowledged;
                   ?>
-                <th class="text-center align-middle">1</th>
-                <td class="text-center align-middle">
-                  <?= $pg->tanggal_gatepass ?>
-                </td>
-                <td class="align-middle text-uppercase">
-                  <?= $pg->keperluan ?>
-                </td>
-                <!-- RECOMMENDED -->
-                <td class="text-center">
-                  <?php if ($status_recommended == 1) { ?>
-                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
-                    echo $content_recommended; ?>">
-                      Accepted</div>
-                  <?php } elseif ($status_recommended == 0) {
-                    $status_approved = 0;
-                    $approved_name = $recommended_name;
-                    $verif_date_approvedby = $verif_date_recommendedby;
-                    $status_acknowledged = 0;
-                    $acknowledged_name = $recommended_name;
-                    $verif_date_acknowledgedby = $verif_date_recommendedby;
-                    ?>
-                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
-                    echo $content_recommended;
-                    $content_approved = $content_recommended;
-                    $content_acknowledged = $content_recommended; ?>">Waiting</div>
-                  <?php } elseif ($status_recommended == -1) {
-                    $status_approved = -1;
-                    $approved_name = $recommended_name;
-                    $verif_date_approvedby = $verif_date_recommendedby;
-                    $status_acknowledged = -1;
-                    $acknowledged_name = $recommended_name;
-                    $verif_date_acknowledgedby = $verif_date_recommendedby;
-                    ?>
-                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
-                    echo $content_recommended;
-                    $content_approved = $content_recommended;
-                    $content_acknowledged = $content_recommended; ?>">
-                      Rejected</div>
-                  <?php } ?>
-                </td>
-                <!-- END RECOMMENDED -->
+                  <th class="text-center align-middle">1</th>
+                  <td class="text-center align-middle">
+                    <?= $pg->tanggal_gatepass ?>
+                  </td>
+                  <td class="align-middle text-uppercase">
+                    <?= $pg->keperluan ?>
+                  </td>
+                  <!-- RECOMMENDED -->
+                  <td class="text-center">
+                    <?php if ($status_recommended == 1) { ?>
+                      <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_recommended = 'Accepted by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                      echo $content_recommended; ?>">
+                        Accepted</div>
+                    <?php } elseif ($status_recommended == 0) {
+                      $status_approved = 0;
+                      $approved_name = $recommended_name;
+                      $verif_date_approvedby = $verif_date_recommendedby;
+                      $status_acknowledged = 0;
+                      $acknowledged_name = $recommended_name;
+                      $verif_date_acknowledgedby = $verif_date_recommendedby;
+                      ?>
+                      <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_recommended = 'Still waiting ' . $recommended_name;
+                      echo $content_recommended;
+                      $content_approved = $content_recommended;
+                      $content_acknowledged = $content_recommended; ?>">Waiting</div>
+                    <?php } elseif ($status_recommended == -1) {
+                      $status_approved = -1;
+                      $approved_name = $recommended_name;
+                      $verif_date_approvedby = $verif_date_recommendedby;
+                      $status_acknowledged = -1;
+                      $acknowledged_name = $recommended_name;
+                      $verif_date_acknowledgedby = $verif_date_recommendedby;
+                      ?>
+                      <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_recommended = 'Rejected by ' . $recommended_name . ' at ' . $verif_date_recommendedby;
+                      echo $content_recommended;
+                      $content_approved = $content_recommended;
+                      $content_acknowledged = $content_recommended; ?>">
+                        Rejected</div>
+                    <?php } ?>
+                  </td>
+                  <!-- END RECOMMENDED -->
 
-                <!-- APROVED -->
-                <td class="text-center">
-                  <?php if ($status_approved == 1) { ?>
-                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
-                    echo $content_approved; ?>">
-                      Accepted</div>
-                  <?php } elseif ($status_approved == 0) {
-                    $status_acknowledged = 0;
-                    $acknowledged_name = $approved_name;
-                    $verif_date_acknowledgedby = $verif_date_approvedby;
-                    ?>
-                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
-                    echo $content_approved;
-                    $content_acknowledged = $content_approved; ?>">
-                      Waiting</div>
-                  <?php } elseif ($status_approved == -1) {
-                    $status_acknowledged = -1;
-                    $acknowledged_name = $approved_name;
-                    $verif_date_acknowledgedby = $verif_date_approvedby;
-                    ?>
-                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
-                    echo $content_approved;
-                    $content_acknowledged = $content_approved; ?>">
-                      Rejected</div>
-                  <?php } ?>
-                </td>
-                <!-- END APPROVED -->
+                  <!-- APROVED -->
+                  <td class="text-center">
+                    <?php if ($status_approved == 1) { ?>
+                      <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_approved = 'Accepted by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                      echo $content_approved; ?>">
+                        Accepted</div>
+                    <?php } elseif ($status_approved == 0) {
+                      $status_acknowledged = 0;
+                      $acknowledged_name = $approved_name;
+                      $verif_date_acknowledgedby = $verif_date_approvedby;
+                      ?>
+                      <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_approved = 'Still waiting ' . $approved_name;
+                      echo $content_approved;
+                      $content_acknowledged = $content_approved; ?>">
+                        Waiting</div>
+                    <?php } elseif ($status_approved == -1) {
+                      $status_acknowledged = -1;
+                      $acknowledged_name = $approved_name;
+                      $verif_date_acknowledgedby = $verif_date_approvedby;
+                      ?>
+                      <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_approved = 'Rejected by ' . $approved_name . ' at ' . $verif_date_approvedby;
+                      echo $content_approved;
+                      $content_acknowledged = $content_approved; ?>">
+                        Rejected</div>
+                    <?php } ?>
+                  </td>
+                  <!-- END APPROVED -->
 
-                <!-- ACKNOWLEDGED -->
-                <td class="text-center">
-                  <?php if ($status_acknowledged == 0) { ?>
-                    <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
-                    echo $content_acknowledged; ?>">
-                      Waiting</div>
-                  <?php } elseif ($status_acknowledged == 1) { ?>
-                    <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
-                    echo $content_acknowledged; ?>">
-                      Accepted</div>
-                  <?php } elseif ($status_acknowledged == -1) { ?>
-                    <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
-                    echo $content_acknowledged; ?>">
-                      Rejected</div>
-                  <?php } ?>
-                </td>
-                <!-- END ACKNOWLEDGED -->
-                <td class="text-center spacing-2">
-                  <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail"><i
-                      class="fa-solid fa-circle-info"></i></div>
-                  <div class="btn btn-danger" data-toggle="modal" data-target="#ModalSure"><i
-                      class="fa-solid fa-trash"></i></div>
-                </td>
+                  <!-- ACKNOWLEDGED -->
+                  <td class="text-center">
+                    <?php if ($status_acknowledged == 0) { ?>
+                      <div class="btn btn-secondary" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Still waiting ' . $acknowledged_name;
+                      echo $content_acknowledged; ?>">
+                        Waiting</div>
+                    <?php } elseif ($status_acknowledged == 1) { ?>
+                      <div class="btn btn-success" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Accepted by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                      echo $content_acknowledged; ?>">
+                        Accepted</div>
+                    <?php } elseif ($status_acknowledged == -1) { ?>
+                      <div class="btn btn-danger" id="OpenModalInfo" data-content="<?php $content_acknowledged = 'Rejected by ' . $acknowledged_name . ' at ' . $verif_date_acknowledgedby;
+                      echo $content_acknowledged; ?>">
+                        Rejected</div>
+                    <?php } ?>
+                  </td>
+                  <!-- END ACKNOWLEDGED -->
+                  <td class="text-center spacing-2">
+                    <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail"><i
+                        class="fa-solid fa-circle-info"></i></div>
+                    <div class="btn btn-danger" data-toggle="modal" data-target="#ModalSure"><i
+                        class="fa-solid fa-trash"></i></div>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>
           </table>
         </div>
       </div>
-      <hr>
+      <hr class="mb-5">
+      <div id="table-today" class="row">
+        <div class="table-responsive">
+          <h6 class="text-center text-uppercase mb-3">Today Gatepass</h6>
+          <table class="table table-bordered" style="width:100%">
+            <thead>
+              <tr class="text-center">
+                <th>#</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1;
+              foreach ($History as $hs) {
+                ?>
+                <tr class="text">
+                  <th class="text-center align-middle">
+                    <?= $i ?>
+                  </th>
+                  <td class="text-center align-middle">
+                    <?= $hs->tanggal_gatepass ?>
+                  </td>
+                  <td class="align-middle">
+                    <?= $hs->keperluan ?>
+                  </td>
+                  <?php
+                  if ($hs->status == -1) { ?>
+                    <td class="text-center">
+                      <div class="btn btn-danger">Rejected</div>
+                    </td>
+                  <?php } else { ?>
+                    <td class="text-center">
+                      <div class="btn btn-success">Accepted</div>
+                    </td>
+                  <?php } ?>
+                  <td class="text-center">
+                    <div class="btn btn-secondary m-1"
+                      onclick="window.open('<?= base_url('pdf/detail/' . $hs->qrcode) ?>','_self');">
+                      <i class="fa-solid fa-print"></i>
+                    </div>
+                  </td>
+                </tr>
+                <?php $i++;
+              } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
 
 
 

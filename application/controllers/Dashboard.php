@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$string = $this->logindata['user']['pst_pnr'];
+		$this->data['History'] = $this->m_admin->GetHistoryToday($string);
 		$this->data['Progress'] = $this->m_admin->GetProgress($string);
 		$this->data['signSet'] = $this->m_admin->cekSignature($string);
 		$this->data['this_month'] = $this->m_admin->ThisMonth($string);

@@ -26,22 +26,29 @@ class Submit extends CI_Controller
 	public function do_submit()
 	{
 		$post = $this->input->post();
-		if (empty($post)) {
-			redirect('submit');
+		$string = $this->logindata['user']['pst_pnr'];
+		$row = $this->m_admin->NumHistoryToday($string);
+		if ($row > 0) {
+			redirect('dashboard?alert=limit');
 		} else {
-			function generateRandomString($length = 10)
-			{
-				$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-				$charactersLength = strlen($characters);
-				$randomString = '';
-				for ($i = 0; $i < $length; $i++) {
-					$randomString .= $characters[rand(0, $charactersLength - 1)];
+			if (empty($post)) {
+				redirect('submit');
+			} else {
+				function generateRandomString($length = 10)
+				{
+					$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+					$charactersLength = strlen($characters);
+					$randomString = '';
+					for ($i = 0; $i < $length; $i++) {
+						$randomString .= $characters[rand(0, $charactersLength - 1)];
+					}
+					return $randomString;
 				}
-				return $randomString;
+				$randomString = generateRandomString(10);
+				$this->m_admin->SubmitGatepass($randomString);
 			}
-			$randomString = generateRandomString(10);
-			$this->m_admin->SubmitGatepass($randomString);
 		}
+
 	}
 	public function do_delete($id_gatepass, $id_pengesahan)
 	{
