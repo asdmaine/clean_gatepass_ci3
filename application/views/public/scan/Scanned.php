@@ -105,7 +105,11 @@
             <td class="align-bottom">Tanda tangan/Sign</td>
             <td class="text-center">
 
+            <?php if($Gatepass[0]->status_recommended == 1){?>
               <img width="150" height="70" src="<?= $Gatepass[0]->recommended_signature ?>" alt="">
+              <?php }else{ ?> 
+                <p class="btn btn-danger">rejected</p>
+              <?php } ?>
             </td>
           </tr>
           <tr>
@@ -115,7 +119,11 @@
             </td>
             <td class="align-bottom">Tanda tangan/Sign</td>
             <td class="text-center">
+              <?php if($Gatepass[0]->status_approved == 1){?>
               <img width="150" height="70" src="<?= $Gatepass[0]->approved_signature ?>" alt="">
+              <?php }else{ ?> 
+                <p class="btn btn-danger">rejected</p>
+              <?php } ?>
             </td>
           </tr>
           <tr>
@@ -125,7 +133,11 @@
             </td>
             <td class="align-bottom">Tanda tangan/Sign</td>
             <td class="text-center">
+              <?php if($Gatepass[0]->status_acknowledged == 1){?>
               <img width="150" height="70" src="<?= $Gatepass[0]->acknowledged_signature ?>" alt="">
+              <?php }else{ ?> 
+                <p class="btn btn-danger">rejected</p>
+              <?php } ?>
             </td>
           </tr>
           <tr>

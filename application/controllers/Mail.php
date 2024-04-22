@@ -13,13 +13,9 @@ class Mail extends CI_Controller
 		// 	require_once 'set_menu.php';
 		// }
 	}
-	public function index($as, $qrcode)
+	public function index()
 	{
-		$this->data['as'] = $as;
-		// $string = $this->logindata['user']['pst_pnr'];
-		$this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($as, $qrcode);
-		// $this->load->view('public/test/test_mail_echo', array_merge($this->logindata, $this->data));
-		$this->load->view('public/test/test_mail_echo', $this->data);
+		echo 'masuk ke controller mail/index';
 	}
 	public function push($as, $qrcode, $redirect)
 	{
@@ -28,14 +24,34 @@ class Mail extends CI_Controller
 		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
 		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
 
-
-
 		$this->data['as'] = $as;
 		$this->data['redirect'] = $redirect;
 		$this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
 		$this->load->view('public/mail/Send_mail', $this->data);
 
 	}
+	public function pushbyemail($as, $qrcode,$what)
+	{
+
+		include APPPATH . 'third_party/phpmailer/src/Exception.php';
+		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
+		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
+
+		$this->data['as'] = $as;
+		$this->data['what'] = $what;
+		$this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
+		$this->load->view('public/mail/Send_mail2', $this->data);
+
+	}
+	public function approve_from_mail($what,$as,$qrcode,$id_verifikasi,$id_gatepass)
+	{
+		if($what == 1){
+			$this->m_admin->AcceptGatepassFromMail($what,$as,$qrcode,$id_verifikasi,$id_gatepass);
+		}else{
+			$this->m_admin->RejectGatepassFromMail($what,$as,$qrcode,$id_verifikasi,$id_gatepass);
+		}
+	}
+	
 	
 
 

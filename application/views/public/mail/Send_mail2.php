@@ -6,52 +6,56 @@ use PHPMailer\PHPMailer\SMTP;
 
 $mail = new PHPMailer(true);
 $string = 'isi string';
-if ($Gatepass[0]->status_recommended == 1) {
-  $status_recommended = 'accepted';
-} else if ($Gatepass[0]->status_recommended == 0) {
-  $status_recommended = 'waiting you';
+
+if ($Gatepass[0]->status_recommended == 1 & $Gatepass[0]->status_approved == 1 & $Gatepass[0]->status_acknowledged == 1) {
+    $status_gatepass = 'DITERIMA DENGAN QRCODE ' . $Gatepass[0]->qrcode;
 } else {
-  $status_recommended = 'rejected';
-}
-if ($Gatepass[0]->status_approved == 1) {
-  $status_approved = 'accepted';
-} else if ($Gatepass[0]->status_approved == 0) {
-  $status_approved = 'waiting you';
-} else {
-  $status_approved = 'rejected';
+    $status_gatepass = 'REJECTED';
 }
 if ($Gatepass[0]->status_acknowledged == 1) {
-  $status_acknowledged = 'accepted';
+    $status_acknowledged = 'accepted';
 } else if ($Gatepass[0]->status_acknowledged == 0) {
-  $status_acknowledged = 'waiting you';
+    $status_acknowledged = 'waiting you';
 } else {
-  $status_acknowledged = 'rejected';
+    $status_acknowledged = 'rejected';
 }
-if ($Gatepass[0]->status_recommended == 1 & $Gatepass[0]->status_approved == 1 & $Gatepass[0]->status_acknowledged == 1) {
-  $status_gatepass = 'DITERIMA DENGAN QRCODE ' . $Gatepass[0]->qrcode;
+if ($Gatepass[0]->status_approved == 1) {
+    $status_approved = 'accepted';
+} else if ($Gatepass[0]->status_approved == 0) {
+    $status_approved = 'waiting you';
 } else {
-  $status_gatepass = 'REJECTED';
+    $status_approved = 'rejected';
+    $status_acknowledged = 'rejected';
+}
+if ($Gatepass[0]->status_recommended == 1) {
+    $status_recommended = 'accepted';
+} else if ($Gatepass[0]->status_recommended == 0) {
+    $status_recommended = 'waiting you';
+} else {
+    $status_recommended = 'rejected';
+    $status_approved = 'rejected';
+    $status_acknowledged = 'rejected';
 }
 try {
-  $mail->isSMTP();
-  $mail->Host = 'smtp.gmail.com'; // Ganti dengan alamat SMTP server Anda
-  $mail->SMTPAuth = true;
-  $mail->Username = 'shdsulthon11@gmail.com'; // Ganti dengan email Anda
-  $mail->Password = 'kkqe dgiu xdfd wgtu '; // Ganti dengan kata sandi email Anda
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-  $mail->Port = 587; // Port SMTP Gmail
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com'; // Ganti dengan alamat SMTP server Anda
+    $mail->SMTPAuth = true;
+    $mail->Username = 'shdsulthon11@gmail.com'; // Ganti dengan email Anda
+    $mail->Password = 'kkqe dgiu xdfd wgtu '; // Ganti dengan kata sandi email Anda
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587; // Port SMTP Gmail
 
-  // Set PHPMailer untuk menggunakan mail() bawaan PHP
-  // $mail->isMail();
+    // Set PHPMailer untuk menggunakan mail() bawaan PHP
+    // $mail->isMail();
 
-  // Pengaturan email
-  $mail->setFrom('shdsulthon11@gmail.com', 'Gatepass System'); // Ganti dengan alamat email dan nama Anda
-  $mail->addAddress('sulthon.sdn@gmail.com', 'To '); // Ganti dengan alamat email penerima
-  $mail->Subject = 'NOTIFICATION FROM DSAW GATEPASS SYSTEM';
-  $mail->isHTML(true);
+    // Pengaturan email
+    $mail->setFrom('shdsulthon11@gmail.com', 'Gatepass System'); // Ganti dengan alamat email dan nama Anda
+    $mail->addAddress('sulthon.sdn@gmail.com', 'To '); // Ganti dengan alamat email penerima
+    $mail->Subject = 'NOTIFICATION FROM DSAW GATEPASS SYSTEM';
+    $mail->isHTML(true);
 
-  if ($as != 'requested') {
-    $mail->Body = '
+    if ($as != 'requested') {
+        $mail->Body = '
       <!DOCTYPE html>
   <html lang="en">
   
@@ -120,16 +124,16 @@ try {
       </div>
       <br>
       <a style="display: inline-block; background-color: green; color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem;"
-          href="' .base_url("mail/approve_from_mail/1/".$as."/".$Gatepass[0]->qrcode."/".$Gatepass[0]->id_verifikasi)."/".$Gatepass[0]->id_gatepass. '">Terima</a>
+          href="' . base_url("mail/approve_from_mail/1/" . $as . "/" . $Gatepass[0]->qrcode . "/" . $Gatepass[0]->id_verifikasi)."/".$Gatepass[0]->id_gatepass. '">Terima</a>
       <a style="display: inline-block; background-color: red; color: #fff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.25rem;"
-          href="' .base_url("mail/approve_from_mail/-1/".$as."/".$Gatepass[0]->qrcode."/".$Gatepass[0]->id_verifikasi)."/".$Gatepass[0]->id_gatepass. '">Tolak</a>
+          href="' . base_url("mail/approve_from_mail/-1/" . $as . "/" . $Gatepass[0]->qrcode . "/" . $Gatepass[0]->id_verifikasi)."/".$Gatepass[0]->id_gatepass. '">Tolak</a>
   
   </body>
   
   </html>
       ';
-  } else {
-    $mail->Body = '
+    } else {
+        $mail->Body = '
       <!DOCTYPE html>
   <html lang="en">
   
@@ -201,12 +205,16 @@ try {
   
   </html>
       ';
-  }
+    }
 
 
-  $mail->send();
-  redirect($redirect);
+    $mail->send();
+    if ($what == 1) {
+        echo '<script>alert("Berhasil Accept Gatepass!"); window.close();</script>';
+    } else {
+        echo '<script>alert("Berhasil Reject Gatepass!"); window.close();</script>';
+    }
 } catch (Exception $e) {
-  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
 ?>

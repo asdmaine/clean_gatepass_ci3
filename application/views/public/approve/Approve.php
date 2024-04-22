@@ -157,7 +157,7 @@
                     <td class="text-center spacing-2">
                       <div class="btn btn-info m-1" data-toggle="modal" data-target=".ModalDetail<?= $i ?>"><i
                           class="fa-solid fa-circle-info"></i></div>
-                      <div class="btn btn-primary m-1 btn-edit" data-id_verifikasi="<?= $pg->id_verifikasi ?>"
+                      <div class="btn btn-primary m-1 btn-edit" data-id_verifikasi="<?= $pg->id_verifikasi ?>" data-id_gatepass="<?= $pg->id_gatepass ?>"
                         data-id_remarks="<?= $pg->id_remarks ?>" data-qrcode="<?= $pg->qrcode ?>"><i
                           class="fa-solid fa-pen"></i></div>
                     </td>
@@ -299,6 +299,7 @@
             <div class="form-group">
               <input type="text" class="form-control" name="as" value="<?= $as ?>" hidden>
               <input type="text" class="form-control" id="edit_id_verifikasi" name="id_verifikasi" hidden>
+              <input type="text" class="form-control" id="edit_id_gatepass" name="id_gatepass" hidden>
               <input type="text" class="form-control" id="edit_id_remarks" name="id_remarks" hidden>
               <input type="text" class="form-control" id="edit_qrcode" name="qrcode" hidden>
               <label for="remarks">Remarks</label>
@@ -324,9 +325,11 @@
     document.querySelectorAll('.btn-edit').forEach(function (btn) {
       btn.addEventListener("click", function () {
         var idverifikasi = this.getAttribute("data-id_verifikasi");
+        var idgatepass = this.getAttribute("data-id_gatepass");
         var idremarks = this.getAttribute("data-id_remarks");
         var qrcode = this.getAttribute("data-qrcode");
         document.getElementById('edit_id_verifikasi').value = idverifikasi;
+        document.getElementById('edit_id_gatepass').value = idgatepass;
         document.getElementById('edit_id_remarks').value = idremarks;
         document.getElementById('edit_qrcode').value = qrcode;
         $('#ModalEdit').modal('show');
