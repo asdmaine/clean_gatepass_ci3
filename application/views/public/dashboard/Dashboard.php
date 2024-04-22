@@ -53,7 +53,7 @@
           background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);  /* Chrome 10-25, Safari 5.1-6 */
           background: linear-gradient(to right, #4B1248, #F0C27B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
           " class="d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass anda Bulan ini (<?= date('M') ?>)</h3>
+            <h3 class="mb-3"><?= $this->lang->line('Gatepass anda Bulan ini') ?> (<?= date('M') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_month ?></h2>
           </div>
         </div>

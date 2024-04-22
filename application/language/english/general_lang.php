@@ -1,3 +1,3 @@
 <?php
 
-$lang['welcome'] = 'wwwwlecmome!';
+$lang['Gatepass anda Bulan ini'] = 'Your Gatepass This Month';

@@ -12,6 +12,8 @@ class Dashboard extends CI_Controller
 			redirect('AuthAdmin/Login');
 		} else {
 			require_once 'set_menu.php';
+			$language = $this->session->userdata('language');
+		$this->lang->load('general', $language);
 		}
 	}
 
@@ -39,6 +41,15 @@ class Dashboard extends CI_Controller
 		} else {
 			$this->m_signature->SetSignature();
 		}
+	}
+	function lang_change()
+	{
+		$language = $this->input->post('lan');
+		$this->session->set_userdata('language', $language);
+		$this->session->set_flashdata('suc', 'Successfully language Change at ' .
+			ucfirst($language));
+		echo '1';
+
 	}
 
 

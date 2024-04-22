@@ -115,6 +115,8 @@
             </a>
           </li>
         </ul>
+        <button style="cursor:pointer;" onclick="languagesChange('english')">English</button>
+        <button style="cursor:pointer;" onclick="languagesChange('indonesian')">Indonesian</button>
       </div>
     </aside>
     <div class="main">
@@ -156,8 +158,18 @@
           trigger: 'focus'
         })
 
-
+        function languagesChange(lan) {
+          $.ajax({
+            type: "POST",
+            url: "<?php echo base_url("welcome/lang_change") ?>",
+            data: { 'lan': lan },
+            success: function (data) {
+              location.reload();
+            }
+          });
+        }
       </script>
+
 
 </body>
 

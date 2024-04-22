@@ -1,3 +1,3 @@
 <?php
 
-$lang['welcome'] = 'selamat!';
+$lang['Gatepass anda Bulan ini'] = 'Gatepass anda Bulan ini';
