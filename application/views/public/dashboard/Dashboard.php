@@ -656,7 +656,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a href="<?= base_url('submit/do_delete/' . $pg->id_gatepass . '/' . $pg->id_pengesahan) ?>"
+        <a href="<?= base_url('submit/do_delete/' . $pg->id_gatepass) ?>"
           class="btn btn-danger">Delete</a>
       </div>
     </div>

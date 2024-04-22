@@ -50,9 +50,9 @@ class Submit extends CI_Controller
 		}
 
 	}
-	public function do_delete($id_gatepass, $id_pengesahan)
+	public function do_delete($id_gatepass)
 	{
-		$this->m_admin->DeleteGatepass($id_gatepass, $id_pengesahan);
+		$this->m_admin->DeleteGatepass($id_gatepass);
 	}
 
 }

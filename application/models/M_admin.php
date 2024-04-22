@@ -270,12 +270,11 @@ class M_admin extends CI_Model
             echo "Error: " . $e->getMessage();
         }
     }
-    public function DeleteGatepass($id_gatepass, $id_pengesahan)
+    public function DeleteGatepass($id_gatepass)
     {
         // id_pengesahan gak perlu sih cuman supaya aman dikit aja 
         $data = array('status' => 2);
         $this->db->where('id_gatepass', $id_gatepass);
-        $this->db->where('id_pengesahan', $id_pengesahan);
         $this->db->update('gatepass_tb', $data);
         redirect('dashboard');
     }
@@ -480,6 +479,7 @@ class M_admin extends CI_Model
         $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
         $this->db->where('requestedby_pst_pnr', $pst_pnr);
         $this->db->where('a.status !=', 0);
+        $this->db->where('a.status !=', 2);
         $this->db->order_by('a.tanggal_gatepass', 'DESC');
 
         $query = $this->db->get();
@@ -516,6 +516,7 @@ class M_admin extends CI_Model
             $this->db->join('pst f6', 'c.securityin_pst_pnr = f6.pst_pnr', 'left');
             $this->db->where('qrcode', $qrcode);
             $this->db->where('a.status !=', 0);
+            $this->db->where('a.status !=', 2);
             $this->db->order_by('a.tanggal_gatepass', 'DESC');
 
             $query = $this->db->get();
@@ -547,6 +548,7 @@ class M_admin extends CI_Model
             $this->db->where('requestedby_pst_pnr', $pst_pnr);
             $this->db->where('qrcode', $qrcode);
             $this->db->where('a.status !=', 0);
+            $this->db->where('a.status !=', 2);
             $this->db->order_by('a.tanggal_gatepass', 'DESC');
 
             $query = $this->db->get();
@@ -822,6 +824,7 @@ class M_admin extends CI_Model
             YEAR(a.tanggal_gatepass) = '$year'
         AND 
             a.status != 0
+            and a.status != 2
         ORDER BY 
             a.tanggal_gatepass DESC"
         );
@@ -862,6 +865,7 @@ class M_admin extends CI_Model
             requestedby_pst_pnr = '$pst_pnr'
         AND 
             a.status != 0
+            and a.status != 2
         AND 
         DATE_FORMAT(a.tanggal_gatepass_dibuat, '%Y-%m-%d') = '$date'
         ORDER BY 
