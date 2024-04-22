@@ -59,13 +59,13 @@ $pdf->SetXY(65, 153);
 $pdf->Write(0, substr($Gatepass[0]->est_time_out, 0, 5));
 
 $pdf->SetXY(154, 153);
-$pdf->Write(0, substr($Gatepass[0]->est_time_in,0,5));
+$pdf->Write(0, substr($Gatepass[0]->est_time_in, 0, 5));
 
 $pdf->SetXY(65, 225);
-$pdf->Write(0, substr($Gatepass[0]->real_time_out,0,5));
+$pdf->Write(0, substr($Gatepass[0]->real_time_out, 0, 5));
 
 $pdf->SetXY(148, 225);
-$pdf->Write(0, substr($Gatepass[0]->real_time_in,0,5));
+$pdf->Write(0, substr($Gatepass[0]->real_time_in, 0, 5));
 
 
 
@@ -84,22 +84,48 @@ $pdf->MultiCell(40, 5, substr($Gatepass[0]->securityout_name, 0, 12), 0, 'L');
 $pdf->SetXY(148, 229);
 $pdf->MultiCell(40, 5, substr($Gatepass[0]->securityin_name, 0, 12), 0, 'L');
 
-
+$pdf->SetTextColor(255, 0, 0);
+// requested signature
 if (isset($Gatepass[0]->requested_signature)) {
   $pdf->Image($Gatepass[0]->requested_signature, 148, 174, 25, 0, 'PNG');
 }
-if (isset($Gatepass[0]->recommended_signature)) {
-  $pdf->Image($Gatepass[0]->recommended_signature, 148, 182, 25, 0, 'PNG');
+
+// recommended signature
+if ($Gatepass[0]->status_recommended == 1) {
+  if (isset($Gatepass[0]->recommended_signature)) {
+    $pdf->Image($Gatepass[0]->recommended_signature, 148, 182, 25, 0, 'PNG');
+  }
+} else {
+  $pdf->SetXY(148, 182);
+  $pdf->Write(0, 'rejected');
 }
-if (isset($Gatepass[0]->approved_signature)) {
-  $pdf->Image($Gatepass[0]->approved_signature, 148, 194, 25, 0, 'PNG');
+
+// approved signature
+if ($Gatepass[0]->status_approved == 1) {
+  if (isset($Gatepass[0]->approved_signature)) {
+    $pdf->Image($Gatepass[0]->approved_signature, 148, 194, 25, 0, 'PNG');
+  }
+} else {
+  $pdf->SetXY(148, 194);
+  $pdf->Write(0, 'rejected');
 }
-if (isset($Gatepass[0]->acknowledged_signature)) {
-  $pdf->Image($Gatepass[0]->acknowledged_signature, 148, 205, 25, 0, 'PNG');
+
+if ($Gatepass[0]->status_acknowledged == 1) {
+  // acknowledged signature
+  if (isset($Gatepass[0]->acknowledged_signature)) {
+    $pdf->Image($Gatepass[0]->acknowledged_signature, 148, 205, 25, 0, 'PNG');
+  }
+} else {
+  $pdf->SetXY(148, 205);
+  $pdf->Write(0, 'rejected');
 }
+
+// security out signature
 if (isset($Gatepass[0]->securityout_signature)) {
   $pdf->Image($Gatepass[0]->securityout_signature, 65, 232, 25, 0, 'PNG');
 }
+
+// security in signature
 if (isset($Gatepass[0]->securityin_signature)) {
   $pdf->Image($Gatepass[0]->securityin_signature, 148, 232, 25, 0, 'PNG');
 }
@@ -107,7 +133,7 @@ if (isset($Gatepass[0]->securityin_signature)) {
 $pdf->AddPage('P', array(210, 297));
 
 if (isset($Gatepass[0]->qrcode_64)) {
-  $pdf->Image('data:image/png;base64,'.$Gatepass[0]->qrcode_64, 50,15, 100, 0, 'PNG');
+  $pdf->Image('data:image/png;base64,' . $Gatepass[0]->qrcode_64, 50, 15, 100, 0, 'PNG');
 }
 
 $pdf->SetFont('Courier', 'B', 25);
@@ -115,7 +141,7 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->SetXY(72, 20);
 $pdf->Write(0, $Gatepass[0]->qrcode);
 
-$pdf->Output('DSAW_GATEPASS.pdf','I');
+$pdf->Output('DSAW_GATEPASS.pdf', 'I');
 
 
 
