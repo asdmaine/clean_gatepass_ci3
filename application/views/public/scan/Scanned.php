@@ -146,14 +146,14 @@
           <tr>
             <td><strong>Jam keluar </strong> / <i>Time Out</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_out)) { ?>
-                  <button class="btn btn-warning" data-toggle="modal" data-target="#ModalOut">Set jam
+                  <button class="btn btn-success" data-toggle="modal" data-target="#ModalOut">Set jam
                     keluar</button>
                 <?php } else {
               echo substr($Gatepass[0]->real_time_out,0,5);
             } ?></mark></td>
             <td><strong>Jam Masuk </strong> / <i>Time In</i></td>
             <td><mark><?php if (!isset($Gatepass[0]->real_time_in)) { ?>
-                  <button class="btn btn-danger" data-toggle="modal" data-target="#ModalIn">Set
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#ModalIn">Set
                     jam
                     Masuk</button>
                 <?php } else {
@@ -219,7 +219,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button class="btn btn-warning">Set Jam Keluar</button>
+          <button class="btn btn-success">Set Jam Keluar</button>
           </form>
         </div>
       </div>
@@ -249,7 +249,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button class="btn btn-warning">Set Jam masuk</button>
+          <button class="btn btn-primary">Set Jam masuk</button>
           </form>
         </div>
       </div>
