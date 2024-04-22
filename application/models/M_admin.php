@@ -750,6 +750,50 @@ class M_admin extends CI_Model
             echo "Error: " . $e->getMessage();
         }
     }
+    public function ThisMonth($pst_pnr)
+    {
+        $date = date('Y-m');
+        $query = $this->db->query(
+            "
+        SELECT id_gatepass
+        FROM `gatepass_tb` `a` 
+        JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+        WHERE DATE_FORMAT(a.tanggal_gatepass, '%Y-%m') = '$date'
+        AND `requestedby_pst_pnr` = '$pst_pnr' AND `status` = 1;"
+        )->num_rows();
+        return $query;
+
+    }
+    public function LastMonth($pst_pnr)
+    {
+        $date = date('Y-m', strtotime('-1 month'));
+        $query = $this->db->query(
+            "
+        SELECT id_gatepass
+        FROM `gatepass_tb` `a` 
+        JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+        WHERE DATE_FORMAT(a.tanggal_gatepass, '%Y-%m') = '$date'
+        AND `requestedby_pst_pnr` = '$pst_pnr' AND `status` = 1;"
+        )->num_rows();
+        return $query;
+    }
+    public function ThisYear($pst_pnr)
+    {
+
+        $year = date('Y');
+
+        $query = $this->db->query(
+            "
+            SELECT id_gatepass
+            FROM `gatepass_tb` `a` 
+            JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+            WHERE YEAR(a.tanggal_gatepass) = '$year'
+            AND `requestedby_pst_pnr` = '$pst_pnr' AND `status` = 1"
+        )->num_rows();
+
+        return $query;
+
+    }
 
 }
 

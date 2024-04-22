@@ -20,6 +20,9 @@ class Dashboard extends CI_Controller
 		$string = $this->logindata['user']['pst_pnr'];
 		$this->data['Progress'] = $this->m_admin->GetProgress($string);
 		$this->data['signSet'] = $this->m_admin->cekSignature($string);
+		$this->data['this_month']=$this->m_admin->ThisMonth($string);
+		$this->data['this_year']=$this->m_admin->ThisYear($string);
+		$this->data['last_month']=$this->m_admin->LastMonth($string);
 		$this->sidebar->view('public/dashboard/Dashboard', array_merge($this->logindata, $this->data));
 	}
 	public function upSignature(){

@@ -38,20 +38,20 @@
       <div class="row mb-5 text-white">
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-danger d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Bulan ini</h3>
-            <h2 class="font-weight-bold mb-0 text-right">30</h2>
+            <h3 class="mb-3">Gatepass Bulan ini (<?= date('M') ?>)</h3>
+            <h2 class="font-weight-bold mb-0 text-right"><?= $this_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-success d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Bulan lalu</h3>
-            <h2 class="font-weight-bold mb-0 text-right">30</h2>
+            <h3 class="mb-3">Gatepass Bulan lalu (<?php $date=date('M', strtotime('-1 month')); echo $date; ?>)</h3>
+            <h2 class="font-weight-bold mb-0 text-right"><?= $last_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-secondary d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Tahun ini</h3>
-            <h2 class="font-weight-bold mb-0 text-right">90</h2>
+            <h3 class="mb-3">Gatepass Tahun ini (<?= date('Y') ?>)</h3>
+            <h2 class="font-weight-bold mb-0 text-right"><?= $this_year ?></h2>
           </div>
         </div>
       </div>
@@ -484,7 +484,7 @@
     }
 
     // Set up the UI
-    
+
     var sigImage = document.getElementById("sig-image");
     var clearBtn = document.getElementById("sig-clearBtn");
     var submitBtn = document.getElementById("sig-submitBtn");
@@ -494,9 +494,9 @@
       sigText.innerHTML = "Data URL for your signature will go here!";
       sigImage.setAttribute("src", "");
     }, false);
- 
+
     submitBtn.addEventListener("click", function (e) {
-      var dataUrl = canvas.toDataURL('image/png'); 
+      var dataUrl = canvas.toDataURL('image/png');
       sigText.innerHTML = dataUrl;
       sigImage.setAttribute("src", dataUrl);
       sigAlert.style.display = "none";
