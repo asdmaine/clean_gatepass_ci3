@@ -44,5 +44,7 @@ $lang['DITERIMA DENGAN QRCODE']='DITERIMA DENGAN QRCODE ';
 
 //Submit
 $lang['Tidak boleh keluar lebih dari 3 jam']='Tidak boleh keluar lebih dari 3 jam ';
+$lang['dasbor']='Dasbor';
+$lang['keluar']='Keluar';
 
 

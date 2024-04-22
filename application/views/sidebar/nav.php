@@ -44,7 +44,19 @@
         <div class="sidebar-logo text-center bg-primary">
           <a href="#" style="cursor:default;">Menu</a>
         </div>
+
         <ul class="sidebar-nav">
+          <div class="d-flex justify-content-center">
+            <div class="mr-2">
+              <a class="<?php if($this->session->userdata('language')=='english'){echo'text-primary';} ?>"style="cursor:pointer;" onclick="languagesChange('english')">ENGLISH </a>
+            </div>
+            <div>
+              |
+            </div>
+            <div class="ml-2">
+              <a class="<?php if($this->session->userdata('language')=='indonesian'){echo'text-primary';} ?>"style="cursor:pointer;" onclick="languagesChange('indonesian')"> INDONESIAN</a>
+            </div>
+          </div>
           <li class="sidebar-logo text-center m-4">
             <i class="fa-solid fa-user fa-xl mb-3"></i><br>
             <h6 class="text-uppercase">
@@ -57,7 +69,7 @@
           <li class="sidebar-item border-top">
             <a href="<?= base_url("dashboard") ?>" class="sidebar-link">
               <i class="fa-solid fa-list fa-fw mr-2"></i>
-              Dashboard
+              <?= $this->lang->line('dasbor') ?>
             </a>
           </li>
           <li class="sidebar-item border-top">
@@ -111,12 +123,10 @@
           <li class="sidebar-item border-top">
             <a href="<?php echo base_url('AuthAdmin/logout') ?>" class="sidebar-link text-danger">
               <i class="fa-solid fa-power-off fa-fw mr-2"></i>
-              Log Out
+              <?= $this->lang->line('keluar') ?>
             </a>
           </li>
         </ul>
-        <button style="cursor:pointer;" onclick="languagesChange('english')">English</button>
-        <button style="cursor:pointer;" onclick="languagesChange('indonesian')">Indonesian</button>
       </div>
     </aside>
     <div class="main">
