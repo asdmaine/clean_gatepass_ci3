@@ -1,3 +1,0 @@
-<?php
-
-echo 'masuk sendmail';

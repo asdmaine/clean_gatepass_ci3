@@ -24,17 +24,16 @@ class Mail extends CI_Controller
 	public function push($as, $qrcode, $redirect)
 	{
 
-		// include APPPATH . 'third_party/phpmailer/src/Exception.php';
-		// include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
-		// include APPPATH . 'third_party/phpmailer/src/SMTP.php';
+		include APPPATH . 'third_party/phpmailer/src/Exception.php';
+		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
+		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
 
 
 
-		// $this->data['as'] = $as;
-		// $this->data['redirect'] = $redirect;
-		// $this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
-		$this->load->view('public/mail/send');
-		
+		$this->data['as'] = $as;
+		$this->data['redirect'] = $redirect;
+		$this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
+		$this->load->view('public/mail/send_mail', $this->data);
 
 	}
 	public function tes(){
