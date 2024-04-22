@@ -30,7 +30,6 @@ class M_admin extends CI_Model
             a.pst_password,
             b.job_level,
             a.jobtl_idx,
-            a.signature,
             b.jobtl_name,
             a.br_idx,
             c.br_name,
@@ -369,11 +368,11 @@ class M_admin extends CI_Model
     }
     public function AcceptGatepassFromMail($what, $as, $qrcode, $id_verifikasi, $id_gatepass)
     {
-      
+
         try {
             if ($as == 'acknowledged') {
                 $data2 = array(
-                    'status'=> '1'
+                    'status' => '1'
                 );
                 $this->db->where('id_gatepass', $id_gatepass);
                 $this->db->update('gatepass_tb', $data2);
@@ -397,20 +396,20 @@ class M_admin extends CI_Model
                 } else if ($as == 'acknowledged') {
                     redirect('mail/pushbyemail/requested/' . $qrcode . '/' . $what);
                 }
-            }else{
+            } else {
                 $data = array(
                     'status_' . $as => $what,
                     'verif_date_' . $as . 'by' => date('Y-m-d H:i:s')
                 );
                 $this->db->where('id_verifikasi', $id_verifikasi);
                 $this->db->update('gatepass_tbverifikasi', $data);
-    
+
                 // $data1 = array(
                 //     'remarks_' . $as . 'by' => $post['remarks']
                 // );
                 // $this->db->where('id_remarks', $post['id_remarks']);
                 // $this->db->update('gatepass_tbremarks', $data1);
-    
+
                 if ($as == 'recommended') {
                     redirect('mail/pushbyemail/approved/' . $qrcode . '/' . $what);
                 } else if ($as == 'approved') {
@@ -432,7 +431,7 @@ class M_admin extends CI_Model
         $post = $this->input->post();
         try {
             $data2 = array(
-                'status'=> '-1'
+                'status' => '-1'
             );
             $this->db->where('id_gatepass', $id_gatepass);
             $this->db->update('gatepass_tb', $data2);
@@ -566,7 +565,7 @@ class M_admin extends CI_Model
             $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
             $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
             $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-            $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+            $this->db->join('gatepass_tbsignature f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
             $this->db->join('pst f5', 'c.securityout_pst_pnr = f5.pst_pnr', 'left');
             $this->db->join('pst f6', 'c.securityin_pst_pnr = f6.pst_pnr', 'left');
             $this->db->where('qrcode', $qrcode);
@@ -596,7 +595,7 @@ class M_admin extends CI_Model
             $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
             $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
             $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-            $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+            $this->db->join('gatepass_tbsignature f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
             $this->db->join('pst f5', 'c.securityout_pst_pnr = f5.pst_pnr', 'left');
             $this->db->join('pst f6', 'c.securityin_pst_pnr = f6.pst_pnr', 'left');
             $this->db->where('requestedby_pst_pnr', $pst_pnr);
@@ -637,7 +636,7 @@ class M_admin extends CI_Model
         $this->db->join('pst f', 'c.recommendedby_pst_pnr = f.pst_pnr', 'left');
         $this->db->join('pst f2', 'c.approvedby_pst_pnr = f2.pst_pnr', 'left');
         $this->db->join('pst f3', 'c.acknowledgedby_pst_pnr = f3.pst_pnr', 'left');
-        $this->db->join('pst f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
+        $this->db->join('gatepass_tbsignature f4', 'c.requestedby_pst_pnr = f4.pst_pnr', 'left');
         $this->db->join('pst f5', 'c.securityout_pst_pnr = f5.pst_pnr', 'left');
         $this->db->join('pst f6', 'c.securityin_pst_pnr = f6.pst_pnr', 'left');
         $this->db->join('pst f7', 'c.requestedby_pst_pnr = f7.pst_pnr', 'left');
@@ -652,8 +651,8 @@ class M_admin extends CI_Model
     }
     public function GetSignature($pst_pnr)
     {
-        $this->db->select('a.signature');
-        $this->db->from('pst a');
+        $this->db->select('signature');
+        $this->db->from('gatepass_tbsignature');
         $this->db->where('pst_pnr', $pst_pnr);
 
         $query = $this->db->get();
@@ -739,6 +738,18 @@ class M_admin extends CI_Model
         }
     }
 
+    public function cekSignature($pst_pnr)
+    {
+        try {
+            $this->db->select('id_signature');
+            $this->db->from('gatepass_tbsignature');
+            $this->db->where('pst_pnr', $pst_pnr);
+            $query = $this->db->get();
+            return $query->num_rows();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 
 }
 

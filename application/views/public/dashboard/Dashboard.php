@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,21 +15,21 @@
 </head>
 
 <body>
-<?php
-if (isset($_GET['alert'])) {
-  if ($_GET['alert'] == 'ditolak') {
-    echo '<script>console.log("Akses ditolak!")</script>';
-    echo '<script>alert("Akses ditolak!")</script>';
-    echo '<script>
+  <?php
+  if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == 'ditolak') {
+      echo '<script>console.log("Akses ditolak!")</script>';
+      echo '<script>alert("Akses ditolak!")</script>';
+      echo '<script>
     setTimeout(function() {
         var newUrl = window.location.href.split("?")[0];
         window.history.replaceState({}, document.title, newUrl);
     }, 5000); // Menghapus parameter setelah 2 detik
 </script>';
+    }
   }
-}
 
-?>
+  ?>
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
@@ -198,72 +197,22 @@ if (isset($_GET['alert'])) {
       </div>
       <hr>
 
-      <!-- table-history -->
-      <!-- <div id="table-history" class="table-responsive">
-      <h6 class="text-center text-uppercase mb-3">Gatepass History</h6>
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-            <tr class="text-center">
-              <th>#</th>
-              <th>Date</th>
-              <th>Reason</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1;
-            foreach ($History as $hs) { ?>
-              <tr class="text">
-                <th class="text-center align-middle">
-                  <?= $i ?>
-                </th>
-                <td class="text-center align-middle">
-                  <?= $hs->tanggal_gatepass ?>
-                </td>
-                <td class="align-middle">
-                  <?= $hs->keperluan ?>
-                </td>
-                <?php
-                if ($hs->status_recommended == -1 || $hs->status_approved == -1 || $hs->status_acknowledged == -1) { ?>
-                  <td class="text-center">
-                    <div class="btn btn-danger">Rejected</div>
-                  </td>
-                <?php } else { ?>
-                  <td class="text-center">
-                    <div class="btn btn-success">Accepted</div>
-                  </td>
-                <?php } ?>
-                <td class="text-center">
-                  <div class="btn btn-secondary m-1"
-                    onclick="window.open('<?= base_url('pdf/print/' . $hs->id_gatepass) ?>','_blank');">
-                    <i class="fa-solid fa-print"></i>
-                  </div>
-                </td>
-              </tr>
-
-              <?php $i++;
-            } ?>
-          </tbody>
-        </table>
-      </div>
-      <hr> -->
 
 
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalSignature">
+      <button type="button" class="btn btn-info" id="btn-sig" data-toggle="modal" data-target="#ModalSignature">
         E-Signature
       </button>
 
       <!-- Modal Signature -->
       <div class="modal fade" id="ModalSignature" tabindex="-1" aria-labelledby="ModalSignatureLabel"
-        aria-hidden="true">
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <h5 class="modal-title w-100 text-center" id="exampleModalLabel">Set Signature</h5>
+              <button id="x-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -298,12 +247,14 @@ if (isset($_GET['alert'])) {
                         alt="Anda belum membuat signature" style="max-width: 100%;" />
                     </div>
                   </div>
-                  <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span class="text-success">done</span> terlebih dahulu</p>
+                  <p class="text-danger">Anda belum buat signature, tolong buat terlebih dahulu!</p>
+                  <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span
+                      class="text-success">done</span> terlebih dahulu</p>
 
               </div>
             </div>
             <div class="modal-footer">
-              <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5">Upload Signature</button>
+              <button id="sig-uploadBtn" type="submit" class="btn btn-primary px-5" hidden>Upload Signature</button>
               </form>
             </div>
           </div>
@@ -391,6 +342,15 @@ if (isset($_GET['alert'])) {
   </div>
 </body>
 <script>
+  $(document).ready(function () {
+    var signSet = <?= $signSet ?>;
+    if (signSet == 0) {
+      document.getElementById("x-btn").style.display = 'none';
+      document.getElementById("btn-sig").click();
+    }
+  });
+
+
   var modalButtons = document.querySelectorAll("#OpenModalInfo");
   modalButtons.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -518,52 +478,41 @@ if (isset($_GET['alert'])) {
       requestAnimFrame(drawLoop);
       renderCanvas();
     })();
-
+    var sigText = document.getElementById("sig-dataUrl");
     function clearCanvas() {
       canvas.width = canvas.width;
     }
 
     // Set up the UI
-    var sigText = document.getElementById("sig-dataUrl");
+    
     var sigImage = document.getElementById("sig-image");
     var clearBtn = document.getElementById("sig-clearBtn");
     var submitBtn = document.getElementById("sig-submitBtn");
     var uploadBtn = document.getElementById("sig-uploadBtn");
-    var sigAlert = document.getElementById("sig-alert");    clearBtn.addEventListener("click", function (e) {
+    var sigAlert = document.getElementById("sig-alert"); clearBtn.addEventListener("click", function (e) {
       clearCanvas();
       sigText.innerHTML = "Data URL for your signature will go here!";
       sigImage.setAttribute("src", "");
     }, false);
-    //   submitBtn.addEventListener("click", function(e) {
-    //     var dataUrl = canvas.toDataURL();
-    //     sigText.innerHTML = dataUrl;
-    //     sigImage.setAttribute("src", dataUrl);
-    //   }, false);
+ 
     submitBtn.addEventListener("click", function (e) {
-      var dataUrl = canvas.toDataURL('image/png'); // Mengonversi ke format PNG
+      var dataUrl = canvas.toDataURL('image/png'); 
       sigText.innerHTML = dataUrl;
       sigImage.setAttribute("src", dataUrl);
       sigAlert.style.display = "none";
-
-
-      // // Membuat link unduh
-      // var downloadLink = document.createElement('a');
-      // downloadLink.setAttribute('href', dataUrl);
-      // downloadLink.setAttribute('download', 'signature.png'); // Nama file yang akan diunduh
-
-      // Klik link unduh secara otomatis
-      // downloadLink.click();
+      uploadBtn.click();
     }, false);
 
-    uploadBtn.addEventListener("click", function (e) {
+    // uploadBtn.addEventListener("click", function (e) {
 
-      if (sigText.innerHTML === "") {
-        sigAlert.style.display = "block";
-        console.log('kosong');
-      } else {
-        sigAlert.style.display = "none";
-      }
-    }, false);
+    //   document.getElementById("sig-submitBtn").click();
+    //   if (sigText.innerHTML === "") {
+    //     sigAlert.style.display = "block";
+    //     console.log('kosong');
+    //   } else {
+    //     sigAlert.style.display = "none";
+    //   }
+    // }, false);
 
 
 

@@ -1,5 +1,7 @@
 <?php
 $this->logindata['user'] = $this->session->userdata('auth');
+$this->logindata['user']['signature'] = $this->m_admin->getSignature($this->logindata['user']['pst_pnr']);
+
 // $temp = $this->session->userdata('auth');
 
 // cek didatabase apakah pst_pnr yang login ada di verifikasi1/verifikasi2/approval1/approval2
