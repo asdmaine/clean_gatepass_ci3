@@ -20,10 +20,10 @@
           <thead>
             <tr class="text-center">
               <th>#</th>
-              <th>Date</th>
-              <th>Reason</th>
+              <th><?= $this->lang->line('Tanggal') ?></th>
+              <th><?= $this->lang->line('Keperluan') ?></th>
               <th>Status</th>
-              <th>Action</th>
+              <th><?= $this->lang->line('Aksi') ?></th>
             </tr>
           </thead>
           <tbody>
