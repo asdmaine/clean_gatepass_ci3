@@ -14,7 +14,8 @@ $count = $this->m_admin->isSecurity($this->logindata['user']['pst_pnr']);
 if($count > 0){
 	$this->logindata['level'] = 'security';
 }
-if(strpos($this->logindata['user']['jobtl_name'],'HR')!== false){
+$this->logindata['user']['jobtl_name'] = strtoupper($this->logindata['user']['jobtl_name']);
+if(strpos($this->logindata['user']['jobtl_name'],'HR') !== false || strpos($this->logindata['user']['jobtl_name'],'TIME') !== false){
 	$this->logindata['hr']=true;
 }
 

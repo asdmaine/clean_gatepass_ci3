@@ -84,7 +84,10 @@
         <?php } ?>
       </div>
       <hr>
-
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-info" id="btn-sig" data-toggle="modal" data-target="#ModalSignature">
+        E-Signature
+      </button>
 
 
       <!-- table-progress -->
@@ -228,10 +231,7 @@
 
 
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info" id="btn-sig" data-toggle="modal" data-target="#ModalSignature">
-        E-Signature
-      </button>
+
 
       <!-- Modal Signature -->
       <div class="modal fade" id="ModalSignature" tabindex="-1" aria-labelledby="ModalSignatureLabel"
@@ -272,10 +272,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <img id="sig-image" src="<?= $this->logindata['user']['signature'] ?>"
-                        alt="Anda belum membuat signature" style="max-width: 100%;" />
+                        alt="Anda belum membuat signature, tolong buat signature terlebih dahulu" style="max-width: 100%;" />
                     </div>
                   </div>
-                  <p class="text-danger">Anda belum buat signature, tolong buat terlebih dahulu!</p>
                   <p id="sig-alert" class="text-danger" style="display:none;">Tekan Tombol <span
                       class="text-success">done</span> terlebih dahulu</p>
 
