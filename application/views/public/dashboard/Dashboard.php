@@ -623,7 +623,7 @@
               disabled><?= $pg->penjelasan_keperluan ?></textarea>
           </div>
           <div class="form-group mb-4">
-            <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
+            <label class="form-label font-weight-bold"><?= $this->lang->line('Perkiraan waktu') ?></label><br>
             <div class="input-group mb-1">
               <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam keluar') ?>" disabled>
               <input class="form-control" type="time" id="est_time_out" value="<?= $pg->est_time_out ?>" disabled>

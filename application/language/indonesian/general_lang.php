@@ -24,9 +24,14 @@ $lang['Apakah anda yakin?']='Apakah anda yakin?';
 $lang['Anda akan kehilangan progres dari gatepass anda']='Anda akan kehilangan progres dari gatepass anda';
 $lang['Kembali']='Kembali';
 $lang['Hapus']='Hapus';
+$lang['Perkiraan waktu']='Perkiraan waktu';
 $lang['Perkiraan jam keluar']='Perkiraan jam keluar';
 $lang['Perkiraan jam masuk']='Perkiraan jam masuk';
 
 // ALL_HISTORY
 $lang['Semua Histori Gatepass pada tahun']='Semua Histori Gatepass pada tahun ';
 
+// APPROVE
+$lang['Urusan Perusahaan']='Urusan Perusahaan';
+$lang['Pengesahan']='Pengesahan';
+$lang['Konfirmasi']='Konfirmasi';

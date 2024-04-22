@@ -24,12 +24,12 @@
             <thead class="text-center">
               <tr>
                 <td scope="col">#</td>
-                <td scope="col">Date</td>
+                <td scope="col"><?= $this->lang->line('Tanggal') ?></td>
                 <td scope="col">Requested by</td>
                 <td scope="col">Recommended by</td>
                 <td scope="col">Approved by</td>
                 <td scope="col">Acknowledged by</td>
-                <td scope="col">Action</td>
+                <td scope="col"><?= $this->lang->line('Aksi') ?></td>
               </tr>
             </thead>
             <tbody>
@@ -38,9 +38,9 @@
               <?php $i = 1;
               foreach ($Progress as $pg) {
                 if (empty($pg->id_gatepass)) { ?>
-                  <tr class="text">
+                  <!-- <tr class="text">
                     <th class="text-center align-middle text-uppercase" colspan="7">no data to be shown</th>
-                  </tr>
+                  </tr> -->
                 <?php } else {
                   if ($pg->recommendedby_pst_pnr == $this->logindata['user']['pst_pnr']) {
                     $as = 'recommended';
@@ -176,26 +176,25 @@
                         <div class="modal-body">
                           <form>
                             <div class="form-group mb-4">
-                              <label for="tanggal" class="col-form-label font-weight-bold">Tanggal</label>
+                              <label for="tanggal" class="col-form-label font-weight-bold"><?= $this->lang->line('Tanggal') ?></label>
                               <input type="date" class="form-control w-50" id="tanggal" value="<?= $pg->tanggal_gatepass ?>"
                                 disabled>
                             </div>
                             <div class="form-group mb-4 ">
-                              <label class="form-label font-weight-bold">Keperluan</label><br>
+                              <label class="form-label font-weight-bold"><?= $this->lang->line('Keperluan') ?></label><br>
                               <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="<?= $pg->keperluan ?>"
                                   value="<?= $pg->keperluan ?>" disabled checked>
-                                <label class="form-check-label" for="<?= $pg->keperluan ?>">Urusan
-                                  Perusahaan&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <label class="form-check-label" for="<?= $pg->keperluan ?>"><?= $this->lang->line('Urusan Perusahaan') ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                               </div>
                             </div>
                             <div class="form-group mb-4">
-                              <label for="penjelasan" class="form-label font-weight-bold">Penjelasan</label>
+                              <label for="penjelasan" class="form-label font-weight-bold"><?= $this->lang->line('Penjelasan') ?></label>
                               <textarea class="form-control" id="penjelasan" style="height: 100px"
                                 disabled><?= $pg->penjelasan_keperluan ?></textarea>
                             </div>
                             <div class="form-group mb-4">
-                              <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
+                              <label class="form-label font-weight-bold"><?= $this->lang->line('Perkiraan waktu') ?></label><br>
                               <div class="input-group mb-1">
                                 <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar"
                                   disabled>
@@ -210,7 +209,7 @@
                               </div>
                             </div>
                             <div class="form-group mb-4">
-                              <label class="form-label font-weight-bold">Pengesahan</label><br>
+                              <label class="form-label font-weight-bold"><?= $this->lang->line('Pengesahan') ?></label><br>
                               <div class="input-group">
                                 <div class="input-group mb-1">
                                   <div class="input-group overflow-scroll">
@@ -307,8 +306,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary">Konfirmasi</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $this->lang->line('Kembali') ?></button>
+          <button class="btn btn-primary"><?= $this->lang->line('Konfirmasi') ?></button>
           </form>
         </div>
       </div>

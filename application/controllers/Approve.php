@@ -11,7 +11,8 @@ class Approve extends CI_Controller
 			redirect('AuthAdmin/Login');
 		} else {
 			require_once 'set_menu.php';
-
+			$language = $this->session->userdata('language');
+			$this->lang->load('general', $language);
 		}
 	}
 	public function index()
