@@ -30,27 +30,32 @@ class Scan extends CI_Controller
 			$string = $this->logindata['level'];
 			$this->data['Gatepass'] = $this->m_admin->GetGatepassByQrcode($string, $post['qr']);
 			if (empty($this->data['Gatepass'])) {
-				redirect('dashboard?alert=kosong');
+				redirect('scan?alert=gp0');
 			} else {
-				//getsignature
-				$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);
-				$this->data['Gatepass'][0]->approved_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->approvedby_pst_pnr);
-				$this->data['Gatepass'][0]->acknowledged_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->acknowledgedby_pst_pnr);
-				$this->data['Gatepass'][0]->securityin_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityin_pst_pnr);
-				$this->data['Gatepass'][0]->securityout_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityout_pst_pnr);
-
-
-				if (!isset($this->data['Gatepass'][0]->qrcode)) {
-					$this->data['Gatepass'][0]->qrcode_64 = 'tidak ada qrcode';
+				if ($this->data['Gatepass'][0]->status != 1) {
+					redirect('scan?alert=gp0');
 				} else {
-					ob_start();
-					QRcode::png($this->data['Gatepass'][0]->qrcode, null, QR_ECLEVEL_H, 20);
-					$imageData = ob_get_clean();
-					$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
+					//getsignature
+					$this->data['Gatepass'][0]->recommended_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->recommendedby_pst_pnr);
+					$this->data['Gatepass'][0]->approved_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->approvedby_pst_pnr);
+					$this->data['Gatepass'][0]->acknowledged_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->acknowledgedby_pst_pnr);
+					$this->data['Gatepass'][0]->securityin_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityin_pst_pnr);
+					$this->data['Gatepass'][0]->securityout_signature = $this->m_admin->GetSignature($this->data['Gatepass'][0]->securityout_pst_pnr);
+
+
+					if (!isset($this->data['Gatepass'][0]->qrcode)) {
+						$this->data['Gatepass'][0]->qrcode_64 = 'tidak ada qrcode';
+					} else {
+						ob_start();
+						QRcode::png($this->data['Gatepass'][0]->qrcode, null, QR_ECLEVEL_H, 20);
+						$imageData = ob_get_clean();
+						$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
+					}
+
+
+					$this->load->view('public/scan/Scanned', array_merge($this->logindata, $this->data));
 				}
 
-
-				$this->load->view('public/scan/Scanned', array_merge($this->logindata, $this->data));
 			}
 
 		}

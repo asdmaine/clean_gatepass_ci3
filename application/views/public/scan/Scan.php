@@ -21,6 +21,11 @@
       echo '<script>console.log("Gagal!")</script>';
       echo '<script>alert("Gagal!")</script>';
     }
+    if ($_GET['alert'] == 'gp0') {
+      echo '<script>console.log("Gatepass tidak valid!")</script>';
+      echo '<script>alert("Gatepass tidak valid!")</script>';
+    }
+  
 
     echo '<script>
     setTimeout(function() {
