@@ -33,8 +33,8 @@ class Mail extends CI_Controller
 		// $this->data['as'] = $as;
 		// $this->data['redirect'] = $redirect;
 		// $this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
-		// $this->load->view('public/mail/send_mail', $this->data);
-		echo 'masuk controler';
+		$this->load->view('public/mail/send_mail');
+		
 
 	}
 	public function tes(){
