@@ -27,19 +27,12 @@ class Mail extends CI_Controller
 		include APPPATH . 'third_party/phpmailer/src/Exception.php';
 		include APPPATH . 'third_party/phpmailer/src/PHPMailer.php';
 		include APPPATH . 'third_party/phpmailer/src/SMTP.php';
-		include APPPATH . 'third_party/qrlib/src/qrlib.php';
-		include APPPATH . 'third_party/fpdf/fpdf.php';
-		include APPPATH . 'third_party/fpdf/src/autoload.php';
+
 
 
 		$this->data['as'] = $as;
 		$this->data['redirect'] = $redirect;
 		$this->data['Gatepass'] = $this->m_admin->GetGatepassForMail($qrcode);
-		ob_start();
-		QRcode::png($this->data['Gatepass'][0]->qrcode, null, QR_ECLEVEL_H, 20);
-		$imageData = ob_get_clean();
-		$this->data['Gatepass'][0]->qrcode_64 = base64_encode($imageData);
-
 		$this->load->view('public/mail/send_mail', $this->data);
 
 	}
