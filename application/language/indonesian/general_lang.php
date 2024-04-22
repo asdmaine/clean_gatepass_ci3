@@ -26,3 +26,7 @@ $lang['Kembali']='Kembali';
 $lang['Hapus']='Hapus';
 $lang['Perkiraan jam keluar']='Perkiraan jam keluar';
 $lang['Perkiraan jam masuk']='Perkiraan jam masuk';
+
+// ALL_HISTORY
+$lang['Semua Histori Gatepass pada tahun']='Semua Histori Gatepass pada tahun ';
+

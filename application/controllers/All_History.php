@@ -68,6 +68,7 @@ class All_History extends CI_Controller
 
 		}
 	}
+	
 
 
 }

@@ -13,7 +13,7 @@
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
-        <h4>All Gatepass History From <?php if (isset($year)) {
+        <h4><?= $this->lang->line('Semua Histori Gatepass pada tahun') ?> <?php if (isset($year)) {
           echo $year;
         } else {
           echo date('Y');
@@ -37,10 +37,10 @@
             <thead>
               <tr class="text-center">
                 <th>#</th>
-                <th>Date</th>
-                <th>Reason</th>
+                <th><?= $this->lang->line('Tanggal') ?></th>
+                <th><?= $this->lang->line('Keperluan') ?></th>
                 <th>Status</th>
-                <th>Action</th>
+                <th><?= $this->lang->line('Aksi') ?></th>
               </tr>
             </thead>
             <tbody>
