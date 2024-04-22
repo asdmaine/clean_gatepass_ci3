@@ -21,7 +21,9 @@ class Welcome extends CI_Controller
 	 */
 	public function index()
 	{
-		$this->load->view('public/test/test_mail_echo');
+		$this->lang->load('general','english');
+		echo $this->lang->line('welcome');
+		// $this->load->view('public/test/Lang');
 	}
 	public function show_pdf()
 	{
