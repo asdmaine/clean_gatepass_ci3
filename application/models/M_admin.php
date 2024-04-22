@@ -288,7 +288,7 @@ class M_admin extends CI_Model
             // set status gatepass
             if ($post['as'] == 'acknowledged') {
                 $data2 = array(
-                    'status' => '1',
+                    'status' => '1'
                 );
                 $this->db->where('id_gatepass', $post['id_gatepass']);
                 $this->db->update('gatepass_tb', $data2);
@@ -371,9 +371,9 @@ class M_admin extends CI_Model
     {
       
         try {
-            if ($what == 'acknowledged') {
+            if ($as == 'acknowledged') {
                 $data2 = array(
-                    'status' => 1,
+                    'status'=> '1'
                 );
                 $this->db->where('id_gatepass', $id_gatepass);
                 $this->db->update('gatepass_tb', $data2);
@@ -432,7 +432,7 @@ class M_admin extends CI_Model
         $post = $this->input->post();
         try {
             $data2 = array(
-                'status'=> -1
+                'status'=> '-1'
             );
             $this->db->where('id_gatepass', $id_gatepass);
             $this->db->update('gatepass_tb', $data2);
