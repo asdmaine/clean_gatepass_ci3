@@ -41,7 +41,7 @@
                   <?= $hs->keperluan ?>
                 </td>
                 <?php
-                if ($hs->status_recommended == -1 || $hs->status_approved == -1 || $hs->status_acknowledged == -1) { ?>
+                if ($hs->status == -1) { ?>
                   <td class="text-center">
                     <div class="btn btn-danger">Rejected</div>
                   </td>

@@ -24,13 +24,13 @@
       transform: translatex(0);
     }
   } */
-  #loading{
+  #loading {
     width: 100%;
     height: 100%;
     position: fixed;
     text-indent: 100%;
-    background: #e0e0e0 url("<?= base_url('src/assets/img/buffer2.gif')?>") no-repeat center;
-    z-index:999;
+    background: #e0e0e0 url("<?= base_url('src/assets/img/buffer2.gif') ?>") no-repeat center;
+    z-index: 999;
     opacity: 1;
     background-size: 35%;
   }
@@ -48,7 +48,7 @@
           <li class="sidebar-logo text-center m-4">
             <i class="fa-solid fa-user fa-xl mb-3"></i><br>
             <h6 class="text-uppercase">
-              <?= $this->logindata['user']['pst_name']?>
+              <?= $this->logindata['user']['pst_name'] ?>
             </h6>
             <h6 class="text-uppercase text-secondary font-weight-normal">
               <?= $this->logindata['user']['jobtl_name'] ?>
@@ -76,6 +76,13 @@
                 <i class="fa-solid fa-clock-rotate-left fa-fw mr-2"></i>
                 History Gatepass
               </a>
+              <?php
+              if (isset($this->logindata['hr'])) { ?>
+                <a href="<?= base_url("all_history") ?>" class="subsidebar-link">
+                  <i class="fa-regular fa-calendar-check fa-fw mr-2"></i>
+                  All Gatepass History
+                </a>
+              <?php } ?>
               <?php
               if ($this->logindata['level'] == 'verifikator') { ?>
                 <a href="<?= base_url("approve") ?>" class="subsidebar-link">
@@ -115,7 +122,7 @@
         <button class="border btn" id="sidebar-toggle" type="button">
           <i class="fa-solid fa-bars fa-fw text-white"></i>
         </button>
-        
+
       </nav>
 
 
@@ -130,9 +137,9 @@
       <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 
       <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
           $("#loading").fadeOut(500);
-          
+
         })
         // sidebar tekan muncul tekan hilang
         const sidebarToggle = document.querySelector("#sidebar-toggle");

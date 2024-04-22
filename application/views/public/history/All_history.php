@@ -13,44 +13,72 @@
   <main class="content px-4 py-4">
     <div class="container-fluid">
       <div class="mb-5 text-center text-uppercase">
-        <h4>All Gatepass History</h4>
+        <h4>All Gatepass History From <?php if (isset($year)) {
+          echo $year;
+        } else {
+          echo date('Y');
+        } ?></h4>
       </div>
-      <div class="table-responsive">
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-            <tr class="text-center">
-              <th>#</th>
-              <th>Date</th>
-              <th>Reason</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text">
-              <th class="text-center align-middle">1</th>
-              <td class="text-center align-middle">2024-01-11</td>
-              <td class="align-middle">Perusahaan dan Keluarga</td>
-              <td class="text-center">
-                <div class="btn btn-success">Accepted</div>
-              </td>
-              <td class="text-center spacing-2">
-                <div class="btn btn-info m-1"><i class="fa-solid fa-circle-info"></i></div>
-              </td>
-            </tr>
-            <tr class="text">
-              <th class="text-center align-middle">2</th>
-              <td class="text-center align-middle">2024-01-11</td>
-              <td class="align-middle">Perusahaan atau Keluarga</td>
-              <td class="text-center">
-                <div class="btn btn-danger">Rejected</div>
-              </td>
-              <td class="text-center spacing-2">
-                <div class="btn btn-info m-1"><i class="fa-solid fa-circle-info"></i></div>
-              </td>
-            </tr>
-            </tfoot>
-        </table>
+      <div class="col-xl-2 col-md-4 col-sm-1">
+        <select class="form-control" name="" id="" onchange="YearSelector(this)">
+          <option disabled selected>-</option>
+          <option><?= date('Y') ?></option>
+          <option><?= date('Y') - 1 ?></option>
+          <option><?= date('Y') - 2 ?></option>
+          <option><?= date('Y') - 3 ?></option>
+          <option><?= date('Y') - 4 ?></option>
+          <option><?= date('Y') - 5 ?></option>
+        </select>
+      </div>
+
+      <div class="col-xl-12">
+        <div class="table-responsive">
+          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+              <tr class="text-center">
+                <th>#</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1;
+              foreach ($Gatepass as $hs) {
+                ?>
+                <tr class="text">
+                  <th class="text-center align-middle">
+                    <?= $i ?>
+                  </th>
+                  <td class="text-center align-middle">
+                    <?= $hs->tanggal_gatepass ?>
+                  </td>
+                  <td class="align-middle">
+                    <?= $hs->keperluan ?>
+                  </td>
+                  <?php
+                  if ($hs->status == -1) { ?>
+                    <td class="text-center">
+                      <div class="btn btn-danger">Rejected</div>
+                    </td>
+                  <?php } else { ?>
+                    <td class="text-center">
+                      <div class="btn btn-success">Accepted</div>
+                    </td>
+                  <?php } ?>
+                  <td class="text-center">
+                    <div class="btn btn-secondary m-1"
+                      onclick="window.open('<?= base_url('all_history/detail/' . $hs->qrcode) ?>','_self');">
+                      <i class="fa-solid fa-print"></i>
+                    </div>
+                  </td>
+                </tr>
+                <?php $i++;
+              } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </main>
@@ -62,10 +90,15 @@
   <!-- punya header -->
   </div>
   </div>
-  
+
   <script>
     // untk datatables
     new DataTable('#example');
+
+    function YearSelector(select) {
+      var selectedYear = select.options[select.selectedIndex].value;
+      window.open('<?= base_url('all_history/from/') ?>' + selectedYear, '_self')
+    }
   </script>
 </body>
 

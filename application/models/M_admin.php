@@ -838,6 +838,50 @@ class M_admin extends CI_Model
         return $query;
 
     }
+    public function GetHistoryYear($year)
+    {
+        $query = $this->db->query(
+            "
+            SELECT 
+    a.*, b.*, c.*, d.*, e.*, 
+    f.pst_name AS recommended_name, 
+    f2.pst_name AS approved_name, 
+    f3.pst_name AS acknowledged_name, 
+    f4.signature AS requested_signature, 
+    f5.pst_name AS securityout_name, 
+    f6.pst_name AS securityin_name 
+        FROM 
+            gatepass_tb a
+        LEFT JOIN 
+            gatepass_tbtime b ON a.id_time = b.id_time
+        LEFT JOIN 
+            gatepass_tbpengesahan c ON a.id_pengesahan = c.id_pengesahan
+        LEFT JOIN 
+            gatepass_tbverifikasi d ON c.id_verifikasi = d.id_verifikasi
+        LEFT JOIN 
+            gatepass_tbremarks e ON c.id_remarks = e.id_remarks
+        LEFT JOIN 
+            pst f ON c.recommendedby_pst_pnr = f.pst_pnr
+        LEFT JOIN 
+            pst f2 ON c.approvedby_pst_pnr = f2.pst_pnr
+        LEFT JOIN 
+            pst f3 ON c.acknowledgedby_pst_pnr = f3.pst_pnr
+        LEFT JOIN 
+            gatepass_tbsignature f4 ON c.requestedby_pst_pnr = f4.pst_pnr
+        LEFT JOIN 
+            pst f5 ON c.securityout_pst_pnr = f5.pst_pnr
+        LEFT JOIN 
+            pst f6 ON c.securityin_pst_pnr = f6.pst_pnr
+        WHERE 
+            YEAR(a.tanggal_gatepass) = '$year'
+        AND 
+            a.status != 0
+        ORDER BY 
+            a.tanggal_gatepass DESC"
+        );
+        return $query->result();
+
+    }
 
 }
 
