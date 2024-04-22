@@ -7,6 +7,8 @@ class Mail extends CI_Controller
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('m_admin');
+		$language = $this->session->userdata('language');
+		$this->lang->load('general', $language);
 		// if (!$this->m_admin->is_login()) {
 		// 	redirect('AuthAdmin/Login');
 		// } else {
@@ -30,7 +32,7 @@ class Mail extends CI_Controller
 		$this->load->view('public/mail/Send_mail', $this->data);
 
 	}
-	public function pushbyemail($as, $qrcode,$what)
+	public function pushbyemail($as, $qrcode, $what)
 	{
 
 		include APPPATH . 'third_party/phpmailer/src/Exception.php';
@@ -43,16 +45,16 @@ class Mail extends CI_Controller
 		$this->load->view('public/mail/Send_mail2', $this->data);
 
 	}
-	public function approve_from_mail($what,$as,$qrcode,$id_verifikasi,$id_gatepass)
+	public function approve_from_mail($what, $as, $qrcode, $id_verifikasi, $id_gatepass)
 	{
-		if($what == 1){
-			$this->m_admin->AcceptGatepassFromMail($what,$as,$qrcode,$id_verifikasi,$id_gatepass);
-		}else{
-			$this->m_admin->RejectGatepassFromMail($what,$as,$qrcode,$id_verifikasi,$id_gatepass);
+		if ($what == 1) {
+			$this->m_admin->AcceptGatepassFromMail($what, $as, $qrcode, $id_verifikasi, $id_gatepass);
+		} else {
+			$this->m_admin->RejectGatepassFromMail($what, $as, $qrcode, $id_verifikasi, $id_gatepass);
 		}
 	}
-	
-	
+
+
 
 
 

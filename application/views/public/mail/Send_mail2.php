@@ -8,7 +8,7 @@ $mail = new PHPMailer(true);
 $string = 'isi string';
 
 if ($Gatepass[0]->status_recommended == 1 & $Gatepass[0]->status_approved == 1 & $Gatepass[0]->status_acknowledged == 1) {
-    $status_gatepass = 'DITERIMA DENGAN QRCODE ' . $Gatepass[0]->qrcode;
+    $status_gatepass = $this->lang->line('DITERIMA DENGAN QRCODE') . $Gatepass[0]->qrcode;
 } else {
     $status_gatepass = 'REJECTED';
 }

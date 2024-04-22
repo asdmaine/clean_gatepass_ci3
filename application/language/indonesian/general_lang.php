@@ -35,3 +35,7 @@ $lang['Semua Histori Gatepass pada tahun']='Semua Histori Gatepass pada tahun ';
 $lang['Urusan Perusahaan']='Urusan Perusahaan';
 $lang['Pengesahan']='Pengesahan';
 $lang['Konfirmasi']='Konfirmasi';
+
+// Send_mail
+$lang['DITERIMA DENGAN QRCODE']='DITERIMA DENGAN QRCODE ';
+

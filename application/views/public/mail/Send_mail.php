@@ -28,7 +28,7 @@ if ($Gatepass[0]->status_acknowledged == 1) {
   $status_acknowledged = 'rejected';
 }
 if ($Gatepass[0]->status_recommended == 1 & $Gatepass[0]->status_approved == 1 & $Gatepass[0]->status_acknowledged == 1) {
-  $status_gatepass = 'DITERIMA DENGAN QRCODE ' . $Gatepass[0]->qrcode;
+  $status_gatepass =  $this->lang->line('DITERIMA DENGAN QRCODE') . $Gatepass[0]->qrcode;
 } else {
   $status_gatepass = 'REJECTED';
 }
@@ -142,7 +142,7 @@ try {
       <div>
           <h2>REQUEST GATEPASS ANDA ' . $status_gatepass . '</h2>
           <!-- <h2>Pesan ini dikirim ke email milik' . $as . '@ptdsaw.co.id' . '</h2> -->
-          <h2>Pesan  ini dikirim ke ' . $as . '_mail@ptdsaw' . '</h2>
+          <h2>Pesan  ini seharusnya dikirim ke ' . $as . '_mail@ptdsaw' . '</h2>
 
           <table border="1">
               <thead>
