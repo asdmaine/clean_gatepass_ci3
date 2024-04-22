@@ -32,12 +32,12 @@
               <thead class="text-center">
                 <tr>
                   <td scope="col">#</td>
-                  <td scope="col">Date</td>
-                  <td scope="col">Reason</td>
+                  <td scope="col"><?= $this->lang->line('Tanggal') ?></td>
+                  <td scope="col"><?= $this->lang->line('Keperluan') ?></td>
                   <td scope="col">Recommended by</td>
                   <td scope="col">Approved by</td>
                   <td scope="col">Acknowledged by</td>
-                  <td scope="col">Action</td>
+                  <td scope="col"><?= $this->lang->line('Aksi') ?></td>
                 </tr>
               </thead>
               <tbody>
@@ -186,18 +186,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalSureLabel">Are you sure?</h5>
+          <h5 class="modal-title" id="ModalSureLabel"><?= $this->lang->line('Apakah anda yakin?') ?></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          This action will delete your gatepass progress.
+        <?= $this->lang->line('Anda akan kehilangan progres dari gatepass anda') ?>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $this->lang->line('Kembali') ?></button>
           <a href="<?= base_url('submit/do_delete/' . $pg->id_gatepass . '/' . $pg->id_pengesahan) ?>"
-            class="btn btn-danger">Delete</a>
+            class="btn btn-danger"><?= $this->lang->line('Hapus') ?></a>
         </div>
       </div>
     </div>
@@ -217,55 +217,53 @@
         <div class="modal-body">
           <form id="myForm" action="<?= base_url("submit/do_submit") ?>" method="post">
             <div class="form-group mb-4">
-              <label for="tanggal" class="col-form-label font-weight-bold">Tanggal</label>
+              <label for="tanggal" class="col-form-label font-weight-bold"><?= $this->lang->line('Tanggal') ?></label>
               <input type="date" class="form-control w-50" name="tanggal" id="tanggal" required>
             </div>
             <div class="form-group mb-4 ">
-              <label class="form-label font-weight-bold">Keperluan</label><br>
+              <label class="form-label font-weight-bold"><?= $this->lang->line('Keperluan') ?></label><br>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="keperluan" id="urusan_perusahaan"
                   value="urusan_perusahaan" required>
-                <label class="form-check-label" for="urusan_perusahaan">Urusan
-                  Perusahaan&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label class="form-check-label" for="urusan_perusahaan"><?= $this->lang->line('Urusan Perusahaan') ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="keperluan" id="urusan_keluarga"
                   value="urusan_keluarga" required>
-                <label class="form-check-label" for="urusan_keluarga">Urusan Keluarga&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label class="form-check-label" for="urusan_keluarga"><?= $this->lang->line('Urusan Keluarga') ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="keperluan" id="sakit" value="sakit" required>
-                <label class="form-check-label" for="sakit">Sakit/Klinik/RS&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label class="form-check-label" for="sakit"><?= $this->lang->line('Sakit/Klinik/Rs') ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="keperluan" id="lain-lain" value="lain-lain" required>
-                <label class="form-check-label" for="lain-lain">Lain-lain</label>
+                <label class="form-check-label" for="lain-lain"><?= $this->lang->line('lain-lain') ?></label>
               </div>
             </div>
             <div class="form-group mb-4">
-              <label for="penjelasan" class="form-label font-weight-bold">Penjelasan</label>
+              <label for="penjelasan" class="form-label font-weight-bold"><?= $this->lang->line('Penjelasan') ?></label>
               <textarea class="form-control" placeholder="Tulis lebih detail keperluan anda." name="penjelasan"
                 id="penjelasan" style="height: 100px" required></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
+              <label class="form-label font-weight-bold"><?= $this->lang->line('Perkiraan waktu') ?></label><br>
               <div class="input-group mb-1">
-                <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar" disabled>
+                <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam keluar') ?>" disabled>
                 <input class="form-control" onchange="checkTimeInterval()" type="time" name="est_time_out"
                   id="form_est_time_out" required>
               </div>
               <div class="input-group mb-4">
-                <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Masuk" disabled>
+                <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam masuk') ?>" disabled>
                 <input class="form-control" onchange="checkTimeInterval()" type="time" name="est_time_in"
                   id="form_est_time_in" required>
               </div>
               <div class="input-group mb-4">
-                <p class="text-center w-100 text-danger" id="alert-time" style="display:none;">Tidak boleh keluar lebih
-                  dari 3 jam</p>
+                <p class="text-center w-100 text-danger" id="alert-time" style="display:none;"><?= $this->lang->line('Tidak boleh keluar lebih dari 3 jam') ?></p>
               </div>
             </div>
             <div class="form-group mb-4">
-              <label class="form-label font-weight-bold">Pengesahan</label><br>
+              <label class="form-label font-weight-bold"><?= $this->lang->line('Pengesahan') ?></label><br>
               <div class="input-group mb-1">
                 <input type="text" class="form-control text-light" placeholder="Requested By" disabled>
                 <select name="" id="" class="form-control" disabled>
@@ -347,11 +345,11 @@
         <div class="modal-body">
           <form>
             <div class="form-group mb-4">
-              <label for="tanggal" class="col-form-label font-weight-bold">Tanggal</label>
+              <label for="tanggal" class="col-form-label font-weight-bold"><?= $this->lang->line('Tanggal') ?></label>
               <input type="date" class="form-control w-50" id="tanggal" value="<?= $pg->tanggal_gatepass ?>" disabled>
             </div>
             <div class="form-group mb-4 ">
-              <label class="form-label font-weight-bold">Keperluan</label><br>
+              <label class="form-label font-weight-bold"><?= $this->lang->line('Keperluan') ?></label><br>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="<?= $pg->keperluan ?>" value="<?= $pg->keperluan ?>"
                   disabled checked>
@@ -359,18 +357,18 @@
               </div>
             </div>
             <div class="form-group mb-4">
-              <label for="penjelasan" class="form-label font-weight-bold">Penjelasan</label>
+              <label for="penjelasan" class="form-label font-weight-bold"><?= $this->lang->line('Penjelasan') ?></label>
               <textarea class="form-control" id="penjelasan" style="height: 100px"
                 disabled><?= $pg->penjelasan_keperluan ?></textarea>
             </div>
             <div class="form-group mb-4">
               <label class="form-label font-weight-bold">Perkiraan Waktu</label><br>
               <div class="input-group mb-1">
-                <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Keluar" disabled>
+                <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam keluar') ?>" disabled>
                 <input class="form-control" type="time" id="est_time_out" value="<?= $pg->est_time_out ?>" disabled>
               </div>
               <div class="input-group mb-4">
-                <input type="text" class="form-control text-light" placeholder="Perkiraan Jam Masuk" disabled>
+                <input type="text" class="form-control text-light" placeholder="<?= $this->lang->line('Perkiraan jam masuk') ?>" disabled>
                 <input class="form-control" type="time" id="est_time_in" value="<?= $pg->est_time_in ?>" disabled>
               </div>
             </div>

@@ -33,9 +33,16 @@ $lang['Semua Histori Gatepass pada tahun']='Semua Histori Gatepass pada tahun ';
 
 // APPROVE
 $lang['Urusan Perusahaan']='Urusan Perusahaan';
+$lang['Urusan Keluarga']='Urusan Keluarga';
+$lang['Sakit/Klinik/Rs']='Sakit/Klinik/Rs';
+$lang['lain-lain']='lain-lain';
 $lang['Pengesahan']='Pengesahan';
 $lang['Konfirmasi']='Konfirmasi';
 
 // Send_mail
 $lang['DITERIMA DENGAN QRCODE']='DITERIMA DENGAN QRCODE ';
+
+//Submit
+$lang['Tidak boleh keluar lebih dari 3 jam']='Tidak boleh keluar lebih dari 3 jam ';
+
 

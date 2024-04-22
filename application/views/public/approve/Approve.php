@@ -185,7 +185,7 @@
                               <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="<?= $pg->keperluan ?>"
                                   value="<?= $pg->keperluan ?>" disabled checked>
-                                <label class="form-check-label" for="<?= $pg->keperluan ?>"><?= $this->lang->line('Urusan Perusahaan') ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <label class="form-check-label" for="<?= $pg->keperluan ?>"><?= $pg->keperluan ?>&nbsp;&nbsp;&nbsp;&nbsp;</label>
                               </div>
                             </div>
                             <div class="form-group mb-4">
