@@ -14,18 +14,24 @@ class Dashboard extends CI_Controller
 			require_once 'set_menu.php';
 		}
 	}
-	
+
 	public function index()
 	{
 		$string = $this->logindata['user']['pst_pnr'];
 		$this->data['Progress'] = $this->m_admin->GetProgress($string);
 		$this->data['signSet'] = $this->m_admin->cekSignature($string);
-		$this->data['this_month']=$this->m_admin->ThisMonth($string);
-		$this->data['this_year']=$this->m_admin->ThisYear($string);
-		$this->data['last_month']=$this->m_admin->LastMonth($string);
+		$this->data['this_month'] = $this->m_admin->ThisMonth($string);
+		$this->data['this_year'] = $this->m_admin->ThisYear($string);
+		$this->data['last_month'] = $this->m_admin->LastMonth($string);
+		if (isset($this->logindata['hr'])) {
+			$this->data['all_this_month'] = $this->m_admin->AllThisMonth();
+			$this->data['all_this_year'] = $this->m_admin->AllThisYear();
+			$this->data['all_last_month'] = $this->m_admin->AllLastMonth();
+		}
 		$this->sidebar->view('public/dashboard/Dashboard', array_merge($this->logindata, $this->data));
 	}
-	public function upSignature(){
+	public function upSignature()
+	{
 		$post = $this->input->post();
 		if (empty($post)) {
 			redirect('dashboard?alert=ditolak');
@@ -33,7 +39,7 @@ class Dashboard extends CI_Controller
 			$this->m_signature->SetSignature();
 		}
 	}
-	
+
 
 
 }

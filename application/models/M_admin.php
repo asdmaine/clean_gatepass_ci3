@@ -794,6 +794,50 @@ class M_admin extends CI_Model
         return $query;
 
     }
+    public function AllThisMonth()
+    {
+        $date = date('Y-m');
+        $query = $this->db->query(
+            "
+        SELECT id_gatepass
+        FROM `gatepass_tb` `a` 
+        JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+        WHERE DATE_FORMAT(a.tanggal_gatepass, '%Y-%m') = '$date'
+        AND `status` = 1;"
+        )->num_rows();
+        return $query;
+
+    }
+    public function AllLastMonth()
+    {
+        $date = date('Y-m', strtotime('-1 month'));
+        $query = $this->db->query(
+            "
+        SELECT id_gatepass
+        FROM `gatepass_tb` `a` 
+        JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+        WHERE DATE_FORMAT(a.tanggal_gatepass, '%Y-%m') = '$date'
+        AND `status` = 1;"
+        )->num_rows();
+        return $query;
+    }
+    public function AllThisYear()
+    {
+
+        $year = date('Y');
+
+        $query = $this->db->query(
+            "
+            SELECT id_gatepass
+            FROM `gatepass_tb` `a` 
+            JOIN `gatepass_tbpengesahan` AS `b` ON `a`.`id_pengesahan` = `b`.`id_pengesahan` 
+            WHERE YEAR(a.tanggal_gatepass) = '$year'
+            AND `status` = 1"
+        )->num_rows();
+
+        return $query;
+
+    }
 
 }
 

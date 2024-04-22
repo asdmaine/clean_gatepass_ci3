@@ -38,22 +38,50 @@
       <div class="row mb-5 text-white">
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-danger d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Bulan ini (<?= date('M') ?>)</h3>
+            <h3 class="mb-3">Gatepass anda Bulan ini (<?= date('M') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-success d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Bulan lalu (<?php $date=date('M', strtotime('-1 month')); echo $date; ?>)</h3>
+            <h3 class="mb-3">Gatepass anda Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
+            echo $date; ?>)
+            </h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $last_month ?></h2>
           </div>
         </div>
         <div class="col-xl-4 col-md-6 col-sm-12 p-2">
           <div class="bg-secondary d-flex flex-column p-4 shadow">
-            <h3 class="mb-3">Gatepass Tahun ini (<?= date('Y') ?>)</h3>
+            <h3 class="mb-3">Gatepass anda Tahun ini (<?= date('Y') ?>)</h3>
             <h2 class="font-weight-bold mb-0 text-right"><?= $this_year ?></h2>
           </div>
         </div>
+
+
+        <?php if (isset($this->logindata['hr'])) { ?>
+
+          <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+            <div class="bg-primary d-flex flex-column p-4 shadow">
+              <h3 class="mb-3">Total Gatepass Karyawan Bulan ini (<?= date('M') ?>)</h3>
+              <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_month ?></h2>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+            <div class="bg-danger d-flex flex-column p-4 shadow">
+              <h3 class="mb-3">Total Gatepass Karyawan Bulan lalu (<?php $date = date('M', strtotime('-1 month'));
+              echo $date; ?>)
+              </h3>
+              <h2 class="font-weight-bold mb-0 text-right"><?= $all_last_month ?></h2>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 col-sm-12 p-2">
+            <div class="bg-success d-flex flex-column p-4 shadow">
+              <h3 class="mb-3">Total Gatepass Karyawan Tahun ini (<?= date('Y') ?>)</h3>
+              <h2 class="font-weight-bold mb-0 text-right"><?= $all_this_year ?></h2>
+            </div>
+          </div>
+
+        <?php } ?>
       </div>
       <hr>
 

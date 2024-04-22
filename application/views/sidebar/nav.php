@@ -115,10 +115,7 @@
         <button class="border btn" id="sidebar-toggle" type="button">
           <i class="fa-solid fa-bars fa-fw text-white"></i>
         </button>
-        <div style="cursor:pointer;">
-          <i class="fa-solid fa-bell fa-fw text-white" style="font-size:20px;"></i><span
-            class="badge badge-danger badge-pill">5</span>
-        </div>
+        
       </nav>
 
 
