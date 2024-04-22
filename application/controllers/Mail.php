@@ -36,10 +36,7 @@ class Mail extends CI_Controller
 		$this->load->view('public/mail/Send_mail', $this->data);
 
 	}
-	public function tes(){
-		// $this->load->view('public/test/test_mail_echo', $this->data);
-		echo 'hii';
-	}
+	
 
 
 
